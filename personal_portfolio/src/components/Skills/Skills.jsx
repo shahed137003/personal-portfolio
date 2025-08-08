@@ -7,6 +7,7 @@ import { BsUsbPlug } from "react-icons/bs";
 import { SiCplusplus, SiArduino, SiAnaconda, SiMysql, SiMongodb, SiPostgresql, SiFirebase, SiTensorflow, SiPytorch, SiScikitlearn, SiNumpy, SiPandas, SiJupyter, SiKeras, SiTailwindcss, SiDjango, SiTypescript } from "react-icons/si";
 import { motion } from 'framer-motion';
 
+// Skill arrays remain unchanged...
 const programmingLanguages = [
   { name: "C++", icon: <SiCplusplus className="text-white text-xl" /> },
   { name: "C", icon: <FaCuttlefish className="text-white text-xl" /> },
@@ -65,22 +66,23 @@ export default function Skills() {
     <div className="text-white relative z-10 w-full px-4 py-10" id="skillSection">
       <motion.h1
         className="text-4xl sm:text-5xl md:text-[70px] font-bold font-serif text-center text-transparent bg-clip-text bg-gradient-to-br from-[#6E48AA] via-[#764BA2] to-[#9D50BB] mb-10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 2 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         Skills
       </motion.h1>
 
       <div className="flex justify-center">
         <motion.div
-          className="transition duration-300 ease-in transform hover:scale-105 w-full max-w-[900px] bg-gradient-to-br from-[#050008] to-[#151515] border border-[#764BA2] opacity-90 rounded-2xl hover:shadow-[3px_4px_15px_#764BA2] p-4 sm:p-6"
-          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          className="transition-transform duration-200 ease-in hover:scale-[1.02] w-full max-w-[900px] bg-gradient-to-br from-[#050008] to-[#151515] border border-[#764BA2] opacity-90 rounded-2xl hover:shadow-[3px_4px_15px_#764BA2] p-4 sm:p-6"
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           transition={{
-            duration: 0.5,
-            ease: "easeOut",
-            delay: 0.1,
+            type: "spring",
+            stiffness: 120,
+            damping: 15,
+            delay: 0.05,
           }}
         >
           <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[#6E48AA] via-[#764BA2] to-[#9D50BB] font-bold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl">
@@ -105,37 +107,59 @@ export default function Skills() {
     </div>
   );
 }
-
 function SkillCard({ title, icon, color, bgFrom, bgTo, description, items }) {
   return (
-    <div
-      className="transition duration-300 ease-in transform hover:scale-105 w-full rounded-2xl p-4 sm:p-6"
+    <motion.div
+      className="rounded-2xl p-4 sm:p-6 cursor-pointer"
       style={{
         background: `linear-gradient(to bottom right, ${bgFrom}, ${bgTo})`,
         border: `1px solid ${color}`,
         opacity: 0.9,
-        boxShadow: `0 0 0 ${color}`, // No shadow initially
       }}
-      onMouseEnter={(e) => e.currentTarget.style.boxShadow = `3px 4px 15px ${color}`}
-      onMouseLeave={(e) => e.currentTarget.style.boxShadow = `0 0 0 ${color}`}
+      initial={{ opacity: 0, scale: 0.9, y: 15 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      whileHover={{ scale: 1.02, rotate: 0.5 }}
+      transition={{ type: "spring", stiffness: 140, damping: 12 }}
     >
       <div className="flex items-center gap-3 font-bold text-sm sm:text-[15px]" style={{ color }}>
         {icon}
         <h1 className="italic">{title}</h1>
       </div>
       <p className="text-[12px] text-white pt-1 pl-9">{description}</p>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 pt-4 sm:pt-6 px-4 sm:px-6">
+      <motion.div
+        className="grid grid-cols-2 sm:grid-cols-3 gap-1 pt-4 sm:pt-6 px-4 sm:px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.08, ease: "easeInOut" }
+          }
+        }}
+      >
         {items.map((lang) => (
-          <div
+          <motion.div
             key={lang.name}
-            className="rounded-[8px] shadow-md transition-all duration-300 p-1 flex items-center gap-1"
+            className="rounded-[8px] p-1 flex items-center gap-1 cursor-pointer"
             style={{ backgroundColor: color }}
+            variants={{
+              hidden: { opacity: 0, scale: 0.8, y: 15 },
+              visible: { opacity: 1, scale: 1, y: 0 }
+            }}
+            whileHover={{
+              y: -5,
+              scale: 1.15,
+              // shadow removed here
+            }}
+            transition={{ type: "spring", stiffness: 250, damping: 18 }}
           >
             {lang.icon}
             <p className="text-white text-[12px] tracking-wide">{lang.name}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

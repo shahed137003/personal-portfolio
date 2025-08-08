@@ -15,16 +15,16 @@ export default function HeroSection() {
 
       {/* Main Content */}
       <motion.div
-        initial={{ opacity: 0, y: -50 }}
+        initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         viewport={{ once: true }}
         className="text-white relative z-10 px-6 sm:px-10 md:px-16 lg:px-24 max-w-5xl"
       >
         <motion.h1
-          initial={{ opacity: 0, x: -100 }}
+          initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           className="text-[40px] sm:text-[56px] lg:text-[76px] font-bold italic text-transparent bg-clip-text bg-gradient-to-br from-[#9400D3] to-[#4B0082] leading-tight"
         >
           Shahd Mohamed
@@ -35,9 +35,9 @@ export default function HeroSection() {
         </div>
 
         <motion.p
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeInOut", delay: 0.15 }}
           className="overflow-hidden"
         >
           <img
@@ -50,8 +50,8 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.6 }}
-          className="text-[16px] sm:text-[15px] lg:text-[18px] font-serif font-thin mt-4 "
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeInOut" }}
+          className="text-[16px] sm:text-[15px] lg:text-[18px] font-serif font-thin mt-4"
         >
           <p>
             I’m a passionate <span className="text-[#BF5AE0]">AI Engineer</span> and
@@ -62,20 +62,21 @@ export default function HeroSection() {
           <p>algorithms and intuitive digital experiences.</p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 1 }}
+            transition={{ duration: 0.5, delay: 0.45, ease: "easeInOut" }}
             className="flex flex-col sm:flex-row gap-6 mt-8"
           >
-         <button
-      className="transition duration-300 ease-in transform hover:scale-110 px-6 py-3 border-2 border-[#BF5AE0] rounded-xl text-[#BF5AE0] flex items-center justify-center gap-3 shadow-md shadow-[#BF5AE0]"
-      onClick={() => window.open("https://github.com/shahed137003", "_blank", "noopener,noreferrer")}
-    >
-      Github <FaGithub className="text-xl" />
-    </button>
+            <button
+              className="transition duration-300 ease-in transform hover:scale-110 px-6 py-3 border-2 border-[#BF5AE0] rounded-xl text-[#BF5AE0] flex items-center justify-center gap-3 shadow-md shadow-[#BF5AE0]"
+              onClick={() => window.open("https://github.com/shahed137003", "_blank", "noopener,noreferrer")}
+            >
+              Github <FaGithub className="text-xl" />
+            </button>
 
-            <button className="transition duration-300 ease-in transform hover:scale-110 hover:shadow-lg hover:shadow-[#4B0082] bg-gradient-to-br from-[#9400D3] to-[#4B0082] px-6 py-3 rounded-4xl text-white flex items-center justify-center gap-3"
-             onClick={() => window.open("https://www.linkedin.com/in/shahd-mohamed-2ab8bb315", "_blank", "noopener,noreferrer")}
+            <button
+              className="transition duration-300 ease-in transform hover:scale-110 hover:shadow-lg hover:shadow-[#4B0082] bg-gradient-to-br from-[#9400D3] to-[#4B0082] px-6 py-3 rounded-4xl text-white flex items-center justify-center gap-3"
+              onClick={() => window.open("https://www.linkedin.com/in/shahd-mohamed-2ab8bb315", "_blank", "noopener,noreferrer")}
             >
               Linkedin <FaLinkedin />
             </button>

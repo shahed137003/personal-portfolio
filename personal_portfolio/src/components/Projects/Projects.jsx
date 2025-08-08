@@ -66,7 +66,7 @@ export default function Projects() {
         className="text-3xl sm:text-4xl lg:text-6xl font-bold font-serif text-center text-transparent bg-clip-text bg-gradient-to-br from-[#9D50BB] to-[#6E48AA] mb-10 sm:mb-14"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
       >
         Projects
       </motion.h1>
@@ -77,7 +77,11 @@ export default function Projects() {
             key={index}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ 
+              duration: 0.4, 
+              ease: "easeInOut",
+              delay: index * 0.1
+            }}
             className={`
               flex flex-col h-full transition-transform duration-300 hover:scale-[1.03] 
               w-full max-w-[420px] backdrop-blur-lg border rounded-2xl p-4 sm:p-6
@@ -98,7 +102,8 @@ export default function Projects() {
             />
 
             <h2
-              className={`text-lg sm:text-xl lg:text-2xl font-semibold text-center mb-3 tracking-wide
+              className={`
+                text-lg sm:text-xl lg:text-2xl font-semibold text-center mb-3 tracking-wide
                 ${index % 2 === 0 ? 'text-[#9D50BB]' : 'text-[#6E48AA]'}
               `}
             >
@@ -113,10 +118,12 @@ export default function Projects() {
               {project.languages.map((lang, i) => (
                 <span
                   key={i}
-                  className={`px-3 py-1 rounded-lg text-xs sm:text-sm font-medium border backdrop-blur-md
+                  className={`
+                    px-3 py-1 rounded-lg text-xs sm:text-sm font-medium border backdrop-blur-md
                     ${index % 2 === 0
                       ? 'text-[#9D50BB] border-[#9D50BB]/40 bg-[#9D50BB]/10' 
-                      : 'text-[#6E48AA] border-[#6E48AA]/40 bg-[#6E48AA]/10'}`}
+                      : 'text-[#6E48AA] border-[#6E48AA]/40 bg-[#6E48AA]/10'}
+                  `}
                 >
                   {lang}
                 </span>
