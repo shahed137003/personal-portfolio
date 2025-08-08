@@ -1,4 +1,4 @@
-# 💼 Personal Portfolio — [Your Name]
+# 💼 Personal Portfolio — Shahd mohamed
 
 Welcome to my **personal portfolio website**! This project showcases my journey, skills, and projects as a passionate **Machine Learning Engineer** and **Frontend Web Developer**. Designed with a clean UI and interactive experience, this portfolio highlights both my technical depth and creativity.
 
@@ -39,7 +39,7 @@ Welcome to my **personal portfolio website**! This project showcases my journey,
 
 ## 🌐 Live Demo
 
-🔗 [View Portfolio Website](https://your-portfolio-url.com)
+🔗 [View Portfolio Website]([https://your-portfolio-url.com](https://shahed137003.github.io/personal-portfolio/))
 
 ---
 
@@ -62,9 +62,9 @@ Welcome to my **personal portfolio website**! This project showcases my journey,
 
 ## 📬 Contact Me
 
-- 📧 **Email**: your.email@example.com  
-- 💼 **LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)  
-- 🐙 **GitHub**: [github.com/yourusername](https://github.com/yourusername)
+- 📧 **Email**: Shahd137003@gmail.com 
+- 💼 **LinkedIn**: [linkedin.com/in/yourprofile]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/shahd-mohamed-2ab8bb315))  
+
 
 ---
 
