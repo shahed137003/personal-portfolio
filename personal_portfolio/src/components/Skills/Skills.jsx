@@ -151,7 +151,7 @@ function SkillCard({ title, icon, color, bgFrom, bgTo, description, items }) {
             whileHover={{
               y: -5,
               scale: 1.15,
-              // shadow removed here
+            
             }}
             transition={{ type: "spring", stiffness: 250, damping: 18 }}
           >

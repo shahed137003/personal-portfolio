@@ -19,7 +19,7 @@ export default function Contact() {
         Contact
       </motion.h1>
 
-      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-60">
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-20">
         {/* Contact Form */}
         <motion.form
           className="transition duration-300 ease-in transform hover:scale-105 w-full lg:w-1/2 bg-gradient-to-br from-[#07000b] to-[#6E48AA] border border-[#6E48AA] opacity-90 rounded-2xl hover:shadow-[3px_4px_5px] shadow-[#6E48AA] p-6 sm:p-8"
