@@ -1,0 +1,35 @@
+.liquid-glass {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.liquid-glass::before,
+.liquid-glass::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle at center,
+    rgba(157, 80, 187, 0.4) 0%,
+    rgba(110, 72, 170, 0.25) 30%,
+    transparent 70%);
+  animation: swirl 12s linear infinite;
+  mix-blend-mode: screen;
+  filter: blur(60px);
+}
+
+.liquid-glass::after {
+  background: radial-gradient(circle at center,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(157, 80, 187, 0.2) 40%,
+    transparent 80%);
+  animation: swirl 18s linear infinite reverse;
+}
+
+@keyframes swirl {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}

@@ -1,30 +1,33 @@
-import React from 'react';
+import React from "react";
+import { FaHeart, FaCoffee, FaReact } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer
       className="
-        bg-[#0f0f0f8f] backdrop-blur-md py-3 px-4
-        text-gray-400 border-t border-[#833CAA]
-        w-full absolute
-        flex items-center justify-center
-        select-none
-        text-xs sm:text-sm md:text-base
-        tracking-wide
-        z-50
+        relative bg-[#0f0f0f]/90 backdrop-blur-md py-4 px-6
+        border-t border-[#833CAA]/60
+        flex flex-col sm:flex-row items-center justify-center gap-2
+        text-gray-300 text-sm sm:text-base
+        tracking-wide select-none
       "
     >
-      <p className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 text-center max-w-[700px] mx-auto">
-        © 2025 Shahd Mohamed. Made with
-        <span
-          role="img"
-          aria-label="love"
-          className="text-pink-500 animate-pulse"
-          style={{ filter: 'drop-shadow(0 0 4px #E75480)' }}
-        >
-          ❤️
-        </span>
-        and lots of coffee ☕
+      {/* Glow line at top */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#6A3093] via-[#A044FF] to-[#6A3093] animate-pulse" />
+
+      <p className="flex flex-wrap justify-center items-center gap-2 text-center">
+        © 2025 <span className="font-semibold text-[#A044FF]">Shahd Mohamed</span>
+      </p>
+
+      <p className="flex items-center gap-2 text-center">
+        Made with 
+        <FaHeart className="text-pink-500 animate-pulse drop-shadow-[0_0_6px_#ff5c8a]" />
+        and lots of 
+        <FaCoffee className="text-yellow-400 drop-shadow-[0_0_6px_#FFD700]" />
+      </p>
+
+      <p className="flex items-center gap-1 text-xs sm:text-sm opacity-80">
+        Powered by <FaReact className="text-[#61DBFB] animate-spin-slow" /> React
       </p>
     </footer>
   );

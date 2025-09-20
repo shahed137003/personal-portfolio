@@ -1,13 +1,21 @@
 import React from 'react'
-import { FaLaptopCode, FaMicrochip, FaTools, FaDatabase, FaReact, FaPython, FaJava, FaHtml5, FaCss3Alt, FaCuttlefish, FaJsSquare, FaGitAlt, FaGithub, FaCode, FaBrain, FaJs } from "react-icons/fa";
+import {
+  FaLaptopCode, FaMicrochip, FaTools, FaDatabase, FaReact, FaPython, FaJava,
+  FaHtml5, FaCss3Alt, FaCuttlefish, FaJsSquare, FaGitAlt, FaGithub, FaCode,
+  FaBrain, FaJs, FaUsers, FaComments, FaLightbulb, FaProjectDiagram, FaUserFriends, FaLanguage
+} from "react-icons/fa";
 import { GiArtificialIntelligence, GiProcessor } from 'react-icons/gi';
 import { TbTopologyStar3 } from "react-icons/tb";
 import { MdGpsFixed } from "react-icons/md";
 import { BsUsbPlug } from "react-icons/bs";
-import { SiCplusplus, SiArduino, SiAnaconda, SiMysql, SiMongodb, SiPostgresql, SiFirebase, SiTensorflow, SiPytorch, SiScikitlearn, SiNumpy, SiPandas, SiJupyter, SiKeras, SiTailwindcss, SiDjango, SiTypescript } from "react-icons/si";
+import {
+  SiCplusplus, SiArduino, SiAnaconda, SiMysql, SiMongodb, SiPostgresql,
+  SiFirebase, SiTensorflow, SiPytorch, SiScikitlearn, SiNumpy, SiPandas,
+  SiJupyter, SiKeras, SiTailwindcss, SiDjango, SiTypescript
+} from "react-icons/si";
 import { motion } from 'framer-motion';
 
-// Skill arrays remain unchanged...
+// ================= Technical Skills ===================
 const programmingLanguages = [
   { name: "C++", icon: <SiCplusplus className="text-white text-xl" /> },
   { name: "C", icon: <FaCuttlefish className="text-white text-xl" /> },
@@ -29,7 +37,7 @@ const EmbeddedSkills = [
 const ToolsAndTechnologySkills = [
   { name: "Git", icon: <FaGitAlt className="text-white text-xl" /> },
   { name: "GitHub", icon: <FaGithub className="text-white text-xl" /> },
-  { name: "VS Code", icon: <FaCode  className="text-white text-xl" /> },
+  { name: "VS Code", icon: <FaCode className="text-white text-xl" /> },
   { name: "Anaconda", icon: <SiAnaconda className="text-white text-xl" /> },
 ];
 
@@ -61,29 +69,50 @@ const WebDevSkills = [
   { name: "Django", icon: <SiDjango className="text-white text-xl" /> },
 ];
 
+// ================= Non-Technical Skills ===================
+const NonTechnicalSkills = [
+  { name: "Teamwork", icon: <FaUsers className="text-white text-xl" />, details: "Led group projects and collaborated effectively." },
+  { name: "Communication", icon: <FaComments className="text-white text-xl" />, details: "Strong verbal and written communication skills." },
+  { name: "Problem Solving", icon: <FaLightbulb className="text-white text-xl" />, details: "Creative thinker with structured problem-solving approach." },
+  { name: "Leadership", icon: <FaUserFriends className="text-white text-xl" />, details: "Experience in guiding and motivating teams." },
+  { name: "Project Management", icon: <FaProjectDiagram className="text-white text-xl" />, details: "Skilled at planning, scheduling, and task delegation." },
+];
+
+const LanguageSkills = [
+  { name: "Arabic", level: 100, color: "from-green-400 to-green-600", details: "Native language with full professional proficiency", flag: "/flags/egypt.png" },
+  { name: "English", level: 85, color: "from-blue-400 to-blue-600", details: "Fluent with academic & business communication skills", flag: "/flags/uk.png" },
+  { name: "French", level: 40, color: "from-purple-400 to-purple-600", details: "Beginner conversational skills", flag: "/flags/france.png" },
+];
+
 export default function Skills() {
   return (
     <div className="text-white relative z-10 w-full px-4 py-10" id="skillSection">
-      <motion.h1
-        className="text-4xl sm:text-5xl md:text-[70px] font-bold font-serif text-center text-transparent bg-clip-text bg-gradient-to-br from-[#6E48AA] via-[#764BA2] to-[#9D50BB] mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        Skills
-      </motion.h1>
+      {/* Title */}
+  <motion.h1
+  className="relative text-4xl sm:text-5xl md:text-[70px] font-extrabold font-serif text-center 
+             text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
+             mb-12 tracking-wide"
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true, amount: 0.3 }}
+>
+  Skills
 
-      <div className="flex justify-center">
+  {/* Underline Glow */}
+  <span className="absolute left-1/2 -bottom-3 -translate-x-1/2 w-28 sm:w-36 h-[3px] rounded-full 
+                   bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
+                   shadow-[0_0_12px_#9D50BB] animate-pulse" />
+</motion.h1>
+
+
+      <div className="flex flex-col gap-10 items-center">
+        {/* Technical Skills */}
         <motion.div
-          className="transition-transform duration-200 ease-in hover:scale-[1.02] w-full max-w-[900px] bg-gradient-to-br from-[#050008] to-[#151515] border border-[#764BA2] opacity-90 rounded-2xl hover:shadow-[3px_4px_15px_#764BA2] p-4 sm:p-6"
+          className="transition-transform duration-200 ease-in hover:scale-[1.02] w-full max-w-[900px] bg-gradient-to-br from-[#050008e4] to-[#0e001ae3] border border-[#6A3093]/50 opacity-90 rounded-2xl hover:shadow-[3px_4px_15px_#764BA2] p-4 sm:p-6"
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 120,
-            damping: 15,
-            delay: 0.05,
-          }}
+          transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.05 }}
         >
           <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[#6E48AA] via-[#764BA2] to-[#9D50BB] font-bold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl">
             Technical Skills
@@ -91,15 +120,89 @@ export default function Skills() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="flex flex-col gap-4">
-              <SkillCard title="Programming Languages" icon={<FaLaptopCode className="text-[25px]" />} color="#6E48AA" bgFrom="#07000b" bgTo="#6E48AA" description="This section highlights the core coding languages I use to build software and algorithms." items={programmingLanguages} />
-              <SkillCard title="Embedded Systems" icon={<FaMicrochip className="text-[25px]" />} color="#764BA2" bgFrom="#050008" bgTo="#764BA2" description="Hardware-software integration for microcontrollers and real-world devices." items={EmbeddedSkills} />
-              <SkillCard title="Tools & Technologies" icon={<FaTools className="text-[25px]" />} color="#9D50BB" bgFrom="#050008" bgTo="#9D50BB" description="Developer tools that support workflow, version control, and IDEs." items={ToolsAndTechnologySkills} />
+              <SkillCard title="Programming Languages" icon={<FaLaptopCode className="text-[25px]" />} color="#6E48AA" bgFrom="#07000b" bgTo="#6E48AA" description="Core coding languages I use to build software and algorithms." items={programmingLanguages} />
+              <SkillCard title="Embedded Systems" icon={<FaMicrochip className="text-[25px]" />} color="#764BA2" bgFrom="#050008" bgTo="#764BA2" description="Hardware-software integration for microcontrollers and devices." items={EmbeddedSkills} />
+              <SkillCard title="Tools & Technologies" icon={<FaTools className="text-[25px]" />} color="#9D50BB" bgFrom="#050008" bgTo="#9D50BB" description="Developer tools supporting workflow, version control, and IDEs." items={ToolsAndTechnologySkills} />
             </div>
 
             <div className="flex flex-col gap-4">
-              <SkillCard title="Database" icon={<FaDatabase className="text-[25px]" />} color="#6E48AA" bgFrom="#050008" bgTo="#6E48AA" description="Skills in data storage technologies for web and software applications." items={DatabaseSkills} />
-              <SkillCard title="AI & Machine Learning" icon={<GiArtificialIntelligence className="text-[25px]" />} color="#764BA2" bgFrom="#050008" bgTo="#764BA2" description="Experience with ML frameworks and libraries for AI projects." items={AiMlSkills} />
-              <SkillCard title="Web Development" icon={<FaReact className="text-[25px]" />} color="#9D50BB" bgFrom="#050008" bgTo="#9D50BB" description="Frontend web development skills for building responsive UIs." items={WebDevSkills} />
+              <SkillCard title="Database" icon={<FaDatabase className="text-[25px]" />} color="#6E48AA" bgFrom="#050008" bgTo="#6E48AA" description="Data storage technologies for applications." items={DatabaseSkills} />
+              <SkillCard title="AI & Machine Learning" icon={<GiArtificialIntelligence className="text-[25px]" />} color="#764BA2" bgFrom="#050008" bgTo="#764BA2" description="ML frameworks and libraries for AI projects." items={AiMlSkills} />
+              <SkillCard title="Web Development" icon={<FaReact className="text-[25px]" />} color="#9D50BB" bgFrom="#050008" bgTo="#9D50BB" description="Frontend web development for responsive UIs." items={WebDevSkills} />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Non-Technical Skills */}
+        <motion.div
+          className="transition-transform duration-200 ease-in hover:scale-[1.02] w-full max-w-[900px] bg-gradient-to-br from-[#050008e4] to-[#0e001ae3] border border-[#6A3093]/50 opacity-90 rounded-2xl hover:shadow-[3px_4px_15px_#A044FF] p-4 sm:p-6"
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.05 }}
+        >
+          <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[#6E48AA] via-[#764BA2] to-[#9D50BB] font-bold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl">
+            Non-Technical Skills
+          </h2>
+
+          <div className="flex flex-wrap gap-3">
+            {NonTechnicalSkills.map((skill, i) => (
+              <motion.div
+                key={i}
+                className="px-3 py-2 bg-gradient-to-br from-[#050008]  to-[#6E48AA] border border-[#6E48AA] rounded-xl flex items-center gap-2 text-sm cursor-pointer hover:bg-[#6A3093]/70 transition relative"
+                whileHover={{ scale: 1.1 }}
+              >
+                {skill.icon}
+                <span>{skill.name}</span>
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition text-xs bg-[#764BA2] text-white px-2 py-1 rounded">
+                  {skill.details}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Languages Section */}
+          <div className="mt-8 border-t-2 border-[#764BA2]  rounded-2xl p-5">
+            <div className="flex items-center gap-3 text-[#6E48AA] font-bold text-xl sm:text-2xl mb-4">
+              <FaLanguage className="text-3xl" />
+              <h2>Languages</h2>
+            </div>
+
+            <div className="space-y-5">
+              {LanguageSkills.map((lang, i) => (
+                <motion.div
+                  key={i}
+                  className="w-full group"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.2 }}
+                >
+                  <div className="flex justify-between items-center text-sm text-gray-300 mb-1">
+                    <div className="flex items-center gap-2">
+                     
+                      <span className="font-semibold">{lang.name}</span>
+                    </div>
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: i * 0.3 }}
+                      className="text-[#6E48AA] font-medium"
+                    >
+                    
+                    </motion.span>
+                  </div>
+
+                  <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden relative">
+                    <motion.div
+                      className={`h-3 bg-gradient-to-r ${lang.color} rounded-full`}
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${lang.level}%` }}
+                      transition={{ duration: 1.2, ease: "easeOut" }}
+                    ></motion.div>
+
+                  
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
@@ -107,6 +210,8 @@ export default function Skills() {
     </div>
   );
 }
+
+// Reusable SkillCard
 function SkillCard({ title, icon, color, bgFrom, bgTo, description, items }) {
   return (
     <motion.div
@@ -148,11 +253,7 @@ function SkillCard({ title, icon, color, bgFrom, bgTo, description, items }) {
               hidden: { opacity: 0, scale: 0.8, y: 15 },
               visible: { opacity: 1, scale: 1, y: 0 }
             }}
-            whileHover={{
-              y: -5,
-              scale: 1.15,
-            
-            }}
+            whileHover={{ y: -5, scale: 1.15 }}
             transition={{ type: "spring", stiffness: 250, damping: 18 }}
           >
             {lang.icon}
