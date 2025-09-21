@@ -114,9 +114,16 @@ export default function Skills() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.05 }}
         >
-          <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[#6E48AA] via-[#764BA2] to-[#9D50BB] font-bold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl">
-            Technical Skills
-          </h2>
+         <h2
+  className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
+             font-extrabold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl 
+             drop-shadow-[0_0_8px_rgba(157,80,187,0.7)] 
+             hover:drop-shadow-[0_0_15px_rgba(157,80,187,1)] 
+             tracking-wide transition duration-300 ease-in-out"
+>
+  Technical Skills
+</h2>
+
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="flex flex-col gap-4">
@@ -140,9 +147,16 @@ export default function Skills() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.05 }}
         >
-          <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[#6E48AA] via-[#764BA2] to-[#9D50BB] font-bold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl">
-            Non-Technical Skills
-          </h2>
+       <h2
+  className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
+             font-extrabold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl 
+             drop-shadow-[0_0_8px_rgba(157,80,187,0.7)] 
+             hover:drop-shadow-[0_0_15px_rgba(157,80,187,1)] 
+             tracking-wide transition duration-300 ease-in-out"
+>
+  Non-Technical Skills
+</h2>
+
 
           <div className="flex flex-wrap gap-3">
             {NonTechnicalSkills.map((skill, i) => (
@@ -160,51 +174,59 @@ export default function Skills() {
             ))}
           </div>
 
-          {/* Languages Section */}
-          <div className="mt-8 border-t-2 border-[#764BA2]  rounded-2xl p-5">
-            <div className="flex items-center gap-3 text-[#6E48AA] font-bold text-xl sm:text-2xl mb-4">
-              <FaLanguage className="text-3xl" />
-              <h2>Languages</h2>
-            </div>
+       {/* Languages Section */}
+<div className="mt-10 border-t-2 border-[#764BA2] rounded-2xl p-6 bg-[#0b0016]/50 shadow-lg shadow-[#6E48AA]/30">
+  {/* Title */}
+  <div className="flex items-center gap-3 text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
+                  font-extrabold text-xl sm:text-2xl mb-6 drop-shadow-[0_0_10px_rgba(157,80,187,0.8)]">
+    <FaLanguage className="text-3xl text-[#9D50BB] animate-pulse" />
+    <h2 className="tracking-wide">Languages</h2>
+  </div>
 
-            <div className="space-y-5">
-              {LanguageSkills.map((lang, i) => (
-                <motion.div
-                  key={i}
-                  className="w-full group"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.2 }}
-                >
-                  <div className="flex justify-between items-center text-sm text-gray-300 mb-1">
-                    <div className="flex items-center gap-2">
-                     
-                      <span className="font-semibold">{lang.name}</span>
-                    </div>
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: i * 0.3 }}
-                      className="text-[#6E48AA] font-medium"
-                    >
-                    
-                    </motion.span>
-                  </div>
-
-                  <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden relative">
-                    <motion.div
-                      className={`h-3 bg-gradient-to-r ${lang.color} rounded-full`}
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${lang.level}%` }}
-                      transition={{ duration: 1.2, ease: "easeOut" }}
-                    ></motion.div>
-
-                  
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+  {/* Languages List */}
+  <div className="space-y-6">
+    {LanguageSkills.map((lang, i) => (
+      <motion.div
+        key={i}
+        className="w-full group"
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: i * 0.2 }}
+      >
+        {/* Language Name & Level */}
+        <div className="flex justify-between items-center text-sm sm:text-base text-gray-200 mb-2">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold group-hover:text-[#9D50BB] transition-colors duration-300">
+              {lang.name}
+            </span>
           </div>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: i * 0.3 }}
+            className="text-[#9D50BB] font-medium"
+          >
+            {lang.level}%
+          </motion.span>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="w-full h-3 bg-gray-800/70 rounded-full overflow-hidden relative shadow-inner">
+          <motion.div
+            className={`h-3 bg-gradient-to-r ${lang.color} rounded-full shadow-lg shadow-[#6E48AA]/40`}
+            initial={{ width: 0 }}
+            whileInView={{ width: `${lang.level}%` }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            {/* Glow effect inside the progress bar */}
+            <div className="absolute inset-0 bg-white/20 blur-md animate-pulse"></div>
+          </motion.div>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</div>
+
         </motion.div>
       </div>
     </div>

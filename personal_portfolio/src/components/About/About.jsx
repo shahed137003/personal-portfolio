@@ -127,18 +127,78 @@ export default function About() {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className='flex items-center gap-3 text-[#6A3093] font-bold text-xl sm:text-2xl'>
-            <FaLaptopCode className='text-3xl sm:text-4xl' />
-            <h1>What Drives Me As Computer Engineer</h1>
-          </div>
+        <div className="flex items-center gap-3 font-bold text-xl sm:text-2xl group">
+  <FaLaptopCode
+    className="
+      text-3xl sm:text-4xl 
+      text-[#6A3093] 
+      drop-shadow-[0_0_8px_#A044FF] 
+      transition-transform duration-300 
+      group-hover:rotate-12 group-hover:scale-110
+    "
+  />
+  <h1
+    className="
+      text-transparent bg-clip-text 
+      bg-gradient-to-r from-[#6A3093] via-[#A044FF] to-[#6A3093] 
+      drop-shadow-[0_0_10px_rgba(160,68,255,0.6)]
+      transition-all duration-300 
+      group-hover:tracking-wide group-hover:scale-105
+    "
+  >
+    What Drives Me As Computer Engineer
+  </h1>
+</div>
+<ul className="mt-6 space-y-4 pl-6 sm:pl-10 lg:pl-20 text-sm sm:text-base">
+  {[
+    {
+      title: "Web Development",
+      desc: "I build responsive user interfaces with React, Tailwind, and JavaScript.",
+    },
+    {
+      title: "Machine Learning & AI",
+      desc: "Worked on NLP, CV, and moderation systems with DistilBERT and LLaMA Guard.",
+    },
+    {
+      title: "Problem Solving",
+      desc: "Competitive programming on Codeforces, HackerRank, and LeetCode.",
+    },
+    {
+      title: "Software Engineering",
+      desc: "Built scheduling visualizers, distributed apps, and multithreaded systems using Java, Python & C++.",
+    },
+    {
+      title: "UI/UX Design",
+      desc: "Exploring human-centered design to improve usability & visuals.",
+    },
+  ].map((item, i) => (
+    <li
+      key={i}
+      className="
+        relative pl-6 
+        text-gray-300 
+        leading-relaxed
+        group transition-all duration-300
+        hover:translate-x-1
+      "
+    >
+      {/* Custom bullet marker */}
+      <span
+        className="
+          absolute left-0 top-2 w-2 h-2 rounded-full
+          bg-gradient-to-r from-[#6A3093] to-[#A044FF]
+          shadow-[0_0_6px_#A044FF]
+          group-hover:scale-125 transition-transform duration-300
+        "
+      />
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6A3093] to-[#A044FF] font-semibold">
+        {item.title}
+      </span>{" "}
+      — {item.desc}
+    </li>
+  ))}
+</ul>
 
-          <ul className='mt-5 list-disc leading-7 pl-6 sm:pl-10 lg:pl-20 marker:text-[#6A3093] text-sm sm:text-base'>
-            <li><span className='text-[#6A3093]'> Web Development</span> — I build responsive user interfaces with React, Tailwind, and JavaScript.</li>
-            <li><span className='text-[#6A3093]'> Machine Learning & AI</span> — Worked on NLP, CV, and moderation systems with DistilBERT and LLaMA Guard.</li>
-            <li><span className='text-[#6A3093]'> Problem Solving</span> — Competitive programming on Codeforces, HackerRank, and LeetCode.</li>
-            <li><span className='text-[#6A3093]'> Software Engineering</span> — Built scheduling visualizers, distributed apps, and multithreaded systems using Java, Python & C++.</li>
-            <li><span className='text-[#6A3093]'> UI/UX Design</span> — Exploring human-centered design to improve usability & visuals.</li>
-          </ul>
         </motion.div>
       </div>
 
@@ -156,10 +216,17 @@ export default function About() {
         viewport={{ once: true, amount: 0.2 }}
       >
         {/* Section Title */}
-        <div className="flex items-center gap-3 text-[#6A3093] font-bold text-2xl sm:text-3xl mb-8">
-          <FaCertificate className="text-4xl sm:text-5xl text-[#6A3093]" />
-          <h1>Certificates & Achievements</h1>
-        </div>
+      {/* Section Title */}
+<div className="flex items-center gap-3 font-extrabold text-2xl sm:text-3xl mb-8 relative">
+  <FaCertificate className="text-4xl sm:text-5xl text-[#6A3093] drop-shadow-[0_0_10px_#6A3093]" />
+  <h1 className="bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-transparent bg-clip-text 
+                 drop-shadow-[0_0_8px_rgba(160,68,255,0.8)] 
+                 hover:drop-shadow-[0_0_15px_rgba(160,68,255,1)] 
+                 transition duration-300">
+    Certificates & Achievements
+  </h1>
+</div>
+
 
         {/* Certificates Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

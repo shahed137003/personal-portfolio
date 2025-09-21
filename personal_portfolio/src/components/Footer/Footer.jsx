@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer
       className="
-        relative bg-[#0f0f0f]/90 backdrop-blur-md py-4 px-6
+        relative bg-[#0f0f0f]/10 backdrop-blur-md py-4 px-6
         border-t border-[#833CAA]/60
         flex flex-col sm:flex-row items-center justify-center gap-2
         text-gray-300 text-sm sm:text-base
