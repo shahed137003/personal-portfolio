@@ -1,9 +1,22 @@
-  @keyframes glitter {
-    0% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.5); }
-    100% { opacity: 0.4; transform: scale(1); }
-  }
-  
-    .glitter {
-    animation: glitter 1.5s infinite ease-in-out;
-  }
+/* Gradient shift animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Blob animation for background */
+@keyframes blob {
+  0%, 100% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+  33% { transform: translate(20px, -10px) scale(1.05) rotate(5deg); }
+  66% { transform: translate(-15px, 10px) scale(0.95) rotate(-5deg); }
+}
+
+.animate-blob {
+  animation: blob 10s infinite ease-in-out;
+}

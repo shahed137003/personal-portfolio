@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaGithub,
+  FaTimes,
+  FaChevronLeft,
+  FaChevronRight,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
 
 // Import images
 import CodeAssistant from "../../assets/Code Assistant Chatbot.png";
@@ -35,6 +41,7 @@ export default function Projects() {
       languages: ["React", "JavaScript", ".NET", "C#"],
       projectLink:
         "https://github.com/shahed137003/distributed-online-marketplace-system.git",
+      liveDemo: "https://marketplace-demo.vercel.app",
     },
     {
       title: "XML Editor",
@@ -50,8 +57,7 @@ export default function Projects() {
         "A surveillance system powered by Python and OpenCV that detects suspicious movements. Integrated with Django for real-time monitoring, web alerts, and snapshot capture.",
       images: [ThiefDetection],
       languages: ["Python", "OpenCV", "Django"],
-      projectLink:
-        "https://github.com/shahed137003/Thief-Detection-Project.git",
+      projectLink: "https://github.com/shahed137003/Thief-Detection-Project.git",
     },
     {
       title: "Code Assistant Chatbot",
@@ -59,8 +65,7 @@ export default function Projects() {
         "An AI-powered chatbot for generating, analyzing, and debugging code from natural language. Built with LangGraph and Gradio, supporting multiple languages and real-time interaction.",
       images: [CodeAssistant],
       languages: ["Python", "LangGraph", "Gradio"],
-      projectLink:
-        "https://github.com/shahed137003/Code-Generation-using-RAG.git",
+      projectLink: "https://github.com/shahed137003/Code-Generation-using-RAG.git",
     },
     {
       title: "CPU Scheduler",
@@ -76,8 +81,8 @@ export default function Projects() {
         "A modern React + Vite based e-commerce frontend project featuring product listings, categories, favorites, cart management, and checkout flow.",
       images: [Velora, Velora2, Velora3, Velora4, Velora5, Velora6],
       languages: ["React", "JavaScript", "Tailwind"],
-      projectLink:
-        "https://github.com/shahed137003/Velora-E-commerce-app.git",
+      projectLink: "https://github.com/shahed137003/Velora-E-commerce-app.git",
+      liveDemo: "https://velora-ecommerce.vercel.app",
     },
   ];
 
@@ -99,28 +104,22 @@ export default function Projects() {
   };
 
   return (
-    <div
-      className="text-white relative w-full px-4 sm:px-8 lg:px-16 py-16"
-      id="projectSection"
-    >
+    <div className="text-white relative w-full px-4 sm:px-8 lg:px-16 py-16" id="projectSection">
       {/* Section Title */}
-  <motion.h1
-  className="relative text-3xl sm:text-5xl lg:text-6xl font-extrabold font-serif text-center 
+      <motion.h1
+        className="relative text-3xl sm:text-5xl lg:text-6xl font-extrabold font-serif text-center 
              text-transparent bg-clip-text bg-gradient-to-r from-[#9D50BB] to-[#6E48AA] 
-             mb-16 tracking-wide"
-  initial={{ opacity: 0, y: -30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, ease: 'easeOut' }}
-  viewport={{ once: true, amount: 0.3 }}
->
-  My Projects
-
-  {/* Decorative underline with glow */}
-  <span className="absolute left-1/2 -bottom-4 -translate-x-1/2 w-32 sm:w-44 h-[3px] rounded-full 
+             mb-20 tracking-wide"
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        My Projects
+        <span className="absolute left-1/2 -bottom-4 -translate-x-1/2 w-40 sm:w-52 h-[4px] rounded-full 
                    bg-gradient-to-r from-[#9D50BB] to-[#6E48AA] 
-                   shadow-[0_0_12px_#9D50BB] animate-pulse" />
-</motion.h1>
-
+                   shadow-[0_0_15px_#9D50BB] animate-pulse" />
+      </motion.h1>
 
       {/* Projects Grid */}
       <motion.div
@@ -143,42 +142,55 @@ export default function Projects() {
               visible: { opacity: 1, y: 0, scale: 1 },
             }}
             transition={{ type: "spring", stiffness: 120, damping: 12 }}
-            whileHover={{ scale: 1.05, rotate: 1 }}
-            className="relative flex flex-col h-full w-full max-w-[420px] p-6 rounded-2xl 
-                       backdrop-blur-xl from-[#050008e4] to-[#0e001ae3] border border-[#6A3093]/50 shadow-2xl 
-                       overflow-hidden group hover:shadow-[0_0_25px_rgba(157,80,187,0.7)] transition-all"
+            whileHover={{ scale: 1.05 }}
+            className="relative flex flex-col h-full w-full max-w-[420px] rounded-2xl 
+                       bg-gradient-to-br from-[#1a0b2e]/70 to-[#0d061a]/80 border border-[#6A3093]/40 
+                       shadow-lg hover:shadow-[0_0_30px_rgba(157,80,187,0.7)] transition-all 
+                       overflow-hidden group"
           >
-            {/* Image (clickable) */}
+            {/* Upper border hover effect */}
+            <span
+              className="absolute top-0 left-0 w-full h-[4px] 
+                         bg-gradient-to-r from-[#9D50BB] via-[#E0B3FF] to-[#6E48AA] 
+                         transform scale-x-0 group-hover:scale-x-100 
+                         transition-transform duration-500 origin-left"
+            />
+
+            {/* Image (clickable with overlay) */}
             <div
-              className="relative z-10 overflow-hidden rounded-xl border border-white/10 mb-5 cursor-pointer"
+              className="relative z-10 overflow-hidden cursor-pointer group"
               onClick={() => openProject(project)}
             >
               <motion.img
-                className="w-full h-44 sm:h-52 object-cover"
+                className="w-full h-48 sm:h-56 object-cover rounded-t-xl"
                 src={project.images[0]}
                 alt={project.title}
-                whileHover={{ scale: 1.15 }}
+                whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                <span className="text-lg font-semibold text-white">👀 View Project</span>
+              </div>
             </div>
 
             {/* Title */}
-            <h2 className="relative z-10 text-xl sm:text-2xl font-semibold text-center mb-3 text-[#E0B3FF]">
+            <h2 className="relative z-10 text-xl sm:text-2xl font-semibold text-center mt-4 bg-gradient-to-r from-[#9D50BB] to-[#6E48AA] bg-clip-text text-transparent">
               {project.title}
             </h2>
 
             {/* Description */}
-            <p className="relative z-10 text-gray-300 text-sm lg:text-base leading-relaxed mb-5 flex-grow text-center">
+            <p className="relative z-10 text-gray-300 text-sm lg:text-base leading-relaxed px-4 mt-3 text-center">
               {project.description}
             </p>
 
             {/* Languages */}
-            <div className="relative z-10 flex flex-wrap gap-2 justify-center mb-6">
+            <div className="relative z-10 flex flex-wrap gap-2 justify-center mt-4 mb-6">
               {project.languages.map((lang, i) => (
                 <motion.span
                   key={i}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-3 py-1 rounded-lg text-xs sm:text-sm font-medium 
+                  whileHover={{ scale: 1.1 }}
+                  className="px-3 py-1 rounded-full text-xs sm:text-sm font-medium 
                              border border-[#E0B3FF]/40 bg-[#E0B3FF]/10 text-[#E0B3FF] shadow-sm"
                 >
                   {lang}
@@ -186,20 +198,34 @@ export default function Projects() {
               ))}
             </div>
 
-            {/* GitHub Button */}
-            <motion.button
-              whileHover={{ scale: 1.08, boxShadow: "0 0 20px rgba(157,80,187,0.8)" }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.open(project.projectLink, "_blank")}
-              aria-label={`View ${project.title} code on GitHub`}
-              className="relative z-10 flex items-center justify-center gap-2 w-full px-5 py-3 rounded-lg 
-                         font-medium text-sm sm:text-lg text-white
-                         bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
-                         transition-all duration-300"
-            >
-              <FaGithub size={20} />
-              View Code
-            </motion.button>
+            {/* Action Buttons */}
+            <div className="flex gap-3 justify-center mb-6">
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.open(project.projectLink, "_blank")}
+                aria-label={`View ${project.title} code on GitHub`}
+                className="flex items-center justify-center gap-2 px-5 py-2 rounded-full font-medium text-sm sm:text-base 
+                           text-white bg-gradient-to-r from-[#6E48AA] to-[#9D50BB] shadow-md hover:shadow-lg"
+              >
+                <FaGithub size={18} />
+                Code
+              </motion.button>
+
+              {project.liveDemo && (
+                <motion.button
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => window.open(project.liveDemo, "_blank")}
+                  aria-label={`View ${project.title} live demo`}
+                  className="flex items-center justify-center gap-2 px-5 py-2 rounded-full font-medium text-sm sm:text-base 
+                             text-white bg-gradient-to-r from-[#9D50BB] to-[#6E48AA] shadow-md hover:shadow-lg"
+                >
+                  <FaExternalLinkAlt size={16} />
+                  Live
+                </motion.button>
+              )}
+            </div>
           </motion.div>
         ))}
       </motion.div>
@@ -208,14 +234,14 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/80 backdrop-blur-lg flex items-center justify-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="relative max-w-4xl w-[90%] rounded-xl overflow-hidden shadow-2xl"
+              className="relative max-w-4xl w-[90%] rounded-xl overflow-hidden shadow-[0_0_25px_rgba(157,80,187,0.7)] border border-[#9D50BB]/40 bg-[#12021e]/95"
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
@@ -224,7 +250,7 @@ export default function Projects() {
             >
               {/* Close Button */}
               <button
-                className="absolute top-3 right-3 bg-black/70 text-white p-3 rounded-full hover:bg-[#9D50BB] hover:shadow-[0_0_15px_rgba(157,80,187,0.7)] transition-all"
+                className="absolute top-3 right-3 bg-black/60 text-white p-3 rounded-full hover:bg-[#9D50BB] hover:shadow-md transition-all"
                 onClick={() => setSelectedProject(null)}
               >
                 <FaTimes size={20} />
@@ -234,8 +260,8 @@ export default function Projects() {
               {selectedProject.images.length > 1 && (
                 <button
                   onClick={prevImage}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 text-white p-3 rounded-full 
-                             hover:bg-[#6E48AA] hover:shadow-[0_0_15px_rgba(110,72,170,0.8)] transition-all"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full 
+                             hover:bg-[#6E48AA] transition-all"
                 >
                   <FaChevronLeft size={24} />
                 </button>
@@ -245,8 +271,8 @@ export default function Projects() {
               {selectedProject.images.length > 1 && (
                 <button
                   onClick={nextImage}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 text-white p-3 rounded-full 
-                             hover:bg-[#6E48AA] hover:shadow-[0_0_15px_rgba(110,72,170,0.8)] transition-all"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full 
+                             hover:bg-[#6E48AA] transition-all"
                 >
                   <FaChevronRight size={24} />
                 </button>
@@ -265,6 +291,23 @@ export default function Projects() {
                   transition={{ type: "spring", stiffness: 120, damping: 20 }}
                 />
               </AnimatePresence>
+
+              {/* Image Indicators */}
+              {selectedProject.images.length > 1 && (
+                <div className="flex justify-center gap-2 py-3 bg-black/40">
+                  {selectedProject.images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentIndex(i)}
+                      className={`w-3 h-3 rounded-full transition-all ${
+                        i === currentIndex
+                          ? "bg-gradient-to-r from-[#9D50BB] to-[#6E48AA] shadow-md scale-110"
+                          : "bg-gray-500/40 hover:bg-gray-400/60"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}

@@ -107,38 +107,93 @@ export default function Skills() {
 
 
       <div className="flex flex-col gap-10 items-center">
-        {/* Technical Skills */}
-        <motion.div
-          className="transition-transform duration-200 ease-in hover:scale-[1.02] w-full max-w-[900px] bg-gradient-to-br from-[#050008e4] to-[#0e001ae3] border border-[#6A3093]/50 opacity-90 rounded-2xl hover:shadow-[3px_4px_15px_#764BA2] p-4 sm:p-6"
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.05 }}
-        >
-         <h2
-  className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
-             font-extrabold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl 
-             drop-shadow-[0_0_8px_rgba(157,80,187,0.7)] 
-             hover:drop-shadow-[0_0_15px_rgba(157,80,187,1)] 
-             tracking-wide transition duration-300 ease-in-out"
+      <motion.div
+  className="transition-transform duration-200 ease-in hover:scale-[1.02] w-full max-w-[900px] bg-gradient-to-br from-[#050008e4] to-[#0e001ae3] border border-[#6A3093]/50 opacity-90 rounded-2xl hover:shadow-[3px_4px_15px_#764BA2] p-4 sm:p-6"
+  initial={{ opacity: 0, scale: 0.95, y: 30 }}
+  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+  transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.05 }}
 >
-  Technical Skills
-</h2>
+  <h2
+    className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#764BA2] to-[#9D50BB] 
+               font-extrabold italic pl-1 pb-3 text-xl sm:text-2xl md:text-3xl 
+               drop-shadow-[0_0_8px_rgba(157,80,187,0.7)] 
+               hover:drop-shadow-[0_0_15px_rgba(157,80,187,1)] 
+               tracking-wide transition duration-300 ease-in-out"
+  >
+    Technical Skills
+  </h2>
 
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    {/* Left Column */}
+    <div className="flex flex-col gap-4">
+      <SkillCard 
+        title="Programming Languages" 
+        icon={<FaLaptopCode className="text-[25px]" />} 
+        color="#6E48AA" 
+        bgFrom="#07000b" 
+        bgTo="#6E48AA" 
+        description="Core coding languages I use to build software and algorithms." 
+        items={programmingLanguages} 
+        minHeight="h-[150px]" 
+      />
+      <SkillCard 
+        title="Embedded Systems" 
+        icon={<FaMicrochip className="text-[25px]" />} 
+        color="#764BA2" 
+        bgFrom="#050008" 
+        bgTo="#764BA2" 
+        description="Hardware-software integration for microcontrollers and devices." 
+        items={EmbeddedSkills} 
+        minHeight="h-[50px]" 
+      />
+      <SkillCard 
+        title="Tools & Technologies" 
+        icon={<FaTools className="text-[25px]" />} 
+        color="#9D50BB" 
+        bgFrom="#050008" 
+        bgTo="#9D50BB" 
+        description="Developer tools supporting workflow, version control, and IDEs." 
+        items={ToolsAndTechnologySkills} 
+        minHeight="h-[50px]" 
+      />
+    </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="flex flex-col gap-4">
-              <SkillCard title="Programming Languages" icon={<FaLaptopCode className="text-[25px]" />} color="#6E48AA" bgFrom="#07000b" bgTo="#6E48AA" description="Core coding languages I use to build software and algorithms." items={programmingLanguages} />
-              <SkillCard title="Embedded Systems" icon={<FaMicrochip className="text-[25px]" />} color="#764BA2" bgFrom="#050008" bgTo="#764BA2" description="Hardware-software integration for microcontrollers and devices." items={EmbeddedSkills} />
-              <SkillCard title="Tools & Technologies" icon={<FaTools className="text-[25px]" />} color="#9D50BB" bgFrom="#050008" bgTo="#9D50BB" description="Developer tools supporting workflow, version control, and IDEs." items={ToolsAndTechnologySkills} />
-            </div>
+    {/* Right Column */}
+    <div className="flex flex-col gap-4">
+      <SkillCard 
+        title="Database" 
+        icon={<FaDatabase className="text-[25px]" />} 
+        color="#6E48AA" 
+        bgFrom="#050008" 
+        bgTo="#6E48AA" 
+        description="Data storage technologies for applications." 
+        items={DatabaseSkills} 
+        minHeight="h-[50px]" 
+      />
+      <SkillCard 
+        title="AI & Machine Learning" 
+        icon={<GiArtificialIntelligence className="text-[25px]" />} 
+        color="#764BA2" 
+        bgFrom="#050008" 
+        bgTo="#764BA2" 
+        description="ML frameworks and libraries for AI projects." 
+        items={AiMlSkills} 
+        minHeight="h-[50px]" 
+      />
+      <SkillCard 
+        title="Web Development" 
+        icon={<FaReact className="text-[25px]" />} 
+        color="#9D50BB" 
+        bgFrom="#050008" 
+        bgTo="#9D50BB" 
+        description="Frontend web development for responsive UIs." 
+        items={WebDevSkills} 
+        minHeight="h-[50px]" 
+      />
+    </div>
+  </div>
+</motion.div>
 
-            <div className="flex flex-col gap-4">
-              <SkillCard title="Database" icon={<FaDatabase className="text-[25px]" />} color="#6E48AA" bgFrom="#050008" bgTo="#6E48AA" description="Data storage technologies for applications." items={DatabaseSkills} />
-              <SkillCard title="AI & Machine Learning" icon={<GiArtificialIntelligence className="text-[25px]" />} color="#764BA2" bgFrom="#050008" bgTo="#764BA2" description="ML frameworks and libraries for AI projects." items={AiMlSkills} />
-              <SkillCard title="Web Development" icon={<FaReact className="text-[25px]" />} color="#9D50BB" bgFrom="#050008" bgTo="#9D50BB" description="Frontend web development for responsive UIs." items={WebDevSkills} />
-            </div>
-          </div>
-        </motion.div>
 
         {/* Non-Technical Skills */}
         <motion.div

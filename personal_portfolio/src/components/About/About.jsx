@@ -87,7 +87,8 @@ export default function About() {
             className="w-28 h-28 sm:w-32 sm:h-32 border-[3px] border-[#6A3093] bg-[#050008] rounded-full mx-auto mt-2 transition duration-300 ease-in transform hover:scale-110 hover:rotate-3"
           />
 
-          <h1 className="text-center pt-4 text-2xl sm:text-3xl text-[#6A3093] font-bold">Shahd Mohamed</h1>
+          <h1 className="text-center pt-4 text-2xl sm:text-3xl  text-transparent bg-clip-text 
+      bg-gradient-to-r from-[#6A3093] via-[#A044FF] to-[#6A3093]  font-bold">Shahd Mohamed</h1>
 
           <p className="text-center text-gray-200 mt-3 text-base sm:text-lg leading-relaxed">
             A <span className="text-[#6A3093]">Computer Engineering</span> student at
@@ -235,7 +236,7 @@ export default function About() {
               <motion.div
                 key={i}
                 className="bg-gradient-to-br from-[#050008]/80 to-[#6A3093]/80 rounded-xl p-5 border border-[#6A3093]/40 shadow-md hover:shadow-[0px_0px_25px] hover:shadow-[#6A3093]/80 transition transform hover:-translate-y-2 hover:scale-105 cursor-pointer"
-                whileHover={{ scale: 1.05, rotate: 1 }}
+                whileHover={{ scale: 1.05 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 30 }}
