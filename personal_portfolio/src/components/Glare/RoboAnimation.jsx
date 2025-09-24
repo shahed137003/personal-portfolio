@@ -8,7 +8,7 @@ export function RoboAnimation({
   glowColor = "bg-purple-500/20"
 }) {
   return (
-    <div className="absolute -mt-5 ml-160">
+    <div className="absolute -mt-10 ml-220 hidden md:block">
       <motion.div
         className="relative"
         animate={{ y: [0, -20, 0] }}

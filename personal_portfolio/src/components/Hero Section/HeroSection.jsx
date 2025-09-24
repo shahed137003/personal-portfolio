@@ -4,16 +4,12 @@ import { motion } from 'framer-motion';
 import './HeroSection.css';
 import { RoboAnimation } from '../Glare/RoboAnimation';
 import FloatingPaper from '../Glare/floatingpaper';
-
+import { FaHeart } from 'react-icons/fa';
 export default function HeroSection() {
   return (
-    <div className="relative w-full h-screen overflow-hidden flex flex-col justify-center items-start pl-10 md:pl-20" id="homeSection">
+    <div className="relative w-full h-screen  flex flex-col justify-center items-start pl-10 md:pl-20" id="homeSection">
 
-      {/* Floating Background Papers */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <FloatingPaper count={15} rotation={true} />
-      </div>
-
+ 
       {/* Main Content */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -21,36 +17,56 @@ export default function HeroSection() {
         transition={{ duration: 0.8, ease: "easeInOut" }}
         className="text-white relative z-10 max-w-5xl text-left"
       >
+           {/* Floating Heart */}
+  
         {/* Name with gradient animation */}
         <motion.h1
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="text-[40px] sm:text-[56px] lg:text-[76px] font-bold italic bg-clip-text text-transparent 
-                     bg-gradient-to-r from-[#9400D3] to-[#4B0082] animate-gradient-shift leading-tight"
+          className="text-[40px] sm:text-[36px] lg:text-[76px] font-bold font-serif italic bg-clip-text text-transparent 
+                     bg-gradient-to-r from-[#9400D3] to-[#4B0082] animate-gradient-shift leading-tight "
         >
           Shahd Mohamed
         </motion.h1>
-
+    
         {/* Robo Animation */}
         <motion.div
-          className="my-6 flex justify-start"
+          className="my-5 flex justify-start"
           animate={{ scale: [1, 1.05, 1], rotate: [0, 3, -3, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <RoboAnimation size={64} className="sm:size-56 md:size-64" />
+          <RoboAnimation size={64} className="sm:size-48 md:size-64" />
         </motion.div>
+ {/* Floating Heart */}
+<motion.div
+  className="absolute z-20 text-4xl sm:text-6xl lg:text-6xl drop-shadow-lg cursor-pointer"
+  style={{ top: '50px', left: '75%', transform: 'translateX(-50%)' }}
+  animate={{
+    y: [0, -20, 0],
+    scale: [1, 1.2, 1],
+    color: [ "#9400D3", "#4B0082"] // cycling colors
+  }}
+  transition={{
+    repeat: Infinity,
+    duration: 4,
+    ease: "easeInOut"
+  }}
+>
+  <FaHeart />
+</motion.div>
+
 
         {/* Typing SVG */}
         <motion.div
           initial={{ opacity: 0, y: -20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="relative overflow-hidden flex justify-start items-center mt-4"
+          className="relative overflow-hidden flex justify-start items-center rounded-2xl  px-3"
         >
-          {/* Neon Glow Background */}
+       
           <div className="absolute inset-0 bg-gradient-to-r from-[#9400D3]/30 via-[#BF5AE0]/30 to-[#4B0082]/30 
-                          blur-xl rounded-lg animate-pulse pointer-events-none" />
+                          blur-xl rounded-lg animate-pulse pointer-events-none " />
 
           {/* Typing SVG */}
           <img
@@ -68,29 +84,32 @@ export default function HeroSection() {
         </motion.div>
 
         {/* Description */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35, ease: "easeInOut" }}
-          className="mt-6 text-[16px] sm:text-[15px] lg:text-[18px] font-serif font-thin space-y-3 leading-relaxed text-left"
-        >
-          <p className="text-white/90">
-            I’m a passionate{" "}
-            <span className="bg-gradient-to-r from-[#BF5AE0] via-[#9D50BB] to-[#6E48AA] bg-clip-text text-transparent font-semibold drop-shadow-md">
-              AI Engineer
-            </span>{" "}
-            and{" "}
-            <span className="bg-gradient-to-r from-[#BF5AE0] via-[#9D50BB] to-[#6E48AA] bg-clip-text text-transparent font-semibold drop-shadow-md">
-              Frontend Web Developer.
-            </span>
-          </p>
-          <p className="text-white/80 hover:text-white transition-colors duration-300">
-            Specialized in building <span className="text-[#BF5AE0] font-medium">machine learning-powered applications</span> with modern, user-friendly interfaces.
-          </p>
-          <p className="text-white/80 hover:text-white transition-colors duration-300">
-            My work bridges the gap between <span className="text-[#BF5AE0] font-medium">cutting-edge AI algorithms</span> and intuitive digital experiences.
-          </p>
-        </motion.div>
+   <motion.div
+  initial={{ opacity: 0, y: 25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.35, ease: "easeInOut" }}
+  className="mt-3 text-[16px] sm:text-[13px] lg:text-[18px] italic  space-y-1 leading-relaxed text-left"
+>
+  <p className="text-white/90">
+    I’m a passionate{" "}
+    <span className="bg-gradient-to-r from-[#BF5AE0] via-[#9D50BB] to-[#6E48AA] bg-clip-text text-transparent font-semibold drop-shadow-md">
+      AI Engineer
+    </span>{" "}
+    and{" "}
+    <span className="bg-gradient-to-r from-[#BF5AE0] via-[#9D50BB] to-[#6E48AA] bg-clip-text text-transparent font-semibold drop-shadow-md mr-1">
+      Frontend Web Developer
+    </span>
+    , deeply interested in Computer Vision and NLP.
+  </p>
+  <p className="text-white/80 hover:text-white transition-colors duration-300">
+    I specialize in designing and implementing{" "}
+    <span className="text-[#BF5AE0] font-medium">machine learning-powered applications</span> with modern, responsive, and user-friendly interfaces, blending AI capabilities with smooth user experiences.
+  </p>
+  <p className="text-white/80 hover:text-white transition-colors duration-300">
+    My work bridges the gap between{" "}
+    <span className="text-[#BF5AE0] font-medium">cutting-edge AI algorithms</span> and practical digital solutions, delivering impactful and intuitive experiences for users.
+  </p>
+</motion.div>
 
         {/* Social Buttons */}
         <motion.div
@@ -103,7 +122,7 @@ export default function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.15, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
-            className="transition-all duration-300 ease-in-out px-6 py-3 border-2 border-[#BF5AE0] rounded-xl text-[#BF5AE0] flex items-center justify-center gap-3 shadow-md shadow-[#BF5AE0] hover:shadow-lg hover:shadow-[#BF5AE0]/70 bg-black/20 backdrop-blur-sm"
+            className="transition-all duration-300 ease-in-out px-6 py-2 border-2 border-[#BF5AE0] rounded-xl text-[#BF5AE0] flex items-center justify-center gap-3 shadow-md shadow-[#BF5AE0] hover:shadow-lg hover:shadow-[#BF5AE0]/70 bg-black/20 backdrop-blur-sm"
             onClick={() => window.open("https://github.com/shahed137003", "_blank", "noopener,noreferrer")}
             title="Github"
           >
@@ -114,7 +133,7 @@ export default function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.15, rotate: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="transition-all duration-300 ease-in-out px-6 py-3 rounded-4xl text-white flex items-center justify-center gap-3 bg-gradient-to-br from-[#9400D3] to-[#4B0082] shadow-md shadow-[#9400D3]/50 hover:shadow-lg hover:shadow-[#4B0082]/80"
+            className="transition-all duration-300 ease-in-out px-6 py-2 rounded-4xl text-white flex items-center justify-center gap-2 bg-gradient-to-br from-[#9400D3] to-[#4B0082] shadow-md shadow-[#9400D3]/50 hover:shadow-lg hover:shadow-[#4B0082]/80"
             onClick={() => window.open("https://www.linkedin.com/in/shahd-mohamed-2ab8bb315", "_blank", "noopener,noreferrer")}
             title="Linkedin"
           >
@@ -125,8 +144,8 @@ export default function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.15, rotate: 2, y: -2 }}
             whileTap={{ scale: 0.95, rotate: 0 }}
-            className="relative overflow-hidden px-6 py-3 rounded-xl text-white flex items-center justify-center gap-2 bg-gradient-to-r from-[#9400D3] to-[#4B0082] font-semibold shadow-lg shadow-[#4B0082]/50 hover:shadow-xl hover:shadow-[#4B0082] transition-all duration-300 ease-in-out"
-            onClick={() => window.scrollTo({ top: document.getElementById('workSection').offsetTop, behavior: 'smooth' })}
+            className="relative overflow-hidden px-6 py-2 rounded-xl text-white flex items-center justify-center gap-2 bg-gradient-to-r from-[#9400D3] to-[#4B0082] font-semibold shadow-lg shadow-[#4B0082]/50 hover:shadow-xl hover:shadow-[#4B0082] transition-all duration-300 ease-in-out"
+            onClick={() => window.scrollTo({ top: document.getElementById('projectSection').offsetTop, behavior: 'smooth' })}
             title="View My Work"
           >
             {/* Glowing background effect */}
@@ -143,7 +162,7 @@ export default function HeroSection() {
 
       {/* Scroll Indicator */}
 <motion.div
-  className="absolute mt-9 left-11/12 -translate-x-1/2 w-6 h-12 border-2 border-[#4B0082] rounded-full flex justify-center items-end cursor-pointer backdrop-blur-sm"
+  className="absolute mt-9 left-8/12  -translate-x-1/2 w-6 h-12 border-2 border-[#4B0082] rounded-full flex justify-center items-end cursor-pointer backdrop-blur-sm"
   animate={{ y: [0, 12, 0] }}
   transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
   onClick={() =>
