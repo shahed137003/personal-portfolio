@@ -141,18 +141,24 @@ export default function HeroSection() {
           </motion.button>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute mt-10 left-0 w-6 h-12 border-2 border-[#4B0082] rounded-full flex justify-center items-start backdrop-blur-sm"
-          animate={{ y: [0, 12, 0] }}
-          transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-        >
-          <motion.div
-            className="w-3 h-3 bg-gradient-to-r from-[#9400D3] to-[#4B0082] rounded-full shadow-[0_0_15px_#BF5AE0] mb-1"
-            animate={{ y: [0, 6, 0], scale: [1, 1.3, 1] }}
-            transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-          />
-        </motion.div>
+      {/* Scroll Indicator */}
+<motion.div
+  className="absolute mt-9 left-11/12 -translate-x-1/2 w-6 h-12 border-2 border-[#4B0082] rounded-full flex justify-center items-end cursor-pointer backdrop-blur-sm"
+  animate={{ y: [0, 12, 0] }}
+  transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+  onClick={() =>
+    document
+      .getElementById("aboutSection")
+      .scrollIntoView({ behavior: "smooth" })
+  }
+>
+  <motion.div
+    className="w-3 h-3 bg-gradient-to-r from-[#9400D3] to-[#4B0082] rounded-full shadow-[0_0_15px_#BF5AE0] mb-1"
+    animate={{ y: [0, 6, 0], scale: [1, 1.3, 1] }}
+    transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+  />
+</motion.div>
+
       </motion.div>
     </div>
   );
