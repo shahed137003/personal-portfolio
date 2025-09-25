@@ -228,40 +228,78 @@ export default function About() {
   </h1>
 </div>
 
+{/* Certificates Grid */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <AnimatePresence>
+    {visibleCerts.map((cert, i) => (
+      <motion.div
+        key={i}
+        className="relative group bg-gradient-to-br from-[#1a0033]/80 to-[#0a001f]/80 
+                   rounded-2xl p-6 border border-transparent 
+                   shadow-lg hover:shadow-[0_0_30px_#A044FF]/50 
+                   transition-all duration-500 ease-in-out 
+                   cursor-pointer overflow-hidden backdrop-blur-md"
+        whileHover={{ scale: 1.05 }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 30 }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* Animated Gradient Border */}
+        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#A044FF] transition-all duration-500"></div>
 
-        {/* Certificates Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-            {visibleCerts.map((cert, i) => (
-              <motion.div
-                key={i}
-                className="bg-gradient-to-br from-[#050008]/80 to-[#6A3093]/80 rounded-xl p-5 border border-[#6A3093]/40 shadow-md hover:shadow-[0px_0px_25px] hover:shadow-[#6A3093]/80 transition transform hover:-translate-y-2 hover:scale-105 cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 30 }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className="flex flex-col items-start gap-3">
-                  <div className="text-[#A044FF] text-3xl">{cert.icon}</div>
-                  <h2 className="text-white font-semibold text-lg">{cert.title}</h2>
-                  <p className="text-sm text-gray-300 italic">{cert.source}</p>
-                  <p className="text-gray-400 text-sm">{cert.description}</p>
+        <div className="relative z-10 flex flex-col items-start gap-3">
+          {/* Icon */}
+          <div className="text-[#A044FF] text-4xl drop-shadow-[0_0_10px_#A044FF]">
+            {cert.icon}
+          </div>
 
-                  {/* Link Button */}
-                  <a 
-                    href={cert.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-block px-4 py-1 bg-[#6A3093] text-white text-sm font-medium rounded-lg shadow hover:bg-[#A044FF] transition"
-                  >
-                    View Certificate
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          {/* Title */}
+          <h2 className="text-white font-bold text-xl tracking-wide group-hover:text-[#A044FF] transition-colors duration-500">
+            {cert.title}
+          </h2>
+
+          {/* Source */}
+          <p className="text-sm text-gray-400 italic group-hover:text-gray-300 transition-colors">
+            {cert.source}
+          </p>
+
+          {/* Description */}
+          <p className="text-gray-300 text-sm leading-relaxed">
+            {cert.description}
+          </p>
+
+          {/* Link Button */}
+          <a 
+            href={cert.link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-full 
+                       font-medium text-sm text-white 
+                       bg-gradient-to-r from-[#6E48AA] to-[#A044FF] 
+                       shadow-md hover:shadow-[0_0_20px_#A044FF]/70 
+                       transition-all duration-500 transform hover:scale-105"
+          >
+            <span>View Certificate</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
+
+        {/* Glow Hover Effect */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#A044FF]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</div>
 
         {/* View More Button */}
         {certificates.length > 3 && (
