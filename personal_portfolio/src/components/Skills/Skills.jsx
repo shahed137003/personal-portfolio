@@ -205,40 +205,6 @@ const WebDevSkills = [
   },
 ];
 
-const EmbeddedSkills = [
-  {
-    name: "Arduino",
-    icon: <SiArduino className="text-[#00979D] text-xl" />,
-    level: 85,
-    tag: "Proficient",
-    context: "Prototyping embedded hardware circuits and sensor interface systems.",
-    projects: ["Hardware Prototyping Systems"],
-  },
-  {
-    name: "ARM Cortex (TM4C123G)",
-    icon: <GiProcessor className="text-[#A044FF] text-xl" />,
-    level: 80,
-    tag: "Proficient",
-    context: "Microcontroller architecture, interrupt handling, timers, and embedded C firmware.",
-    projects: ["Ain Shams Univ Embedded Engineering Labs"],
-  },
-  {
-    name: "UART & GPIO",
-    icon: <BsUsbPlug className="text-[#E0B3FF] text-xl" />,
-    level: 85,
-    tag: "Proficient",
-    context: "Serial communication protocols and hardware pin interfaces.",
-    projects: ["Embedded Device Communication"],
-  },
-  {
-    name: "PWM & GPS Interfacing",
-    icon: <MdGpsFixed className="text-[#00C9A7] text-xl" />,
-    level: 82,
-    tag: "Proficient",
-    context: "Real-time hardware control signals and GPS module telemetry.",
-    projects: ["Real-Time Tracking Systems"],
-  },
-];
 
 const DatabaseSkills = [
   {
@@ -362,7 +328,6 @@ export default function Skills() {
     { id: "Languages", label: "Languages" },
     { id: "AI/ML", label: "AI & ML" },
     { id: "WebDev", label: "Web Dev" },
-    { id: "Embedded", label: "Embedded" },
     { id: "Databases & Tools", label: "Data & Tools" },
   ];
 
@@ -390,14 +355,7 @@ export default function Skills() {
       color: "#6A3093",
       description: "Component-driven frontends & scalable backend APIs.",
       skills: WebDevSkills,
-    },
-    {
-      id: "Embedded",
-      title: "Embedded Systems & Hardware",
-      icon: <FaMicrochip className="text-2xl text-[#00C9A7]" />,
-      color: "#A044FF",
-      description: "Microcontroller architecture, GPIO & communication protocols.",
-      skills: EmbeddedSkills,
+
     },
     {
       id: "Databases & Tools",
@@ -422,7 +380,6 @@ export default function Skills() {
     ...programmingLanguages,
     ...AiMlSkills,
     ...WebDevSkills,
-    ...EmbeddedSkills,
     ...DatabaseSkills,
     ...ToolsAndTechnologySkills,
   ];

@@ -1,0 +1,27 @@
+/* Showstopping Old Purple Experience Section Styles */
+
+@keyframes purpleTimelinePulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(160, 68, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(224, 179, 255, 0.75);
+  }
+}
+
+.purple-timeline-glow {
+  animation: purpleTimelinePulse 3.5s infinite ease-in-out;
+}
+
+@keyframes floatExperienceCard {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.floating-experience-card {
+  animation: floatExperienceCard 5s infinite ease-in-out;
+}

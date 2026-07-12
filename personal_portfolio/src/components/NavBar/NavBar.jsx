@@ -51,7 +51,7 @@ export default function NavBar() {
             href="#homeSection"
             className="text-transparent bg-clip-text bg-gradient-to-r from-[#C873FF] via-[#A044FF] to-[#6A3093] text-xl sm:text-3xl font-extrabold font-serif tracking-wide hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(160,68,255,0.6)]"
           >
-            Shahd Mohamed
+            Shahd
           </a>
 
           <span className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#A044FF]/15 border border-[#A044FF]/40 text-[#E0B3FF] shadow-sm">
