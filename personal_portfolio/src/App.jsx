@@ -3,11 +3,13 @@ import NavBar from "./components/NavBar/NavBar";
 import Particles from "./components/Background/Particles";
 import HeroSection from "./components/Hero Section/HeroSection";
 import About from "./components/About/About";
+import Experience from "./components/Experience/Experience";
 import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects/Projects";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import MultiStepLoader from "./components/Spinner/MultiStepLoader";
+import FloatingActionBar from "./components/FloatingActionBar/FloatingActionBar";
 
 function App() {
   const [loadingFinished, setLoadingFinished] = useState(false);
@@ -17,10 +19,12 @@ function App() {
       {!loadingFinished ? (
         <MultiStepLoader onFinish={() => setLoadingFinished(true)} />
       ) : (
-        <div>
+        <div className="relative min-h-screen overflow-hidden">
           <NavBar />
+          <FloatingActionBar />
           <HeroSection />
           <About />
+          <Experience />
           <Skills />
           <Projects />
           <Contact />

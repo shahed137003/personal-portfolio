@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   FaRegCommentDots,
   FaGithub,
   FaLinkedin,
   FaClock,
   FaHandshake,
+  FaCopy,
+  FaCheck,
 } from "react-icons/fa";
 import { FiSend, FiUser, FiMail, FiTag, FiEdit } from "react-icons/fi";
 import { MdEmail, MdPhone } from "react-icons/md";
@@ -15,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function Contact() {
   const form = useRef();
+  const [copiedText, setCopiedText] = useState(null);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -52,6 +55,17 @@ export default function Contact() {
       });
   };
 
+  const copyToClipboard = (text, label) => {
+    navigator.clipboard.writeText(text);
+    setCopiedText(label);
+    toast.info(`📋 Copied ${label} to clipboard!`, {
+      position: "bottom-right",
+      autoClose: 2000,
+      theme: "dark",
+    });
+    setTimeout(() => setCopiedText(null), 2500);
+  };
+
   const contactItems = [
     {
       icon: <MdPhone />,
@@ -59,11 +73,13 @@ export default function Contact() {
       value: "+20 1092968238",
       color: "#A044FF",
       gradient: "from-[#0D0017] to-[#A044FF]",
+      onClick: () => copyToClipboard("+20 1092968238", "Phone Number"),
     },
     {
       icon: <MdEmail />,
       title: "Email",
       value: "Shahd137003@gmail.com",
+      link: "mailto:Shahd137003@gmail.com",
       color: "#6A3093",
       gradient: "from-[#0D0017] to-[#6A3093]",
     },
@@ -86,14 +102,14 @@ export default function Contact() {
     {
       icon: <FaClock />,
       title: "Response Time",
-      value: "Fast replies within 24 hours",
+      value: "Within 24 hours",
       color: "#FFD700",
       gradient: "from-[#0D0017] to-[#FFD700]",
     },
     {
       icon: <FaHandshake />,
       title: "Collaboration",
-      value: "Open to projects & teamwork",
+      value: "Open to AI & Web projects",
       color: "#00C9A7",
       gradient: "from-[#0D0017] to-[#00C9A7]",
     },
@@ -112,7 +128,7 @@ export default function Contact() {
       id: "email",
       label: "Email",
       type: "email",
-      placeholder: "Enter your email",
+      placeholder: "Enter your email address",
       name: "user_email",
       icon: <FiMail />,
     },
@@ -120,7 +136,7 @@ export default function Contact() {
       id: "subject",
       label: "Subject",
       type: "text",
-      placeholder: "Enter your subject",
+      placeholder: "Project inquiry or greeting",
       name: "subject",
       icon: <FiTag />,
     },
@@ -128,63 +144,62 @@ export default function Contact() {
 
   return (
     <section
-      className="text-white w-full px-4 sm:px-6 lg:px-20 py-12"
+      className="text-white w-full px-4 sm:px-8 lg:px-16 py-16"
       id="contactSection"
     >
       <ToastContainer />
 
       {/* Section Heading */}
       <motion.h1
-        className="text-4xl sm:text-5xl lg:text-[70px] font-extrabold font-serif text-center text-transparent bg-clip-text bg-gradient-to-br from-[#6A3093] to-[#A044FF] mb-12 relative"
-        initial={{ opacity: 0, y: -50 }}
+        className="relative text-4xl sm:text-5xl md:text-[70px] font-extrabold font-serif text-center 
+                   text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#8E2DE2] to-[#A044FF] 
+                   mb-12 tracking-wide"
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
       >
-        Contact
-        <span className="absolute left-1/2 -bottom-4 -translate-x-1/2 w-28 sm:w-40 h-[3px] rounded-full bg-gradient-to-r from-[#6A3093] to-[#A044FF] shadow-[0_0_10px_#A044FF]" />
+        Get In Touch
+        <span
+          className="absolute left-1/2 -bottom-3 -translate-x-1/2 w-28 sm:w-36 h-[3px] rounded-full 
+                     bg-gradient-to-r from-[#6E48AA] via-[#8E2DE2] to-[#A044FF] 
+                     shadow-[0_0_15px_#A044FF] animate-pulse"
+        />
       </motion.h1>
 
-      <div className="flex flex-col lg:flex-row gap-10">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10">
         {/* Contact Form */}
         <motion.form
           ref={form}
           onSubmit={sendEmail}
-          className="w-full lg:w-1/2 bg-gradient-to-br from-[#0f0f0f]/70 to-[#6E48AA]/40 backdrop-blur-md border border-[#6E48AA]/50 rounded-3xl shadow-xl p-6 sm:p-8 transition-transform hover:scale-105"
-          initial={{ opacity: 0, y: 50 }}
+          className="w-full lg:w-3/5 bg-gradient-to-br from-[#120324]/90 to-[#070112]/90 backdrop-blur-xl border border-[#A044FF]/40 rounded-3xl shadow-xl p-6 sm:p-8 hover:shadow-[0_0_35px_rgba(160,68,255,0.3)] transition-all"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <motion.h2 className="flex items-center gap-2 text-2xl sm:text-3xl font-bold mb-6">
-            <motion.span
-              className="text-[#6E48AA]"
-              animate={{ rotate: [0, 15, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            >
-              <FaRegCommentDots className="w-6 h-6" />
-            </motion.span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6E48AA] via-[#A044FF] to-[#FF6EC7] animate-gradient-x">
+          <div className="flex items-center gap-3 text-2xl sm:text-3xl font-bold mb-6">
+            <FaRegCommentDots className="text-[#A044FF] text-3xl animate-pulse" />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-[#E0B3FF] to-[#A044FF]">
               Send me a message
             </span>
-          </motion.h2>
+          </div>
 
           <p className="text-gray-300 mb-6 text-sm sm:text-base">
-            Feel free to reach out if you have any questions, collaboration
-            ideas, or just want to connect.
+            Have a project, job opportunity, or research collaboration in mind? Drop a note below and I’ll get back to you promptly!
           </p>
 
           <div className="flex flex-col gap-4">
             {inputFields.map((field) => (
-              <div className="relative" key={field.id}>
+              <div key={field.id}>
                 <label
                   htmlFor={field.id}
-                  className="block text-base sm:text-lg font-semibold text-[#A044FF] mb-2"
+                  className="block text-sm sm:text-base font-semibold text-[#E0B3FF] mb-1.5"
                 >
                   {field.label}
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
                     {field.icon}
                   </span>
                   <input
@@ -193,104 +208,99 @@ export default function Contact() {
                     name={field.name}
                     placeholder={field.placeholder}
                     required
-                    className="w-full pl-10 px-4 py-3 rounded-xl bg-[#0f0f0f]/80 border border-[#6E48AA]/40 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#A044FF] focus:border-transparent transition-all duration-300 shadow-sm hover:shadow-md"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#090114]/80 border border-[#A044FF]/30 text-white placeholder-gray-500 focus:outline-none focus:border-[#A044FF] transition-all text-sm sm:text-base shadow-sm"
                   />
                 </div>
               </div>
             ))}
 
             {/* Message Box */}
-            <div className="relative">
+            <div>
               <label
                 htmlFor="message"
-                className="block text-base sm:text-lg font-semibold text-[#A044FF] mb-2"
+                className="block text-sm sm:text-base font-semibold text-[#E0B3FF] mb-1.5"
               >
-                Your message
+                Your Message
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-3 text-gray-400">
+                <span className="absolute left-3.5 top-3.5 text-gray-400">
                   <FiEdit />
                 </span>
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Enter your message"
+                  placeholder="Tell me about your idea or project..."
                   required
-                  className="w-full pl-10 h-36 px-4 py-3 rounded-xl bg-[#0f0f0f]/80 border border-[#6E48AA]/40 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#A044FF] focus:border-transparent transition-all duration-300 shadow-sm hover:shadow-md resize-none"
+                  className="w-full pl-11 pr-4 py-3 h-36 rounded-xl bg-[#090114]/80 border border-[#A044FF]/30 text-white placeholder-gray-500 focus:outline-none focus:border-[#A044FF] transition-all text-sm sm:text-base shadow-sm resize-none"
                 />
               </div>
             </div>
 
-            {/* Submit */}
+            {/* Submit Button */}
             <motion.button
               type="submit"
-              className="flex items-center justify-center gap-2 w-full lg:w-auto rounded-2xl bg-gradient-to-r from-[#6A3093] to-[#A044FF] px-6 py-3 font-semibold text-white shadow-lg hover:shadow-xl mt-2"
-              whileHover={{
-                scale: 1.08,
-                boxShadow: "0 0 15px rgba(160,68,255,0.7)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="flex items-center justify-center gap-2.5 w-full sm:w-auto self-start rounded-2xl bg-gradient-to-r from-[#6A3093] to-[#A044FF] px-8 py-3.5 font-semibold text-white shadow-lg hover:shadow-[0_0_20px_rgba(160,68,255,0.7)] mt-2 transition-all"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
             >
-              <FiSend className="text-lg" /> Send
+              <FiSend className="text-lg" /> Send Message
             </motion.button>
           </div>
         </motion.form>
 
         {/* Contact Info Cards */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 w-full lg:w-1/2"
-          initial={{ opacity: 0, x: 100 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 w-full lg:w-2/5"
+          initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6A3093] to-[#A044FF] mb-4 drop-shadow-[0_0_6px_#A044FF]">
-            <FiSend className="text-2xl sm:text-3xl text-[#A044FF] animate-pulse" />
-            Let’s Connect
+          <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E0B3FF] mb-2">
+            Connect With Me
           </h2>
 
-          {contactItems.map((item, index) => (
-            <motion.a
-              key={index}
-              href={item.link || "#"}
-              target={item.link ? "_blank" : "_self"}
-              rel="noopener noreferrer"
-              className="relative overflow-hidden group w-full min-h-[80px] sm:min-h-[90px] rounded-xl p-[2px] transition-all duration-500"
-              whileHover={{ scale: 1.05, y: -6 }}
-              transition={{ type: "spring", stiffness: 250, damping: 20 }}
-            >
-              {/* Gradient border background */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-70 blur-md group-hover:opacity-100 transition`}
-              />
-
-              <div className="relative flex items-center gap-4 bg-[#0D0017] rounded-xl h-full w-full px-4 py-3 border border-white/10 shadow-lg shadow-black/50 group-hover:shadow-[#A044FF]/50">
-                <motion.div
-                  className="p-2 rounded-full bg-black/30"
-                  whileHover={{ rotate: 15, scale: 1.2 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          {contactItems.map((item, index) => {
+            const content = (
+              <div className="relative flex items-center gap-4 bg-[#120324]/90 rounded-2xl h-full w-full px-5 py-4 border border-[#A044FF]/35 shadow-lg hover:border-[#A044FF] transition-all duration-300">
+                <div
+                  className="p-3 rounded-xl bg-[#1e083c] text-xl sm:text-2xl"
+                  style={{ color: item.color }}
                 >
-                  {React.cloneElement(item.icon, {
-                    className: "text-xl sm:text-2xl lg:text-3xl",
-                    style: {
-                      color: item.color,
-                      filter: `drop-shadow(0 0 6px ${item.color})`,
-                    },
-                  })}
-                </motion.div>
+                  {item.icon}
+                </div>
 
-                <div>
-                  <h3 className="text-xs sm:text-sm lg:text-[15px] text-gray-400 font-serif italic">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
                     {item.title}
                   </h3>
-                  <p className="text-white text-sm sm:text-base lg:text-[15px] font-semibold break-words group-hover:text-[#A044FF] transition-colors">
+                  <p className="text-white text-sm sm:text-base font-semibold truncate group-hover:text-[#E0B3FF] transition-colors">
                     {item.value}
                   </p>
                 </div>
               </div>
-            </motion.a>
-          ))}
+            );
+
+            return item.link ? (
+              <a
+                key={index}
+                href={item.link}
+                target={item.link.startsWith("http") ? "_blank" : "_self"}
+                rel="noopener noreferrer"
+                className="group w-full transition-transform hover:-translate-y-1"
+              >
+                {content}
+              </a>
+            ) : (
+              <div
+                key={index}
+                onClick={item.onClick}
+                className="group w-full cursor-pointer transition-transform hover:-translate-y-1"
+              >
+                {content}
+              </div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
