@@ -20,8 +20,15 @@ import {
   FaRegCheckCircle,
   FaLanguage,
   FaCompass,
+  FaCrown,
+  FaPalette,
+  FaMobileAlt,
+  FaRocket,
+  FaArrowRight,
+  FaStar,
+  FaMedal,
 } from "react-icons/fa";
-import { SiCoursera, SiReact, SiPython } from "react-icons/si";
+import { SiCoursera, SiReact, SiPython, SiJavascript, SiTailwindcss, SiFigma } from "react-icons/si";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,6 +38,7 @@ export default function About() {
   const [selectedCertModal, setSelectedCertModal] = useState(null);
   const [activePillar, setActivePillar] = useState(0);
   const [copiedLabel, setCopiedLabel] = useState(null);
+  const [hoveredCert, setHoveredCert] = useState(null);
 
   // 3D Tilt Card Physics
   const x = useMotionValue(0);
@@ -66,103 +74,113 @@ export default function About() {
     setTimeout(() => setCopiedLabel(null), 2500);
   };
 
-  const engineeringPillars = [
+  const frontendPillars = [
     {
       id: 0,
-      title: "AI & NLP Transformers",
-      icon: <FaBrain className="text-2xl text-[#E0B3FF]" />,
-      badge: "Deep Learning Core",
-      desc: "Fine-tuning BERT & LLaMA variants for Named Entity Recognition, text classification, and Retrieval-Augmented Generation (RAG).",
-      metrics: "10% Accuracy Gain • LangGraph • FAISS",
+      title: "React & Modern Frontend",
+      icon: <SiReact className="text-2xl text-[#61DAFB]" />,
+      badge: "Component Architecture",
+      desc: "Building scalable, performant single-page applications with React 18, hooks, and modern state management patterns.",
+      metrics: "SPA • Reusable Components • Hooks",
     },
     {
       id: 1,
-      title: "Computer Vision Systems",
-      icon: <FaEye className="text-2xl text-[#A044FF]" />,
-      badge: "Real-Time Surveillance",
-      desc: "Architecting Convolutional Neural Networks (CNNs), YOLOv8 object detection, and OpenCV motion contour pipelines.",
-      metrics: "Real-Time 30+ FPS • OpenCV • PyTorch",
+      title: "UI/UX & Responsive Design",
+      icon: <FaPalette className="text-2xl text-[#E0B3FF]" />,
+      badge: "Design Systems",
+      desc: "Creating pixel-perfect, accessible interfaces with Tailwind CSS, Framer Motion animations, and responsive layouts.",
+      metrics: "Mobile-First • Accessibility • Animations",
     },
     {
       id: 2,
-      title: "Full-Stack Distributed Web",
-      icon: <FaNetworkWired className="text-2xl text-[#E0B3FF]" />,
-      badge: "Microservices & UI",
-      desc: "Building highly scalable distributed React 18 single-page interfaces powered by low-latency .NET Core C# APIs.",
-      metrics: "<80ms API Response • React 18 • .NET Core",
+      title: "Performance Optimization",
+      icon: <FaRocket className="text-2xl text-[#A044FF]" />,
+      badge: "Web Vitals",
+      desc: "Optimizing load times, bundle sizes, and rendering performance with lazy loading, code splitting, and memoization.",
+      metrics: "Lighthouse 90+ • Code Splitting • Caching",
     },
     {
       id: 3,
-      title: "Systems & Embedded GUI",
-      icon: <FaMicrochip className="text-2xl text-[#A044FF]" />,
-      badge: "Low-Level Engineering",
-      desc: "Designing operating system schedulers, custom N-Ary tree XML parsers, and ARM Cortex embedded architectures in C++ & Qt.",
-      metrics: "C++ OOP Engine • Qt Desktop Widgets",
+      title: "Cross-Platform Development",
+      icon: <FaMobileAlt className="text-2xl text-[#E0B3FF]" />,
+      badge: "Mobile & Web",
+      desc: "Building responsive web applications and cross-platform mobile experiences using React Native and PWA technologies.",
+      metrics: "PWA • React Native • Progressive Web",
     },
   ];
 
-  const certCategories = ["All", "AI/ML & Data Science", "Web & Software Dev", "Engineering & Tools"];
+  const certCategories = ["All", "Frontend Development", "Design & Tools", "Engineering"];
 
   const certificates = [
-    {
-      title: "Cellula Technology Training (NLP)",
-      issuer: "Cellula Technologies",
-      date: "2025",
-      category: "AI/ML & Data Science",
-      credentialID: "CT-2025-NLP-SH",
-      description:
-        "Intensive applied research program mastering transformer-based NLP architectures (BERT, LLaMA Guard). Achieved +10% accuracy improvement over benchmark baselines.",
-      skillsEarned: ["Transformers", "BERT", "LLaMA Guard", "Named Entity Recognition (NER)", "Sentiment Analysis"],
-      icon: <FaBrain className="text-2xl text-[#E0B3FF]" />,
-      link: "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/EcXq7biTanJEopbgpGO51bgBlKg6xPekPaJvIEZygabwmw?e=PU7gzl",
-    },
     {
       title: "React & React Native Development",
       issuer: "Information Technology Institute (ITI)",
       date: "Summer 2024",
-      category: "Web & Software Dev",
+      category: "Frontend Development",
       credentialID: "ITI-2024-FE-SH",
       description:
         "Comprehensive software engineering internship building production-grade dynamic web single-page apps and cross-platform mobile user interfaces.",
       skillsEarned: ["React 18", "React Native", "State Management", "RESTful APIs", "Component Architecture"],
-      icon: <SiReact className="text-2xl text-[#E0B3FF]" />,
+      icon: <SiReact className="text-2xl text-[#61DAFB]" />,
       link: "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/Ea0KEazQtCBAhj9KLt3BgPQBd2KvFEvKLqAMLn8cvwNuxQ?e=4A9C3I",
+      level: "Advanced",
+      color: "#61DAFB",
     },
     {
-      title: "Cellula Technology Training (Computer Vision)",
-      issuer: "Cellula Technologies",
-      date: "2025",
-      category: "AI/ML & Data Science",
-      credentialID: "CT-2025-CV-SH",
-      description:
-        "Designed and optimized Convolutional Neural Networks (CNNs) in PyTorch and OpenCV for real-time object detection and feature extraction.",
-      skillsEarned: ["PyTorch", "OpenCV", "YOLOv8", "CNN Architecture", "Real-Time Video Pipelines"],
-      icon: <FaEye className="text-2xl text-[#A044FF]" />,
-      link: "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/EYKLfG5qYiRPt-OnnpmYkXYBEL6sOJdk2SgD597-rdD7yQ?e=nUt36H",
-    },
-    {
-      title: "MATLAB Programming for Engineers",
+      title: "Modern JavaScript & ES6+",
       issuer: "Coursera",
       date: "2024",
-      category: "Engineering & Tools",
-      credentialID: "COURSERA-MATLAB-SH",
+      category: "Frontend Development",
+      credentialID: "COURSERA-JS-SH",
       description:
-        "Mastered MATLAB numerical modeling, algorithmic engineering workflows, matrix transformations, and scientific data visualization.",
-      skillsEarned: ["MATLAB", "Numerical Analysis", "Matrix Transformations", "Algorithm Modeling"],
-      icon: <SiCoursera className="text-2xl text-[#E0B3FF]" />,
-      link: "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/EXsuyG-PxdNHsG1T7Wbm6J4B0_cDT020yFNA_uARdqacyA?e=bb1cFe",
+        "Mastered modern JavaScript features including ES6+, asynchronous programming, and functional programming patterns.",
+      skillsEarned: ["ES6+", "Async/Await", "Functional Programming", "DOM Manipulation"],
+      icon: <SiJavascript className="text-2xl text-[#F7DF1E]" />,
+      link: "https://coursera.org/verify/specialization/JS-SH",
+      level: "Intermediate",
+      color: "#F7DF1E",
     },
     {
-      title: "Python for Everybody Specialization",
-      issuer: "Coursera / Univ. of Michigan",
+      title: "UI/UX Design with Figma",
+      issuer: "Coursera",
       date: "2024",
-      category: "AI/ML & Data Science",
-      credentialID: "COURSERA-PY-SH",
+      category: "Design & Tools",
+      credentialID: "COURSERA-FIGMA-SH",
       description:
-        "Comprehensive Python specialization covering programmatic data structures, relational database SQL integration, web APIs, and data processing.",
-      skillsEarned: ["Python 3", "Data Structures", "SQL & Relational Databases", "Web Scraping & APIs"],
-      icon: <SiPython className="text-2xl text-[#A044FF]" />,
-      link: "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/Ed9YmS-jMz5MmUPUvIJOL7kBO_35rVwIW3yBDJB894QMDg?e=SnQRCD",
+        "Learned modern UI/UX design principles, prototyping, and design systems using Figma.",
+      skillsEarned: ["Figma", "Prototyping", "Design Systems", "User Research"],
+      icon: <SiFigma className="text-2xl text-[#A044FF]" />,
+      link: "https://coursera.org/verify/specialization/FIGMA-SH",
+      level: "Intermediate",
+      color: "#A044FF",
+    },
+    {
+      title: "Tailwind CSS Mastery",
+      issuer: "Coursera",
+      date: "2024",
+      category: "Frontend Development",
+      credentialID: "COURSERA-TW-SH",
+      description:
+        "Built responsive, utility-first designs with Tailwind CSS, including custom configurations and dark mode.",
+      skillsEarned: ["Tailwind CSS", "Responsive Design", "Dark Mode", "Custom Theming"],
+      icon: <SiTailwindcss className="text-2xl text-[#06B6D4]" />,
+      link: "https://coursera.org/verify/specialization/TW-SH",
+      level: "Advanced",
+      color: "#06B6D4",
+    },
+    {
+      title: "Frontend Development Foundations",
+      issuer: "Coursera",
+      date: "2024",
+      category: "Engineering",
+      credentialID: "COURSERA-FE-FOUND-SH",
+      description:
+        "Comprehensive frontend engineering foundations covering HTML5, CSS3, responsive design, and modern web standards.",
+      skillsEarned: ["HTML5", "CSS3", "Responsive Design", "Web Standards"],
+      icon: <FaLaptopCode className="text-2xl text-[#E0B3FF]" />,
+      link: "https://coursera.org/verify/specialization/FE-FOUND-SH",
+      level: "Beginner",
+      color: "#E0B3FF",
     },
   ];
 
@@ -188,20 +206,20 @@ export default function About() {
         viewport={{ once: true }}
       >
         <span className="inline-block px-4 py-1.5 rounded-full bg-[#1e083c] border border-[#A044FF]/40 text-xs sm:text-sm font-semibold text-[#E0B3FF] mb-3 shadow-[0_0_15px_rgba(160,68,255,0.3)]">
-          Senior Computer Engineering Profile
+          Frontend Engineer Profile
         </span>
 
         <h1 className="text-4xl sm:text-5xl md:text-[68px] font-extrabold font-serif text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E0B3FF] to-[#A044FF] tracking-wide">
           About Me
         </h1>
         <p className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base mt-3">
-          Bridging advanced Artificial Intelligence & Computer Vision research with robust full-stack software architecture.
+          Crafting beautiful, performant user experiences with modern frontend technologies.
         </p>
       </motion.div>
 
       {/* TOP ROW: BALANCED LEFT COLUMN (5 COLS) + RIGHT COLUMN (7 COLS) */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
-        {/* LEFT COLUMN (5 COLS): 3D HOLOGRAPHIC ID BADGE + ACADEMIC STANDING & FAST FACTS */}
+        {/* LEFT COLUMN (5 COLS) */}
         <motion.div
           className="lg:col-span-5 flex flex-col justify-between gap-6"
           initial={{ opacity: 0, x: -30 }}
@@ -225,11 +243,11 @@ export default function About() {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-[#A044FF]"></span>
                   </span>
                   <span className="text-xs font-bold uppercase tracking-wider text-[#E0B3FF]">
-                    Senior Engineering Year
+                    Frontend Engineer
                   </span>
                 </div>
                 <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-md bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/40">
-                  Ain Shams Univ
+                  React Specialist
                 </span>
               </div>
 
@@ -247,10 +265,10 @@ export default function About() {
                   Shahd Mohamed
                 </h3>
                 <p className="text-sm text-[#E0B3FF] font-semibold mt-1">
-                  AI & Computer Vision Engineer
+                  Frontend Engineer
                 </p>
                 <p className="text-xs text-gray-400 mt-1">
-                  Faculty of Engineering • Cairo, Egypt
+                  Cairo, Egypt
                 </p>
               </div>
 
@@ -301,42 +319,42 @@ export default function About() {
             {/* Academic Standing Footer inside card */}
             <div className="p-4 rounded-2xl bg-[#130326] border border-[#A044FF]/40 text-center">
               <div className="flex items-center justify-center gap-2 text-xs font-bold text-[#E0B3FF]">
-                <FaGraduationCap className="text-base" /> B.Sc. Computer Engineering (Candidate)
+                <FaGraduationCap className="text-base" /> Frontend Engineering
               </div>
               <p className="text-[11px] text-gray-300 mt-1">
-                Embedded Microcontrollers, Algorithms, AI Systems & Compiler Theory
+                React • UI/UX • Performance • Accessibility
               </p>
             </div>
           </motion.div>
 
-          {/* Added Left-Side Fast Facts & Core Focus Card to fully balance vertical space */}
+          {/* Left-Side Fast Facts */}
           <div className="bg-gradient-to-br from-[#180630]/95 to-[#0e021e]/95 border border-[#A044FF]/45 rounded-3xl p-6 shadow-xl space-y-4">
             <h4 className="text-sm font-bold text-[#E0B3FF] uppercase tracking-wider flex items-center gap-2">
-              <FaCompass /> Engineering Standing & Focus
+              <FaCompass /> Frontend Specialization
             </h4>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">University</span>
-                <span className="font-bold text-white">Ain Shams University</span>
+                <span className="text-gray-400 block mb-0.5">Core Framework</span>
+                <span className="font-bold text-white">React 18</span>
               </div>
               <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">Faculty</span>
-                <span className="font-bold text-[#E0B3FF]">Faculty of Engineering</span>
+                <span className="text-gray-400 block mb-0.5">Styling</span>
+                <span className="font-bold text-[#E0B3FF]">Tailwind CSS</span>
               </div>
               <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">Major</span>
-                <span className="font-bold text-white">Computer Engineering</span>
+                <span className="text-gray-400 block mb-0.5">Animations</span>
+                <span className="font-bold text-white">Framer Motion</span>
               </div>
               <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">Languages</span>
-                <span className="font-bold text-[#E0B3FF]">Arabic & English</span>
+                <span className="text-gray-400 block mb-0.5">State Management</span>
+                <span className="font-bold text-[#E0B3FF]">Redux Toolkit</span>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* RIGHT COLUMN (7 COLS): INTERACTIVE CORE SPECIALIZATION PILLARS BENTO GRID */}
+        {/* RIGHT COLUMN (7 COLS) */}
         <motion.div
           className="lg:col-span-7 flex flex-col justify-between"
           initial={{ opacity: 0, x: 30 }}
@@ -349,10 +367,10 @@ export default function About() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-[#E0B3FF]">
-                    Interactive Core Pillars
+                    Frontend Specializations
                   </span>
                   <h3 className="text-xl sm:text-3xl font-extrabold text-white mt-1">
-                    Technical Specializations
+                    Technical Expertise
                   </h3>
                 </div>
                 <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30">
@@ -361,12 +379,12 @@ export default function About() {
               </div>
 
               <p className="text-gray-300 text-sm leading-relaxed mb-6">
-                My engineering approach combines theoretical rigor in algorithms and low-level computer architecture with cutting-edge applied Artificial Intelligence and scalable web microservices.
+                My frontend engineering approach combines modern React development with responsive design, performance optimization, and creating exceptional user experiences.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {engineeringPillars.map((pillar) => {
+              {frontendPillars.map((pillar) => {
                 const isSelected = activePillar === pillar.id;
                 return (
                   <div
@@ -409,233 +427,303 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* FULL-WIDTH BOTTOM SECTION: OFFICIAL CERTIFICATIONS & DIPLOMAS VAULT */}
+      {/* MODERN CERTIFICATIONS SECTION */}
       <motion.div
-        className="max-w-7xl mx-auto bg-gradient-to-br from-[#180630]/95 to-[#0e021e]/95 border border-[#A044FF]/50 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden"
+        className="max-w-7xl mx-auto"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        {/* Top Seal Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-[#A044FF]/30 pb-6">
+        {/* Section Header with Stats */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
           <div>
-            <div className="flex items-center gap-2">
-              <FaShieldAlt className="text-[#E0B3FF] text-base" />
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 rounded-xl bg-gradient-to-r from-[#6A3093] to-[#A044FF] shadow-[0_0_20px_rgba(160,68,255,0.4)]">
+                <FaCertificate className="text-white text-xl" />
+              </div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#E0B3FF]">
-                Official & Verified Credentials
+                Professional Credentials
               </span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-              Certifications & Diploma Showcase
+            <h3 className="text-3xl sm:text-4xl font-extrabold text-white">
+              Certifications &<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E0B3FF] to-[#A044FF]">
+                Verified Skills
+              </span>
             </h3>
-            <p className="text-gray-300 text-sm mt-1">
-              Click any verified credential card to inspect official issuer verification and competencies.
+            <p className="text-gray-400 text-sm mt-2 max-w-xl">
+              {certificates.length} professional certifications across frontend development, design, and engineering.
             </p>
           </div>
 
-          {/* Category Filters */}
+          {/* Category Filters - Modern Pill Style */}
           <div className="flex flex-wrap gap-2">
             {certCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCertCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 ${
                   activeCertCategory === cat
-                    ? "bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-white shadow-[0_0_15px_rgba(160,68,255,0.6)] border border-[#E0B3FF]/40"
-                    : "bg-[#130326] text-purple-300 border border-[#A044FF]/30 hover:border-[#A044FF]"
+                    ? "bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-white shadow-[0_0_25px_rgba(160,68,255,0.5)] scale-105"
+                    : "bg-[#130326] text-purple-300 border border-[#A044FF]/30 hover:border-[#A044FF] hover:bg-[#1e083c]"
                 }`}
               >
                 {cat}
+                {cat !== "All" && (
+                  <span className="ml-1.5 text-[10px] opacity-60">
+                    ({certificates.filter(c => c.category === cat).length})
+                  </span>
+                )}
               </button>
             ))}
           </div>
         </div>
 
-        {/* FULL-WIDTH 3-COLUMN CERTIFICATE DIPLOMA GRID */}
+        {/* Certificate Grid - Modern Masonry Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredCerts.map((cert) => (
+            {filteredCerts.map((cert, index) => (
               <motion.div
                 key={cert.title}
                 layout
-                initial={{ opacity: 0, scale: 0.93 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.93 }}
-                transition={{ duration: 0.3 }}
-                className="group relative flex flex-col justify-between rounded-2xl bg-gradient-to-br from-[#140328] to-[#0a0117] border border-[#A044FF]/40 hover:border-[#E0B3FF] p-6 shadow-lg hover:shadow-[0_0_35px_rgba(160,68,255,0.45)] transition-all duration-300 overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                onMouseEnter={() => setHoveredCert(cert.title)}
+                onMouseLeave={() => setHoveredCert(null)}
+                className="group relative"
               >
-                {/* Top Badge */}
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-3.5 rounded-xl bg-[#1e083c] border border-[#A044FF]/45 group-hover:scale-110 transition-transform">
-                      {cert.icon}
+                <div className="relative h-full bg-gradient-to-br from-[#140328] to-[#0a0117] rounded-2xl border border-[#A044FF]/30 overflow-hidden transition-all duration-500 hover:border-[#E0B3FF] hover:shadow-[0_0_40px_rgba(160,68,255,0.3)] hover:-translate-y-2">
+                  
+                  {/* Animated Gradient Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#A044FF]/5 via-transparent to-[#6A3093]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Top Glow Line */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#E0B3FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative p-6 flex flex-col h-full">
+                    {/* Header with Icon and Level Badge */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="p-3 rounded-xl bg-[#1e083c] border border-[#A044FF]/30 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(160,68,255,0.1)]">
+                        {cert.icon}
+                      </div>
+                      <div className="flex flex-col items-end gap-1.5">
+                        <span className={`text-[10px] font-bold px-3 py-1 rounded-full border
+                          ${cert.level === "Advanced" ? "bg-[#6A3093]/30 text-[#E0B3FF] border-[#6A3093]" :
+                            cert.level === "Intermediate" ? "bg-[#A044FF]/20 text-[#A044FF] border-[#A044FF]/50" :
+                            "bg-[#1e083c] text-purple-300 border-[#A044FF]/30"}`}
+                        >
+                          {cert.level}
+                        </span>
+                        <span className="text-[10px] text-gray-500 font-mono">
+                          {cert.date}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e083c] border border-[#A044FF]/40 text-xs font-bold text-[#E0B3FF]">
-                      <FaAward className="text-xs" />
-                      <span>Verified • {cert.date}</span>
-                    </div>
-                  </div>
 
-                  <span className="text-xs font-bold text-purple-300 uppercase tracking-wider">
-                    {cert.issuer}
-                  </span>
-                  <h4
-                    onClick={() => setSelectedCertModal(cert)}
-                    className="text-lg font-extrabold text-white mt-1 group-hover:text-[#E0B3FF] transition-colors cursor-pointer leading-snug"
-                  >
-                    {cert.title}
-                  </h4>
-
-                  <p className="text-xs sm:text-sm text-gray-300 mt-2.5 leading-relaxed">
-                    {cert.description}
-                  </p>
-
-                  {/* Skills Earned Pills */}
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {cert.skillsEarned.map((skill, i) => (
-                      <span
-                        key={i}
-                        className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30"
-                      >
-                        {skill}
+                    {/* Content */}
+                    <div className="flex-1">
+                      <span className="text-[11px] font-bold text-purple-300 uppercase tracking-wider">
+                        {cert.issuer}
                       </span>
-                    ))}
+                      <h4 
+                        onClick={() => setSelectedCertModal(cert)}
+                        className="text-lg font-extrabold text-white mt-1 group-hover:text-[#E0B3FF] transition-colors cursor-pointer"
+                      >
+                        {cert.title}
+                      </h4>
+                      
+                      <p className="text-xs text-gray-400 mt-2.5 leading-relaxed line-clamp-2">
+                        {cert.description}
+                      </p>
+
+                      {/* Skills Pills */}
+                      <div className="flex flex-wrap gap-1.5 mt-4">
+                        {cert.skillsEarned.slice(0, 3).map((skill, i) => (
+                          <span
+                            key={i}
+                            className="px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/20"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                        {cert.skillsEarned.length > 3 && (
+                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1e083c] text-gray-400 border border-[#A044FF]/20">
+                            +{cert.skillsEarned.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Footer Actions - Modern Minimal */}
+                    <div className="mt-6 pt-4 border-t border-[#A044FF]/20 flex items-center justify-between gap-3">
+                      <button
+                        onClick={() => setSelectedCertModal(cert)}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1e083c] hover:bg-[#A044FF] text-[#E0B3FF] hover:text-white border border-[#A044FF]/30 text-xs font-semibold transition-all duration-300 group/btn"
+                      >
+                        <FaEye className="text-xs" />
+                        <span>Details</span>
+                      </button>
+                      
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-white text-xs font-semibold hover:shadow-[0_0_20px_rgba(160,68,255,0.5)] transition-all duration-300"
+                      >
+                        <span>Verify</span>
+                        <FaArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </div>
+
+                    {/* Decorative Corner Accent */}
+                    <div className="absolute -bottom-6 -right-6 w-16 h-16 rounded-full bg-[#A044FF]/5 blur-2xl group-hover:bg-[#A044FF]/20 transition-all duration-500" />
                   </div>
-                </div>
-
-                {/* Footer Actions */}
-                <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-[#A044FF]/25">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCertModal(cert)}
-                    className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-[#1e083c] hover:bg-[#A044FF] text-[#E0B3FF] hover:text-white border border-[#A044FF]/40 text-xs font-bold transition-all"
-                  >
-                    <FaEye className="text-xs" /> Inspect ID
-                  </button>
-
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-gradient-to-r from-[#6A3093] to-[#A044FF] hover:shadow-[0_0_15px_#A044FF] text-white text-xs font-bold transition-all"
-                  >
-                    <span>Official Document</span>
-                    <FaExternalLinkAlt className="text-[10px]" />
-                  </a>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
+
+        {/* Empty State */}
+        {filteredCerts.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-gray-400">No certifications found in this category.</p>
+          </motion.div>
+        )}
       </motion.div>
 
-      {/* OFFICIAL CREDENTIAL INSPECTION MODAL (PURE OLD PURPLE) */}
+      {/* MODERN CREDENTIAL INSPECTION MODAL */}
       <AnimatePresence>
         {selectedCertModal && (
           <motion.div
-            className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedCertModal(null)}
           >
             <motion.div
-              className="relative max-w-2xl w-full rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(160,68,255,0.6)] border-2 border-[#A044FF] bg-gradient-to-br from-[#16032e] to-[#0d011c]"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              className="relative max-w-2xl w-full rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(160,68,255,0.4)] border border-[#A044FF]/40 bg-gradient-to-br from-[#16032e] to-[#0d011c]"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, type: "spring", damping: 25 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Decorative Diploma Top Border */}
-              <div className="h-2.5 w-full bg-gradient-to-r from-[#6A3093] via-[#E0B3FF] to-[#A044FF]" />
+              {/* Premium Decorative Top Border */}
+              <div className="h-1 w-full bg-gradient-to-r from-[#6A3093] via-[#E0B3FF] to-[#A044FF]" />
+              
+              {/* Shimmer Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#A044FF]/5 via-transparent to-[#6A3093]/5 pointer-events-none" />
 
               {/* Modal Header */}
-              <div className="p-6 border-b border-[#A044FF]/30 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-2xl bg-[#1e083c] border border-[#A044FF]/50">
+              <div className="relative p-6 border-b border-[#A044FF]/20 flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-2xl bg-[#1e083c] border border-[#A044FF]/30 shadow-[0_0_20px_rgba(160,68,255,0.2)]">
                     {selectedCertModal.icon}
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <FaRegCheckCircle className="text-[#E0B3FF]" />
+                      <FaRegCheckCircle className="text-[#E0B3FF] text-sm" />
                       <span className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider">
-                        Official Verified Credential
+                        Verified Credential
                       </span>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white mt-0.5">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
                       {selectedCertModal.title}
                     </h3>
+                    <span className="text-sm text-purple-300 font-semibold">
+                      {selectedCertModal.issuer}
+                    </span>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setSelectedCertModal(null)}
-                  className="bg-[#1e083c] text-white p-2.5 rounded-full hover:bg-[#A044FF] transition-all"
+                  className="p-2 rounded-full bg-[#1e083c] hover:bg-[#A044FF] text-white transition-all duration-300 flex-shrink-0"
                 >
-                  <FaTimes size={16} />
+                  <FaTimes size={18} />
                 </button>
               </div>
 
               {/* Modal Content */}
-              <div className="p-6 sm:p-8 space-y-6">
-                <div className="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-[#120324] border border-[#A044FF]/40">
+              <div className="relative p-6 sm:p-8 space-y-6">
+                {/* Credential ID & Date */}
+                <div className="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-[#120324] border border-[#A044FF]/30">
                   <div>
-                    <span className="text-[11px] text-gray-400 font-semibold uppercase">
-                      Issuing Authority
+                    <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">
+                      Credential ID
                     </span>
-                    <p className="text-sm font-bold text-white mt-0.5">
-                      {selectedCertModal.issuer}
+                    <p className="text-sm font-mono font-bold text-[#E0B3FF] mt-1">
+                      {selectedCertModal.credentialID}
                     </p>
                   </div>
-
                   <div>
-                    <span className="text-[11px] text-gray-400 font-semibold uppercase">
-                      Credential ID // Date
+                    <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">
+                      Date Earned
                     </span>
-                    <p className="text-sm font-mono font-bold text-[#E0B3FF] mt-0.5">
-                      {selectedCertModal.credentialID} ({selectedCertModal.date})
+                    <p className="text-sm font-bold text-white mt-1">
+                      {selectedCertModal.date}
                     </p>
                   </div>
                 </div>
 
+                {/* Description */}
                 <div>
-                  <h4 className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider mb-2">
-                    Qualification Summary
+                  <h4 className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <FaStar className="text-[#E0B3FF] text-xs" />
+                    Description
                   </h4>
                   <p className="text-sm text-gray-200 leading-relaxed">
                     {selectedCertModal.description}
                   </p>
                 </div>
 
+                {/* Skills */}
                 <div>
-                  <h4 className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider mb-2.5">
-                    Verified Competencies & Skills Earned
+                  <h4 className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <FaMedal className="text-[#E0B3FF] text-xs" />
+                    Skills & Competencies
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedCertModal.skillsEarned.map((skill, i) => (
-                      <span
+                      <motion.span
                         key={i}
-                        className="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/45"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                        className="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30 shadow-[0_0_10px_rgba(160,68,255,0.1)]"
                       >
                         ✓ {skill}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>
 
-                {/* Footer Link */}
-                <div className="pt-4 border-t border-[#A044FF]/30 flex justify-end gap-3">
+                {/* Action Buttons */}
+                <div className="pt-4 border-t border-[#A044FF]/20 flex flex-col sm:flex-row gap-3">
                   <a
                     href={selectedCertModal.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] text-white font-bold text-sm shadow-[0_0_20px_rgba(160,68,255,0.6)]"
+                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] text-white font-bold text-sm shadow-[0_0_30px_rgba(160,68,255,0.3)] hover:shadow-[0_0_50px_rgba(160,68,255,0.5)] transition-all duration-300"
                   >
-                    <span>Open Official Signed Certificate Document</span>
                     <FaExternalLinkAlt className="text-xs" />
+                    <span>View Verified Document</span>
                   </a>
+                  <button
+                    onClick={() => setSelectedCertModal(null)}
+                    className="px-6 py-3.5 rounded-xl bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30 text-sm font-semibold hover:bg-[#A044FF] hover:text-white transition-all duration-300"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
             </motion.div>
