@@ -1,16 +1,16 @@
-/* Showstopping Old Purple Projects Section Styles */
+/* Rose Carmine Projects Section Styles */
 
-@keyframes purpleGlowBorder {
+@keyframes roseGlowBorder {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(160, 68, 255, 0.35);
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.35);
   }
   50% {
-    box-shadow: 0 0 32px rgba(224, 179, 255, 0.65);
+    box-shadow: 0 0 32px rgba(253, 164, 175, 0.65);
   }
 }
 
 .purple-glow-card {
-  animation: purpleGlowBorder 4s infinite ease-in-out;
+  animation: roseGlowBorder 4s infinite ease-in-out;
 }
 
 @keyframes floatProjectCard {

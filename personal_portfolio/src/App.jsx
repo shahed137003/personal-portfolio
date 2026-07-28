@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import NavBar from "./components/NavBar/NavBar";
-import Particles from "./components/Background/Particles";
 import HeroSection from "./components/Hero Section/HeroSection";
 import About from "./components/About/About";
 import Experience from "./components/Experience/Experience";
@@ -10,39 +9,46 @@ import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import MultiStepLoader from "./components/Spinner/MultiStepLoader";
 import FloatingActionBar from "./components/FloatingActionBar/FloatingActionBar";
+import GeometricBackground from "./components/Background/GeometricBackground";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 
-function App() {
+function MainContent() {
   const [loadingFinished, setLoadingFinished] = useState(false);
+  const { isDarkMode } = useTheme();
 
   return (
     <>
       {!loadingFinished ? (
         <MultiStepLoader onFinish={() => setLoadingFinished(true)} />
       ) : (
-        <div className="relative min-h-screen overflow-hidden">
-          <NavBar />
-          <FloatingActionBar />
-          <HeroSection />
-          <About />
-          <Experience />
-          <Skills />
-          <Projects />
-          <Contact />
-          <Footer />
-          <Particles
-            className="w-full h-full relative"
-            particleColors={["#833CAA"]}
-            particleCount={2000}
-            particleSpread={10}
-            speed={0.5}
-            particleBaseSize={100}
-            moveParticlesOnHover={false}
-            alphaParticles={false}
-            disableRotation={false}
-          />
+        <div className={`relative min-h-screen overflow-hidden transition-colors duration-500 ${
+          isDarkMode ? "bg-[#05010a] text-white" : "bg-[#fbf7ff] text-[#2e0854]"
+        }`}>
+          {/* Exact Geometric Grid & Animated Gradient Orbs from Sign Language Project Home */}
+          <GeometricBackground />
+
+          <div className="relative z-10">
+            <NavBar />
+            <FloatingActionBar />
+            <HeroSection />
+            <About />
+            <Experience />
+            <Skills />
+            <Projects />
+            <Contact />
+            <Footer />
+          </div>
         </div>
       )}
     </>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <MainContent />
+    </ThemeProvider>
   );
 }
 

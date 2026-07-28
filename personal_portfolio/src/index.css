@@ -3,39 +3,76 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+  }
+
+  /* Rose Carmine & Crimson Pink Dark Mode */
+  html.dark body {
+    background-color: #180510;
+    color: #ffffff;
+  }
+
+  /* Silky Warm Rose Porcelain Light Mode */
+  html.light body {
+    background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 50%, #fecdd3 100%);
+    color: #4c0519;
   }
 
   body {
-    background-color: #05010a;
-    color: #ffffff;
     overflow-x: hidden;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    transition: background 0.4s ease, color 0.4s ease;
   }
 
   ::selection {
-    background-color: rgba(160, 68, 255, 0.4);
+    background-color: rgba(255, 0, 122, 0.45);
     color: #ffffff;
   }
 }
 
-/* Custom modern scrollbar */
+/* Custom Rose Carmine scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-::-webkit-scrollbar-track {
-  background: #06010e;
+html.dark ::-webkit-scrollbar-track {
+  background: #180510;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #ffe4e6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6A3093 0%, #A044FF 100%);
+  background: linear-gradient(180deg, #E01E5A 0%, #FF007A 100%);
   border-radius: 9999px;
-  border: 2px solid #06010e;
+  border: 2px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #8E2DE2 0%, #C873FF 100%);
+  background: linear-gradient(180deg, #F43F5E 0%, #FDA4AF 100%);
+}
+
+/* Wide Rose Carmine Geometric Grid Background (65px x 65px Grid Squares, 0.8px Lines) */
+.sign-language-grid-bg {
+  background-size: 65px 65px, 65px 65px !important;
+  background-image: 
+    linear-gradient(90deg, rgba(255, 0, 122, 0.16) 0.8px, transparent 0.8px),
+    linear-gradient(180deg, rgba(255, 0, 122, 0.16) 0.8px, transparent 0.8px) !important;
+}
+
+html.light .sign-language-grid-bg {
+  background-size: 65px 65px, 65px 65px !important;
+  background-image: 
+    linear-gradient(90deg, rgba(225, 29, 72, 0.14) 0.8px, transparent 0.8px),
+    linear-gradient(180deg, rgba(225, 29, 72, 0.14) 0.8px, transparent 0.8px) !important;
+}
+
+.purple-grid-vignette {
+  background-image: radial-gradient(circle at 50% 30%, rgba(255, 0, 122, 0.22) 0%, transparent 75%);
+}
+
+html.light .purple-grid-vignette {
+  background-image: radial-gradient(circle at 50% 30%, rgba(225, 29, 72, 0.22) 0%, transparent 75%);
 }
 
 /* Shimmer animation for tags and cards */
@@ -52,5 +89,3 @@
   background-size: 200% 100%;
   animation: shimmer 4s infinite linear;
 }
-
-

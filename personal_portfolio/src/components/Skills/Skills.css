@@ -1,27 +1,14 @@
-/* Showstopping Pure Old Purple Skills Section Styles */
+/* Rose Carmine Skills Section Styles */
 
-@keyframes purpleSkillPulse {
+@keyframes roseSkillPulse {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(160, 68, 255, 0.35);
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.4);
   }
   50% {
-    box-shadow: 0 0 30px rgba(224, 179, 255, 0.65);
+    box-shadow: 0 0 32px rgba(253, 164, 175, 0.75);
   }
 }
 
 .purple-skill-glow {
-  animation: purpleSkillPulse 3.5s infinite ease-in-out;
-}
-
-@keyframes floatSkillCard {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.floating-skill-card {
-  animation: floatSkillCard 4.5s infinite ease-in-out;
+  animation: roseSkillPulse 3.5s infinite ease-in-out;
 }

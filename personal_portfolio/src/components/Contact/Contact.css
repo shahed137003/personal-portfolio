@@ -1,14 +1,14 @@
-/* Pure Purple Modern Glassmorphic Contact Styles */
+/* Rose Carmine Modern Glassmorphic Contact Styles */
 
-@keyframes purplePulseGlow {
+@keyframes rosePulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(160, 68, 255, 0.35);
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.35);
   }
   50% {
-    box-shadow: 0 0 28px rgba(224, 179, 255, 0.65);
+    box-shadow: 0 0 28px rgba(253, 164, 175, 0.65);
   }
 }
 
 .purple-glow-card {
-  animation: purplePulseGlow 4s infinite ease-in-out;
+  animation: rosePulseGlow 4s infinite ease-in-out;
 }

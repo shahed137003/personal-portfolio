@@ -4,8 +4,8 @@ import React from "react";
 
 export function RoboAnimation({ 
   size = 96, 
-  color = "text-[#4B0082]",
-  glowColor = "bg-purple-500/20"
+  color = "text-[#FF007A]",
+  glowColor = "bg-[#FF007A]/20"
 }) {
   return (
     <div className="absolute -mt-10 ml-220 hidden md:block">

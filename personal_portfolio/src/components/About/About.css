@@ -1,6 +1,6 @@
-/* Ultra-Modern Pure Purple About Section Styles */
+/* Ultra-Modern Rose Carmine About Section Styles */
 
-@keyframes purplePulseRadar {
+@keyframes rosePulseRadar {
   0% {
     transform: scale(1);
     opacity: 0.8;
@@ -11,11 +11,11 @@
   }
 }
 
-.animate-purple-radar {
-  animation: purplePulseRadar 2s infinite cubic-bezier(0, 0, 0.2, 1);
+.animate-purple-radar, .animate-rose-radar {
+  animation: rosePulseRadar 2s infinite cubic-bezier(0, 0, 0.2, 1);
 }
 
-@keyframes floatAmethystCard {
+@keyframes floatRoseCard {
   0%, 100% {
     transform: translateY(0px);
   }
@@ -25,18 +25,18 @@
 }
 
 .amethyst-card-floating {
-  animation: floatAmethystCard 5s ease-in-out infinite;
+  animation: floatRoseCard 5s ease-in-out infinite;
 }
 
-@keyframes purpleNeonGlow {
+@keyframes roseNeonGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(160, 68, 255, 0.35);
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.35);
   }
   50% {
-    box-shadow: 0 0 30px rgba(224, 179, 255, 0.65);
+    box-shadow: 0 0 30px rgba(253, 164, 175, 0.65);
   }
 }
 
 .purple-neon-border {
-  animation: purpleNeonGlow 3.5s infinite ease-in-out;
+  animation: roseNeonGlow 3.5s infinite ease-in-out;
 }

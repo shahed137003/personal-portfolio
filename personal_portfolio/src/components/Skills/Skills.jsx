@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   FaLaptopCode,
-  FaMicrochip,
   FaTools,
   FaDatabase,
   FaReact,
@@ -28,13 +27,8 @@ import {
   FaTimes,
   FaInfoCircle,
 } from "react-icons/fa";
-import { GiProcessor } from "react-icons/gi";
-import { TbTopologyStar3 } from "react-icons/tb";
-import { MdGpsFixed } from "react-icons/md";
-import { BsUsbPlug } from "react-icons/bs";
 import {
   SiCplusplus,
-  SiArduino,
   SiAnaconda,
   SiMysql,
   SiMongodb,
@@ -52,12 +46,13 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../../context/ThemeContext";
 
-// Comprehensive skill catalog with deep-dive context
+// Comprehensive skill catalog with deep-dive context (100% Purple Palette - NO BLUE!)
 const programmingLanguages = [
   {
     name: "C++",
-    icon: <SiCplusplus className="text-[#00599C] text-xl" />,
+    icon: <SiCplusplus className="text-[#FF007A] text-xl" />,
     level: 95,
     tag: "Advanced",
     context:
@@ -66,7 +61,7 @@ const programmingLanguages = [
   },
   {
     name: "Python",
-    icon: <FaPython className="text-[#3776AB] text-xl" />,
+    icon: <FaPython className="text-[#FDA4AF] text-xl" />,
     level: 95,
     tag: "Advanced",
     context:
@@ -75,7 +70,7 @@ const programmingLanguages = [
   },
   {
     name: "JavaScript (ES6+)",
-    icon: <FaJsSquare className="text-[#F7DF1E] text-xl" />,
+    icon: <FaJsSquare className="text-[#E01E5A] text-xl" />,
     level: 90,
     tag: "Advanced",
     context:
@@ -84,7 +79,7 @@ const programmingLanguages = [
   },
   {
     name: "TypeScript",
-    icon: <SiTypescript className="text-[#3178C6] text-xl" />,
+    icon: <SiTypescript className="text-[#F43F5E] text-xl" />,
     level: 80,
     tag: "Proficient",
     context: "Type-safe modern web application architecture and scalable React systems.",
@@ -92,26 +87,26 @@ const programmingLanguages = [
   },
   {
     name: "Java",
-    icon: <FaJava className="text-[#007396] text-xl" />,
+    icon: <FaJava className="text-[#FF007A] text-xl" />,
     level: 82,
     tag: "Proficient",
-    context: "Object-oriented software design, design patterns, and multithreaded desktop systems.",
+    context: "Object-oriented software design, design patterns, and multithreaded systems.",
     projects: ["Object-Oriented Architecture Projects"],
   },
   {
     name: "C",
-    icon: <FaCuttlefish className="text-[#A8B9CC] text-xl" />,
+    icon: <FaCuttlefish className="text-[#FDA4AF] text-xl" />,
     level: 85,
     tag: "Proficient",
-    context: "Low-level system programming, memory management, and microcontroller firmware.",
-    projects: ["Embedded Microcontroller Firmware"],
+    context: "Low-level system programming and memory management.",
+    projects: ["OS Systems Programming Labs"],
   },
 ];
 
 const AiMlSkills = [
   {
     name: "PyTorch",
-    icon: <SiPytorch className="text-[#EE4C2C] text-xl" />,
+    icon: <SiPytorch className="text-[#FF007A] text-xl" />,
     level: 90,
     tag: "Advanced",
     context:
@@ -120,7 +115,7 @@ const AiMlSkills = [
   },
   {
     name: "TensorFlow",
-    icon: <SiTensorflow className="text-[#FF6F00] text-xl" />,
+    icon: <SiTensorflow className="text-[#FDA4AF] text-xl" />,
     level: 88,
     tag: "Advanced",
     context: "Deep learning model training, optimization, and computer vision classification.",
@@ -128,7 +123,7 @@ const AiMlSkills = [
   },
   {
     name: "NLP & Transformers",
-    icon: <FaBrain className="text-[#A044FF] text-xl" />,
+    icon: <FaBrain className="text-[#E01E5A] text-xl" />,
     level: 92,
     tag: "Expert Specialty",
     context:
@@ -137,7 +132,7 @@ const AiMlSkills = [
   },
   {
     name: "Scikit-Learn",
-    icon: <SiScikitlearn className="text-[#F7931E] text-xl" />,
+    icon: <SiScikitlearn className="text-[#F43F5E] text-xl" />,
     level: 88,
     tag: "Advanced",
     context: "Classical machine learning, feature engineering, clustering, and evaluation metrics.",
@@ -145,7 +140,7 @@ const AiMlSkills = [
   },
   {
     name: "NumPy & Pandas",
-    icon: <SiPandas className="text-[#150458] text-xl" />,
+    icon: <SiPandas className="text-[#FF007A] text-xl" />,
     level: 94,
     tag: "Advanced",
     context: "High-performance data manipulation, exploratory data analysis, and tensor operations.",
@@ -153,7 +148,7 @@ const AiMlSkills = [
   },
   {
     name: "Keras",
-    icon: <SiKeras className="text-[#D00000] text-xl" />,
+    icon: <SiKeras className="text-[#FDA4AF] text-xl" />,
     level: 85,
     tag: "Proficient",
     context: "Rapid prototyping of deep neural networks and convolutional architectures.",
@@ -161,7 +156,7 @@ const AiMlSkills = [
   },
   {
     name: "Jupyter & Notebooks",
-    icon: <SiJupyter className="text-[#F37626] text-xl" />,
+    icon: <SiJupyter className="text-[#E01E5A] text-xl" />,
     level: 95,
     tag: "Advanced",
     context: "Interactive AI experimentation, visual analytics, and research documentation.",
@@ -172,7 +167,7 @@ const AiMlSkills = [
 const WebDevSkills = [
   {
     name: "React.js",
-    icon: <FaReact className="text-[#61DAFB] text-xl" />,
+    icon: <FaReact className="text-[#FDA4AF] text-xl" />,
     level: 92,
     tag: "Advanced",
     context:
@@ -181,7 +176,7 @@ const WebDevSkills = [
   },
   {
     name: "Tailwind CSS",
-    icon: <SiTailwindcss className="text-[#06B6D4] text-xl" />,
+    icon: <SiTailwindcss className="text-[#FF007A] text-xl" />,
     level: 95,
     tag: "Advanced",
     context: "Utility-first responsive design, dark modes, glassmorphism, and custom animations.",
@@ -189,7 +184,7 @@ const WebDevSkills = [
   },
   {
     name: "HTML5 & CSS3",
-    icon: <FaHtml5 className="text-[#E34F26] text-xl" />,
+    icon: <FaHtml5 className="text-[#E01E5A] text-xl" />,
     level: 95,
     tag: "Advanced",
     context: "Semantic markup, modern grid/flex layouts, CSS animations, and accessible UI standards.",
@@ -197,7 +192,7 @@ const WebDevSkills = [
   },
   {
     name: "Django",
-    icon: <SiDjango className="text-[#092E20] text-xl" />,
+    icon: <SiDjango className="text-[#F43F5E] text-xl" />,
     level: 80,
     tag: "Proficient",
     context: "Python backend REST APIs, authentication, and integration with surveillance AI models.",
@@ -205,11 +200,10 @@ const WebDevSkills = [
   },
 ];
 
-
 const DatabaseSkills = [
   {
     name: "SQL / MySQL",
-    icon: <SiMysql className="text-[#4479A1] text-xl" />,
+    icon: <SiMysql className="text-[#FF007A] text-xl" />,
     level: 90,
     tag: "Advanced",
     context: "Relational schema design, complex joins, indexing, and data normalization.",
@@ -217,7 +211,7 @@ const DatabaseSkills = [
   },
   {
     name: "PostgreSQL",
-    icon: <SiPostgresql className="text-[#336791] text-xl" />,
+    icon: <SiPostgresql className="text-[#FDA4AF] text-xl" />,
     level: 85,
     tag: "Proficient",
     context: "Enterprise relational database queries and backend persistence.",
@@ -225,7 +219,7 @@ const DatabaseSkills = [
   },
   {
     name: "MongoDB",
-    icon: <SiMongodb className="text-[#47A248] text-xl" />,
+    icon: <SiMongodb className="text-[#E01E5A] text-xl" />,
     level: 80,
     tag: "Proficient",
     context: "NoSQL document store design for modern web applications.",
@@ -233,7 +227,7 @@ const DatabaseSkills = [
   },
   {
     name: "Firebase",
-    icon: <SiFirebase className="text-[#FFCA28] text-xl" />,
+    icon: <SiFirebase className="text-[#F43F5E] text-xl" />,
     level: 82,
     tag: "Proficient",
     context: "Realtime database synchronization, authentication, and cloud hosting.",
@@ -244,7 +238,7 @@ const DatabaseSkills = [
 const ToolsAndTechnologySkills = [
   {
     name: "Git & GitHub",
-    icon: <FaGithub className="text-white text-xl" />,
+    icon: <FaGithub className="text-[#FDA4AF] text-xl" />,
     level: 95,
     tag: "Advanced",
     context: "Version control, feature branching, pull requests, and collaborative workflows.",
@@ -252,7 +246,7 @@ const ToolsAndTechnologySkills = [
   },
   {
     name: "VS Code & Qt Creator",
-    icon: <FaCode className="text-[#007ACC] text-xl" />,
+    icon: <FaCode className="text-[#FF007A] text-xl" />,
     level: 95,
     tag: "Advanced",
     context: "Primary development IDEs configured with linting, debugging, and C++/Python profiling.",
@@ -260,39 +254,34 @@ const ToolsAndTechnologySkills = [
   },
   {
     name: "Anaconda & Conda",
-    icon: <SiAnaconda className="text-[#44A833] text-xl" />,
+    icon: <SiAnaconda className="text-[#E01E5A] text-xl" />,
     level: 92,
     tag: "Advanced",
-    context: "Managing isolated AI/ML virtual environments, PyTorch/CUDA dependencies, and notebooks.",
-    projects: ["AI Model Experiments"],
+    context: "Managing isolated AI/ML virtual environments, PyTorch dependencies, and notebooks.",
+    projects: ["AI Research Workspaces"],
   },
 ];
 
 const NonTechnicalSkills = [
   {
-    name: "Collaborative Teamwork",
-    icon: <FaUsers className="text-[#A044FF]" />,
-    details: "Led group software projects at Ain Shams University & ITI agile teams.",
+    name: "Analytical Thinking & Problem Solving",
+    icon: <FaLightbulb className="text-[#FDA4AF]" />,
+    details: "Deconstructing complex algorithmic challenges into modular, efficient solutions.",
+  },
+  {
+    name: "Agile Team Collaboration",
+    icon: <FaUserFriends className="text-[#FF007A]" />,
+    details: "Scrum ceremonies, code reviews, and Git flow feature branching.",
   },
   {
     name: "Technical Communication",
-    icon: <FaComments className="text-[#00C9A7]" />,
-    details: "Articulating AI architectures and system designs clearly to peers and stakeholders.",
+    icon: <FaComments className="text-[#E01E5A]" />,
+    details: "Articulating software architecture and research findings in clear documentation.",
   },
   {
-    name: "Algorithmic Problem Solving",
-    icon: <FaLightbulb className="text-[#FFD700]" />,
-    details: "Structured mathematical approach to debugging and optimizing time complexity.",
-  },
-  {
-    name: "Engineering Leadership",
-    icon: <FaUserFriends className="text-[#8E2DE2]" />,
-    details: "Mentoring peers and coordinating task distribution across full-stack deliverables.",
-  },
-  {
-    name: "Project Management",
-    icon: <FaProjectDiagram className="text-[#FF6EC7]" />,
-    details: "Breaking down complex engineering goals into achievable sprints.",
+    name: "Adaptability & Rapid Learning",
+    icon: <FaProjectDiagram className="text-[#F43F5E]" />,
+    details: "Quickly picking up emerging frameworks, AI libraries, and engineering tools.",
   },
 ];
 
@@ -300,19 +289,19 @@ const LanguageSkills = [
   {
     name: "Arabic",
     level: 100,
-    color: "from-emerald-400 to-emerald-600",
-    details: "Native professional proficiency",
+    color: "from-[#E01E5A] to-[#FF007A]",
+    details: "Native fluency",
   },
   {
     name: "English",
     level: 90,
-    color: "from-blue-400 to-blue-600",
+    color: "from-[#F43F5E] to-[#FDA4AF]",
     details: "Full academic & engineering fluency",
   },
   {
     name: "French",
     level: 45,
-    color: "from-purple-400 to-purple-600",
+    color: "from-[#FF007A] to-[#E01E5A]",
     details: "Beginner conversational",
   },
 ];
@@ -321,7 +310,8 @@ export default function Skills() {
   const [viewMode, setViewMode] = useState("categories"); // "categories" | "matrix"
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedSkill, setSelectedSkill] = useState(programmingLanguages[1]); // Default to Python
+  const [selectedSkill, setSelectedSkill] = useState(programmingLanguages[1]);
+  const { isDarkMode } = useTheme();
 
   const filterTabs = [
     { id: "All", label: "All Categories" },
@@ -335,41 +325,40 @@ export default function Skills() {
     {
       id: "Languages",
       title: "Programming Languages",
-      icon: <FaLaptopCode className="text-2xl text-[#C873FF]" />,
-      color: "#A044FF",
+      icon: <FaLaptopCode className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
+      color: "#FF007A",
       description: "Core algorithmic and software engineering languages.",
       skills: programmingLanguages,
     },
     {
       id: "AI/ML",
       title: "AI & Machine Learning",
-      icon: <FaBrain className="text-2xl text-[#E0B3FF]" />,
-      color: "#8E2DE2",
+      icon: <FaBrain className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
+      color: "#E01E5A",
       description: "Deep learning models, NLP transformers & computer vision.",
       skills: AiMlSkills,
     },
     {
       id: "WebDev",
-      title: "Full-Stack Web Development",
-      icon: <FaReact className="text-2xl text-[#61DAFB]" />,
-      color: "#6A3093",
-      description: "Component-driven frontends & scalable backend APIs.",
+      title: "Frontend & Web Development",
+      icon: <FaReact className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
+      color: "#F43F5E",
+      description: "Component-driven frontends & responsive user interfaces.",
       skills: WebDevSkills,
-
     },
     {
       id: "Databases & Tools",
       title: "Databases & Architecture",
-      icon: <FaDatabase className="text-2xl text-[#FFD700]" />,
-      color: "#8E2DE2",
+      icon: <FaDatabase className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
+      color: "#E01E5A",
       description: "Relational schema design, queries & NoSQL storage.",
       skills: DatabaseSkills,
     },
     {
       id: "Databases & Tools",
       title: "Engineering Tools & IDEs",
-      icon: <FaTools className="text-2xl text-[#FF6EC7]" />,
-      color: "#6A3093",
+      icon: <FaTools className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
+      color: "#FF007A",
       description: "Version control, virtual environments & development workflows.",
       skills: ToolsAndTechnologySkills,
     },
@@ -399,16 +388,20 @@ export default function Skills() {
   };
 
   return (
-    <div className="text-white relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16" id="skillSection">
+    <div className={`relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16 transition-colors duration-500 ${
+      isDarkMode ? "text-white" : "text-[#4c0519]"
+    }`} id="skillSection">
       {/* Background Ambient Glows */}
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#6E48AA]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-[#A044FF]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className={`absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none ${
+        isDarkMode ? "bg-[#FF007A]/15" : "bg-[#fda4af]/20"
+      }`} />
+      <div className={`absolute bottom-1/4 right-10 w-80 h-80 rounded-full blur-3xl pointer-events-none ${
+        isDarkMode ? "bg-[#E01E5A]/15" : "bg-[#fecdd3]/15"
+      }`} />
 
       {/* Title */}
       <motion.h1
-        className="relative text-4xl sm:text-5xl md:text-[70px] font-extrabold font-serif text-center 
-                   text-transparent bg-clip-text bg-gradient-to-r from-[#6E48AA] via-[#8E2DE2] to-[#A044FF] 
-                   mb-6 tracking-wide"
+        className="relative text-4xl sm:text-5xl md:text-[70px] font-extrabold font-serif text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-[#FF007A] to-[#E01E5A] dark:from-white dark:via-[#FDA4AF] dark:to-[#FF007A] mb-6 tracking-wide"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -416,31 +409,37 @@ export default function Skills() {
       >
         Skills & Technical Arsenal
         <span
-          className="absolute left-1/2 -bottom-3 -translate-x-1/2 w-32 h-[3px] rounded-full 
-                     bg-gradient-to-r from-[#6E48AA] via-[#8E2DE2] to-[#A044FF] 
-                     shadow-[0_0_15px_#A044FF] animate-pulse"
+          className="absolute left-1/2 -bottom-3 -translate-x-1/2 w-32 h-[3px] rounded-full bg-gradient-to-r from-[#E01E5A] via-[#F43F5E] to-[#FF007A] shadow-[0_0_15px_#FF007A] animate-pulse"
         />
       </motion.h1>
 
       {/* Subtitle */}
-      <p className="text-center text-gray-300 max-w-2xl mx-auto text-sm sm:text-base mb-10">
+      <p className={`text-center max-w-2xl mx-auto text-sm sm:text-base mb-10 ${
+        isDarkMode ? "text-gray-300" : "text-[#881337]"
+      }`}>
         Click any technology below to inspect practical experience, proficiency level, and real-world application across my projects.
       </p>
 
       {/* Top Interactive Metric Banner */}
       <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12">
         {[
-          { label: "Core Technologies", value: "30+ Specialized" },
+          { label: "Core Technologies", value: "25+ Specialized" },
+          { label: "Frontend Stack", value: "React 18 & Tailwind" },
           { label: "AI & NLP Stack", value: "Transformers & PyTorch" },
-          { label: "Web Architecture", value: "React & Tailwind" },
-          { label: "Algorithmic Speed", value: "C++ & Python" },
+          { label: "Algorithmic Speed", value: "C++ & JavaScript" },
         ].map((metric, idx) => (
           <div
             key={idx}
-            className="p-4 rounded-2xl bg-gradient-to-br from-[#130326]/80 to-[#080114]/90 border border-[#A044FF]/30 backdrop-blur-md shadow-lg flex flex-col items-center text-center"
+            className={`p-4 rounded-2xl border backdrop-blur-md shadow-lg flex flex-col items-center text-center transition-all ${
+              isDarkMode
+                ? "bg-gradient-to-br from-[#180510]/80 to-[#0b0207]/90 border-[#FF007A]/30 text-white"
+                : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 text-[#4c0519] shadow-[0_4px_20px_rgba(225,29,72,0.1)]"
+            }`}
           >
-            <span className="text-xs text-purple-300 font-medium">{metric.label}</span>
-            <span className="text-sm sm:text-base font-bold text-white mt-1">{metric.value}</span>
+            <span className={`text-xs font-medium ${
+              isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+            }`}>{metric.label}</span>
+            <span className="text-sm sm:text-base font-bold mt-1">{metric.value}</span>
           </div>
         ))}
       </div>
@@ -448,270 +447,307 @@ export default function Skills() {
       {/* Control Bar: View Switcher & Live Search */}
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
         {/* View Mode Toggle */}
-        <div className="flex items-center gap-1 p-1.5 rounded-full bg-[#130324]/90 border border-[#A044FF]/40">
+        <div className={`p-1.5 rounded-full border flex items-center gap-1 ${
+          isDarkMode ? "bg-[#10030a] border-[#FF007A]/40" : "bg-[#ffe4e6] border-[#be123c]/30"
+        }`}>
           <button
             onClick={() => setViewMode("categories")}
-            className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
               viewMode === "categories"
-                ? "bg-gradient-to-r from-[#8E2DE2] to-[#4A00E0] text-white shadow-md"
-                : "text-gray-300 hover:text-white"
+                ? "bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white shadow-md"
+                : isDarkMode ? "text-[#FDA4AF] hover:text-white" : "text-[#BE123C] hover:text-[#4c0519]"
             }`}
           >
-            <FaLayerGroup /> Category Cards
+            Category Grid
           </button>
           <button
             onClick={() => setViewMode("matrix")}
-            className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
               viewMode === "matrix"
-                ? "bg-gradient-to-r from-[#8E2DE2] to-[#4A00E0] text-white shadow-md"
-                : "text-gray-300 hover:text-white"
+                ? "bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white shadow-md"
+                : isDarkMode ? "text-[#FDA4AF] hover:text-white" : "text-[#BE123C] hover:text-[#4c0519]"
             }`}
           >
-            <FaChartBar /> Proficiency Matrix
+            Matrix Deep-Dive
           </button>
         </div>
 
-        {/* Search Bar */}
-        <div className="relative w-full md:w-80">
-          <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap gap-1.5 justify-center">
+          {filterTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveCategory(tab.id)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                activeCategory === tab.id
+                  ? "bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white shadow-md border border-[#FDA4AF]/40"
+                  : isDarkMode
+                  ? "bg-[#10030a] text-[#FDA4AF] border border-[#FF007A]/30 hover:border-[#FF007A]"
+                  : "bg-[#ffe4e6] text-[#BE123C] border border-[#be123c]/30 hover:border-[#be123c]"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Live Search Input */}
+        <div className="relative w-full md:w-64">
+          <FaSearch className={`absolute left-3.5 top-1/2 -translate-y-1/2 text-xs ${
+            isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+          }`} />
           <input
             type="text"
-            placeholder="Search skills (e.g. PyTorch, React)..."
+            placeholder="Search technology..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-2.5 rounded-full bg-[#130326]/90 border border-[#A044FF]/40 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-[#A044FF] shadow-sm"
+            className={`w-full pl-9 pr-3.5 py-1.5 rounded-full border text-xs transition-all focus:outline-none ${
+              isDarkMode
+                ? "bg-[#10030a] border-[#FF007A]/40 text-white placeholder-pink-400 focus:border-[#FDA4AF]"
+                : "bg-[#ffffff] border-[#be123c]/30 text-[#4c0519] placeholder-pink-400 focus:border-[#be123c]"
+            }`}
           />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
-            >
-              <FaTimes />
-            </button>
-          )}
         </div>
       </div>
 
-      {/* Interactive Skill Spotlight Card (Displays clicked skill details) */}
-      <AnimatePresence mode="wait">
-        {selectedSkill && (
-          <motion.div
-            key={selectedSkill.name}
-            initial={{ opacity: 0, y: -15, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.3 }}
-            className="max-w-6xl mx-auto mb-12 p-6 sm:p-7 rounded-2xl bg-gradient-to-r from-[#170433]/95 via-[#1a053b]/95 to-[#110226]/95 border-2 border-[#A044FF] shadow-[0_0_35px_rgba(160,68,255,0.35)] relative overflow-hidden"
-          >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="flex items-start sm:items-center gap-4">
-                <div className="p-3.5 rounded-2xl bg-[#090114] border border-[#A044FF]/50 text-2xl sm:text-3xl shrink-0 shadow-inner">
-                  {selectedSkill.icon}
-                </div>
-                <div>
-                  <div className="flex items-center gap-2.5 flex-wrap">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
-                      {selectedSkill.name}
-                    </h3>
-                    <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-[#A044FF]/25 text-[#E0B3FF] border border-[#A044FF]/40">
-                      {selectedSkill.tag}
-                    </span>
-                  </div>
-                  <p className="text-gray-300 text-sm sm:text-base mt-1.5 leading-relaxed max-w-3xl">
-                    {selectedSkill.context}
-                  </p>
-                </div>
-              </div>
-
-              {/* Proficiency level meter */}
-              <div className="flex flex-col items-start md:items-end shrink-0 w-full md:w-48">
-                <div className="flex justify-between w-full text-xs font-semibold text-[#E0B3FF] mb-1.5">
-                  <span>Proficiency</span>
-                  <span>{selectedSkill.level}%</span>
-                </div>
-                <div className="w-full h-2.5 bg-[#090114] rounded-full overflow-hidden border border-white/10">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-[#6A3093] via-[#A044FF] to-[#E0B3FF]"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${selectedSkill.level}%` }}
-                    transition={{ duration: 0.8 }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Related Projects chips inside spotlight */}
-            {selectedSkill.projects && (
-              <div className="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center gap-2">
-                <span className="text-xs text-gray-400 font-semibold mr-1">
-                  Applied In Projects:
-                </span>
-                {selectedSkill.projects.map((proj, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 rounded-lg bg-[#090114]/80 text-xs font-medium text-[#E0B3FF] border border-[#A044FF]/30"
-                  >
-                    ⚡ {proj}
-                  </span>
-                ))}
-              </div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* MODE 1: Category Cards View */}
+      {/* VIEW 1: CATEGORY GRID MODE */}
       {viewMode === "categories" && (
-        <>
-          {/* Category Filter Pills */}
-          <div className="flex justify-center gap-2 sm:gap-3 mb-10 flex-wrap">
-            {filterTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveCategory(tab.id)}
-                className={`px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 ${
-                  activeCategory === tab.id
-                    ? "bg-gradient-to-r from-[#8E2DE2] to-[#4A00E0] text-white shadow-[0_0_20px_rgba(160,68,255,0.6)] scale-105"
-                    : "bg-[#130324]/70 text-gray-300 border border-[#A044FF]/25 hover:border-[#A044FF] hover:text-white"
+        <div className="max-w-6xl mx-auto space-y-10">
+          {filteredCategories.map((cat, idx) => {
+            const list = filterSkillList(cat.skills);
+            if (list.length === 0) return null;
+            return (
+              <motion.div
+                key={cat.title + idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className={`p-6 sm:p-8 rounded-3xl border shadow-xl ${
+                  isDarkMode
+                    ? "bg-gradient-to-br from-[#180510]/90 to-[#0b0207]/90 border-[#FF007A]/35"
+                    : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 shadow-[0_8px_30px_rgba(225,29,72,0.1)]"
                 }`}
               >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={`p-2.5 rounded-2xl border ${
+                    isDarkMode ? "bg-[#10030a] border-[#FF007A]/40" : "bg-[#ffe4e6] border-[#be123c]/30"
+                  }`}>
+                    {cat.icon}
+                  </div>
+                  <div>
+                    <h3 className={`text-xl sm:text-2xl font-bold ${
+                      isDarkMode ? "text-white" : "text-[#4c0519]"
+                    }`}>
+                      {cat.title}
+                    </h3>
+                    <p className={`text-xs ${
+                      isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                    }`}>{cat.description}</p>
+                  </div>
+                </div>
 
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            <AnimatePresence mode="popLayout">
-              {filteredCategories.map((cat) => {
-                const visibleSkills = filterSkillList(cat.skills);
-                if (visibleSkills.length === 0) return null;
-
-                return (
-                  <motion.div
-                    key={cat.title}
-                    layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.35 }}
-                    className="bg-gradient-to-br from-[#130326]/90 to-[#080114]/90 border border-[#A044FF]/35 hover:border-[#A044FF] rounded-2xl p-6 shadow-xl hover:shadow-[0_0_30px_rgba(160,68,255,0.3)] transition-all duration-300 flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3 font-bold text-lg sm:text-xl text-white">
-                          {cat.icon}
-                          <h3>{cat.title}</h3>
-                        </div>
-                        <span className="text-xs font-semibold text-purple-300 bg-[#A044FF]/15 px-2.5 py-1 rounded-full border border-[#A044FF]/30">
-                          {visibleSkills.length} Skills
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-gray-400 mb-5">{cat.description}</p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2.5">
-                      {visibleSkills.map((skill) => {
-                        const isSelected = selectedSkill?.name === skill.name;
-                        return (
-                          <motion.button
-                            key={skill.name}
-                            onClick={() => setSelectedSkill(skill)}
-                            whileHover={{ scale: 1.07, y: -2 }}
-                            whileTap={{ scale: 0.96 }}
-                            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all cursor-pointer ${
-                              isSelected
-                                ? "bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-white shadow-[0_0_15px_rgba(160,68,255,0.8)] border border-white/30"
-                                : "bg-[#1f093a] text-purple-100 border border-[#A044FF]/40 hover:border-[#E0B3FF]"
-                            }`}
-                          >
-                            {skill.icon}
-                            <span>{skill.name}</span>
-                          </motion.button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-        </>
-      )}
-
-      {/* MODE 2: Proficiency Matrix View */}
-      {viewMode === "matrix" && (
-        <div className="max-w-6xl mx-auto space-y-8">
-          {[
-            {
-              title: "Expert & Advanced Arsenal (90%+ Proficiency)",
-              subtitle: "Technologies I rely on daily for research, AI pipelines, and full-stack software.",
-              skills: filterSkillList(allSkills).filter((s) => s.level >= 90),
-              badgeColor: "from-emerald-500 to-teal-600",
-            },
-            {
-              title: "Proficient & Applied Technologies (80% - 89% Proficiency)",
-              subtitle: "Tools and frameworks used across university systems, embedded boards, and databases.",
-              skills: filterSkillList(allSkills).filter((s) => s.level >= 80 && s.level < 90),
-              badgeColor: "from-[#8E2DE2] to-[#4A00E0]",
-            },
-          ].map((group, gIdx) => (
-            <motion.div
-              key={gIdx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-gradient-to-br from-[#130326]/90 to-[#080114]/90 border border-[#A044FF]/35 rounded-2xl p-6 sm:p-8 shadow-xl"
-            >
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">{group.title}</h3>
-              <p className="text-xs sm:text-sm text-gray-400 mb-6">{group.subtitle}</p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {group.skills.map((skill) => {
-                  const isSelected = selectedSkill?.name === skill.name;
-                  return (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                  {list.map((skill) => (
                     <div
                       key={skill.name}
                       onClick={() => setSelectedSkill(skill)}
-                      className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                        isSelected
-                          ? "bg-[#1b0638] border-[#A044FF] shadow-[0_0_20px_rgba(160,68,255,0.4)]"
-                          : "bg-[#090114]/80 border-white/10 hover:border-[#A044FF]/60"
+                      className={`p-4 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between ${
+                        selectedSkill.name === skill.name
+                          ? isDarkMode
+                            ? "bg-[#280816] border-[#FF007A] shadow-[0_0_20px_rgba(255,0,122,0.4)]"
+                            : "bg-[#ffe4e6] border-[#be123c] shadow-[0_6px_20px_rgba(225,29,72,0.18)]"
+                          : isDarkMode
+                          ? "bg-[#180510]/80 border-[#FF007A]/25 hover:border-[#FF007A]/60"
+                          : "bg-[#fff1f2] border-[#be123c]/25 hover:border-[#e11d48]"
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2.5 font-bold text-white text-sm sm:text-base">
-                          {skill.icon}
-                          <span>{skill.name}</span>
+                      <div>
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2.5">
+                            <span className="p-2 rounded-xl bg-pink-950/40 border border-pink-500/30">
+                              {skill.icon}
+                            </span>
+                            <span className={`font-bold text-sm ${
+                              isDarkMode ? "text-white group-hover:text-[#FDA4AF]" : "text-[#4c0519] group-hover:text-[#be123c]"
+                            }`}>
+                              {skill.name}
+                            </span>
+                          </div>
+                          <span className={`text-xs font-mono font-bold ${
+                            isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                          }`}>
+                            {skill.level}%
+                          </span>
                         </div>
-                        <span className="text-xs font-semibold text-[#E0B3FF]">
-                          {skill.level}%
-                        </span>
+
+                        {/* Progress Bar */}
+                        <div className={`w-full h-2 rounded-full overflow-hidden border mb-3 ${
+                          isDarkMode ? "bg-[#0b0207] border-[#FF007A]/20" : "bg-[#fecdd3] border-[#be123c]/20"
+                        }`}>
+                          <div
+                            className="h-full bg-gradient-to-r from-[#E01E5A] via-[#FF007A] to-[#FDA4AF] rounded-full"
+                            style={{ width: `${skill.level}%` }}
+                          />
+                        </div>
+
+                        <p className={`text-xs line-clamp-2 leading-relaxed ${
+                          isDarkMode ? "text-gray-300" : "text-[#881337]"
+                        }`}>
+                          {skill.context}
+                        </p>
                       </div>
-                      <div className="w-full h-1.5 bg-[#1a0733] rounded-full overflow-hidden mb-2">
-                        <div
-                          className="h-full bg-gradient-to-r from-[#6A3093] to-[#A044FF]"
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </div>
-                      <p className="text-xs text-gray-400 line-clamp-2">{skill.context}</p>
                     </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          ))}
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       )}
 
-      {/* Human Languages & Engineering Soft Skills Section */}
-      <div className="max-w-6xl mx-auto mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* VIEW 2: MATRIX DEEP-DIVE MODE */}
+      {viewMode === "matrix" && (
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column: Skill Selector List */}
+          <div className={`lg:col-span-5 p-5 rounded-3xl border shadow-xl space-y-2 max-h-[600px] overflow-y-auto ${
+            isDarkMode
+              ? "bg-gradient-to-br from-[#180510] to-[#0b0207] border-[#FF007A]/35"
+              : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 shadow-[0_8px_25px_rgba(225,29,72,0.1)]"
+          }`}>
+            <span className={`text-xs font-bold uppercase tracking-wider block mb-3 ${
+              isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+            }`}>
+              Select Technology to Inspect
+            </span>
+            {filterSkillList(allSkills).map((skill) => (
+              <div
+                key={skill.name}
+                onClick={() => setSelectedSkill(skill)}
+                className={`p-3 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
+                  selectedSkill.name === skill.name
+                    ? "bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white border-transparent shadow-md"
+                    : isDarkMode
+                    ? "bg-[#10030a] border-[#FF007A]/20 text-gray-200 hover:border-[#FF007A]/50"
+                    : "bg-[#ffe4e6] border-[#be123c]/25 text-[#4c0519] hover:border-[#e11d48]"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  {skill.icon}
+                  <span className="font-semibold text-xs sm:text-sm">{skill.name}</span>
+                </div>
+                <span className="text-xs font-mono font-bold">{skill.level}%</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Right Column: Deep-Dive Inspector Panel */}
+          <div className="lg:col-span-7">
+            <motion.div
+              key={selectedSkill.name}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+              className={`p-6 sm:p-8 rounded-3xl border shadow-2xl relative overflow-hidden ${
+                isDarkMode
+                  ? "bg-gradient-to-br from-[#180510] via-[#10030a] to-[#0b0207] border-[#FF007A]/60 shadow-[0_0_35px_rgba(255,0,122,0.35)]"
+                  : "bg-gradient-to-br from-[#ffffff] via-[#fff1f2] to-[#ffe4e6] border-[#be123c]/40 shadow-[0_10px_35px_rgba(225,29,72,0.15)]"
+              }`}
+            >
+              <div className="flex items-center gap-4 border-b pb-5 mb-6 border-[#FF007A]/30">
+                <div className="p-4 rounded-2xl bg-[#10030a] border border-[#FF007A]/50 text-3xl">
+                  {selectedSkill.icon}
+                </div>
+                <div>
+                  <span className={`text-xs font-bold uppercase tracking-wider ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
+                    {selectedSkill.tag} Level Proficiency
+                  </span>
+                  <h3 className={`text-2xl sm:text-3xl font-extrabold ${
+                    isDarkMode ? "text-white" : "text-[#4c0519]"
+                  }`}>
+                    {selectedSkill.name}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-2 ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
+                    Proficiency Mastery Score
+                  </h4>
+                  <div className="flex items-center gap-4">
+                    <div className={`flex-1 h-3 rounded-full overflow-hidden border ${
+                      isDarkMode ? "bg-[#10030a] border-[#FF007A]/30" : "bg-[#fecdd3] border-[#be123c]/30"
+                    }`}>
+                      <div
+                        className="h-full bg-gradient-to-r from-[#E01E5A] via-[#FF007A] to-[#FDA4AF] rounded-full"
+                        style={{ width: `${selectedSkill.level}%` }}
+                      />
+                    </div>
+                    <span className={`text-base font-mono font-bold ${
+                      isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                    }`}>{selectedSkill.level}%</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-2 ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
+                    Engineering Context & Practical Application
+                  </h4>
+                  <p className={`text-sm sm:text-base leading-relaxed ${
+                    isDarkMode ? "text-gray-200" : "text-[#881337]"
+                  }`}>
+                    {selectedSkill.context}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-2.5 ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
+                    Applied In Portfolio Systems & Projects
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedSkill.projects?.map((proj, i) => (
+                      <span
+                        key={i}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold border ${
+                          isDarkMode
+                            ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/45"
+                            : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                        }`}
+                      >
+                        ✓ {proj}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      )}
+
+      {/* BOTTOM SECTION: SOFT SKILLS & LANGUAGES */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
         {/* Soft Skills */}
         <motion.div
-          className="bg-gradient-to-br from-[#130326]/90 to-[#080114]/90 border border-[#A044FF]/35 rounded-2xl p-6 sm:p-8 shadow-xl"
+          className={`border rounded-2xl p-6 sm:p-8 shadow-xl ${
+            isDarkMode
+              ? "bg-gradient-to-br from-[#180510]/90 to-[#0b0207]/90 border-[#FF007A]/35"
+              : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 shadow-[0_8px_25px_rgba(225,29,72,0.1)]"
+          }`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E0B3FF] to-[#A044FF] mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-[#FF007A] to-[#E01E5A] dark:from-white dark:via-[#FDA4AF] dark:to-[#FF007A] mb-6">
             Soft Skills & Engineering Practices
           </h2>
 
@@ -719,12 +755,20 @@ export default function Skills() {
             {NonTechnicalSkills.map((skill, i) => (
               <div
                 key={i}
-                className="p-3.5 rounded-xl bg-[#1a0733]/60 border border-[#A044FF]/25 hover:border-[#A044FF]/60 transition-all flex items-start gap-3.5"
+                className={`p-3.5 rounded-xl border flex items-start gap-3.5 transition-all ${
+                  isDarkMode
+                    ? "bg-[#10030a]/60 border-[#FF007A]/25 hover:border-[#FF007A]/60"
+                    : "bg-[#fff1f2] border-[#be123c]/20 hover:border-[#e11d48]"
+                }`}
               >
                 <span className="text-xl mt-0.5 shrink-0">{skill.icon}</span>
                 <div>
-                  <h4 className="font-semibold text-white text-sm sm:text-base">{skill.name}</h4>
-                  <p className="text-xs sm:text-sm text-gray-300 mt-0.5">{skill.details}</p>
+                  <h4 className={`font-semibold text-sm sm:text-base ${
+                    isDarkMode ? "text-white" : "text-[#4c0519]"
+                  }`}>{skill.name}</h4>
+                  <p className={`text-xs sm:text-sm mt-0.5 ${
+                    isDarkMode ? "text-gray-300" : "text-[#881337]"
+                  }`}>{skill.details}</p>
                 </div>
               </div>
             ))}
@@ -733,15 +777,19 @@ export default function Skills() {
 
         {/* Human Languages */}
         <motion.div
-          className="bg-gradient-to-br from-[#130326]/90 to-[#080114]/90 border border-[#A044FF]/35 rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col justify-between"
+          className={`border rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col justify-between ${
+            isDarkMode
+              ? "bg-gradient-to-br from-[#180510]/90 to-[#0b0207]/90 border-[#FF007A]/35"
+              : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 shadow-[0_8px_25px_rgba(225,29,72,0.1)]"
+          }`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           <div>
             <div className="flex items-center gap-3 text-xl sm:text-2xl font-bold mb-6">
-              <FaLanguage className="text-2xl text-[#A044FF]" />
-              <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E0B3FF] to-[#A044FF]">
+              <FaLanguage className="text-2xl text-[#FF007A]" />
+              <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-[#FF007A] to-[#E01E5A] dark:from-white dark:via-[#FDA4AF] dark:to-[#FF007A]">
                 Spoken Languages
               </h2>
             </div>
@@ -749,14 +797,16 @@ export default function Skills() {
             <div className="space-y-6">
               {LanguageSkills.map((lang, i) => (
                 <div key={i}>
-                  <div className="flex justify-between items-center text-sm sm:text-base text-gray-200 mb-1.5">
+                  <div className="flex justify-between items-center text-sm sm:text-base mb-1.5">
                     <div>
-                      <span className="font-bold text-white">{lang.name}</span>
-                      <span className="text-xs text-gray-400 ml-2">({lang.details})</span>
+                      <span className={`font-bold ${isDarkMode ? "text-white" : "text-[#4c0519]"}`}>{lang.name}</span>
+                      <span className={`text-xs ml-2 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>({lang.details})</span>
                     </div>
-                    <span className="text-xs font-semibold text-[#E0B3FF]">{lang.level}%</span>
+                    <span className={`text-xs font-semibold ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`}>{lang.level}%</span>
                   </div>
-                  <div className="w-full h-3 bg-[#18052e] rounded-full overflow-hidden border border-white/10 shadow-inner">
+                  <div className={`w-full h-3 rounded-full overflow-hidden border shadow-inner ${
+                    isDarkMode ? "bg-[#10030a] border-white/10" : "bg-[#fecdd3] border-[#be123c]/20"
+                  }`}>
                     <motion.div
                       className={`h-full bg-gradient-to-r ${lang.color} rounded-full`}
                       initial={{ width: 0 }}
@@ -769,8 +819,12 @@ export default function Skills() {
             </div>
           </div>
 
-          <div className="mt-8 p-4 rounded-xl bg-[#1e0a3c]/60 border border-[#A044FF]/30 text-xs text-gray-300 flex items-center gap-3">
-            <FaInfoCircle className="text-lg text-[#E0B3FF] shrink-0" />
+          <div className={`mt-8 p-4 rounded-xl border text-xs flex items-center gap-3 ${
+            isDarkMode
+              ? "bg-[#10030a]/60 border-[#FF007A]/30 text-gray-300"
+              : "bg-[#ffe4e6] border-[#be123c]/30 text-[#881337]"
+          }`}>
+            <FaInfoCircle className={`text-lg shrink-0 ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />
             <span>
               Fluent in technical writing, academic research papers, and bilingual team collaboration.
             </span>

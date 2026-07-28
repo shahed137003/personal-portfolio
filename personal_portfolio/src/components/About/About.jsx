@@ -32,6 +32,7 @@ import { SiCoursera, SiReact, SiPython, SiJavascript, SiTailwindcss, SiFigma } f
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function About() {
   const [activeCertCategory, setActiveCertCategory] = useState("All");
@@ -39,6 +40,7 @@ export default function About() {
   const [activePillar, setActivePillar] = useState(0);
   const [copiedLabel, setCopiedLabel] = useState(null);
   const [hoveredCert, setHoveredCert] = useState(null);
+  const { isDarkMode } = useTheme();
 
   // 3D Tilt Card Physics
   const x = useMotionValue(0);
@@ -63,11 +65,11 @@ export default function About() {
     toast.info(`Copied ${label} to clipboard!`, {
       position: "bottom-right",
       autoClose: 2000,
-      theme: "dark",
+      theme: isDarkMode ? "dark" : "light",
       style: {
-        background: "#1e083c",
-        border: "1px solid #A044FF",
-        color: "#E0B3FF",
+        background: isDarkMode ? "#180510" : "#ffe4e6",
+        border: isDarkMode ? "1px solid #FF007A" : "1px solid #be123c",
+        color: isDarkMode ? "#FDA4AF" : "#4c0519",
         borderRadius: "12px",
       },
     });
@@ -78,7 +80,7 @@ export default function About() {
     {
       id: 0,
       title: "React & Modern Frontend",
-      icon: <SiReact className="text-2xl text-[#61DAFB]" />,
+      icon: <SiReact className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#be123c]"}`} />,
       badge: "Component Architecture",
       desc: "Building scalable, performant single-page applications with React 18, hooks, and modern state management patterns.",
       metrics: "SPA • Reusable Components • Hooks",
@@ -86,7 +88,7 @@ export default function About() {
     {
       id: 1,
       title: "UI/UX & Responsive Design",
-      icon: <FaPalette className="text-2xl text-[#E0B3FF]" />,
+      icon: <FaPalette className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#be123c]"}`} />,
       badge: "Design Systems",
       desc: "Creating pixel-perfect, accessible interfaces with Tailwind CSS, Framer Motion animations, and responsive layouts.",
       metrics: "Mobile-First • Accessibility • Animations",
@@ -94,7 +96,7 @@ export default function About() {
     {
       id: 2,
       title: "Performance Optimization",
-      icon: <FaRocket className="text-2xl text-[#A044FF]" />,
+      icon: <FaRocket className={`text-2xl ${isDarkMode ? "text-[#FF007A]" : "text-[#BE123C]"}`} />,
       badge: "Web Vitals",
       desc: "Optimizing load times, bundle sizes, and rendering performance with lazy loading, code splitting, and memoization.",
       metrics: "Lighthouse 90+ • Code Splitting • Caching",
@@ -102,7 +104,7 @@ export default function About() {
     {
       id: 3,
       title: "Cross-Platform Development",
-      icon: <FaMobileAlt className="text-2xl text-[#E0B3FF]" />,
+      icon: <FaMobileAlt className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
       badge: "Mobile & Web",
       desc: "Building responsive web applications and cross-platform mobile experiences using React Native and PWA technologies.",
       metrics: "PWA • React Native • Progressive Web",
@@ -121,10 +123,10 @@ export default function About() {
       description:
         "Comprehensive software engineering internship building production-grade dynamic web single-page apps and cross-platform mobile user interfaces.",
       skillsEarned: ["React 18", "React Native", "State Management", "RESTful APIs", "Component Architecture"],
-      icon: <SiReact className="text-2xl text-[#61DAFB]" />,
+      icon: <SiReact className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
       link: "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/Ea0KEazQtCBAhj9KLt3BgPQBd2KvFEvKLqAMLn8cvwNuxQ?e=4A9C3I",
       level: "Advanced",
-      color: "#61DAFB",
+      color: "#FF007A",
     },
     {
       title: "Modern JavaScript & ES6+",
@@ -135,10 +137,10 @@ export default function About() {
       description:
         "Mastered modern JavaScript features including ES6+, asynchronous programming, and functional programming patterns.",
       skillsEarned: ["ES6+", "Async/Await", "Functional Programming", "DOM Manipulation"],
-      icon: <SiJavascript className="text-2xl text-[#F7DF1E]" />,
+      icon: <SiJavascript className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
       link: "https://coursera.org/verify/specialization/JS-SH",
       level: "Intermediate",
-      color: "#F7DF1E",
+      color: "#E01E5A",
     },
     {
       title: "UI/UX Design with Figma",
@@ -149,10 +151,10 @@ export default function About() {
       description:
         "Learned modern UI/UX design principles, prototyping, and design systems using Figma.",
       skillsEarned: ["Figma", "Prototyping", "Design Systems", "User Research"],
-      icon: <SiFigma className="text-2xl text-[#A044FF]" />,
+      icon: <SiFigma className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
       link: "https://coursera.org/verify/specialization/FIGMA-SH",
       level: "Intermediate",
-      color: "#A044FF",
+      color: "#FF007A",
     },
     {
       title: "Tailwind CSS Mastery",
@@ -163,10 +165,10 @@ export default function About() {
       description:
         "Built responsive, utility-first designs with Tailwind CSS, including custom configurations and dark mode.",
       skillsEarned: ["Tailwind CSS", "Responsive Design", "Dark Mode", "Custom Theming"],
-      icon: <SiTailwindcss className="text-2xl text-[#06B6D4]" />,
+      icon: <SiTailwindcss className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
       link: "https://coursera.org/verify/specialization/TW-SH",
       level: "Advanced",
-      color: "#06B6D4",
+      color: "#E01E5A",
     },
     {
       title: "Frontend Development Foundations",
@@ -177,10 +179,10 @@ export default function About() {
       description:
         "Comprehensive frontend engineering foundations covering HTML5, CSS3, responsive design, and modern web standards.",
       skillsEarned: ["HTML5", "CSS3", "Responsive Design", "Web Standards"],
-      icon: <FaLaptopCode className="text-2xl text-[#E0B3FF]" />,
+      icon: <FaLaptopCode className={`text-2xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />,
       link: "https://coursera.org/verify/specialization/FE-FOUND-SH",
       level: "Beginner",
-      color: "#E0B3FF",
+      color: "#FDA4AF",
     },
   ];
 
@@ -190,12 +192,18 @@ export default function About() {
       : certificates.filter((c) => c.category === activeCertCategory);
 
   return (
-    <section className="text-white relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16" id="aboutSection">
+    <section className={`relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16 transition-colors duration-500 ${
+      isDarkMode ? "text-white" : "text-[#2e0854]"
+    }`} id="aboutSection">
       <ToastContainer />
 
-      {/* Pure Purple Ambient Glows */}
-      <div className="absolute top-1/4 left-10 w-80 h-80 bg-[#6A3093]/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-10 w-96 h-96 bg-[#A044FF]/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Rose Carmine Ambient Glows */}
+      <div className={`absolute top-1/4 left-10 w-80 h-80 rounded-full blur-3xl pointer-events-none ${
+        isDarkMode ? "bg-[#FF007A]/25" : "bg-[#fda4af]/20"
+      }`} />
+      <div className={`absolute bottom-1/3 right-10 w-96 h-96 rounded-full blur-3xl pointer-events-none ${
+        isDarkMode ? "bg-[#E01E5A]/20" : "bg-[#fecdd3]/15"
+      }`} />
 
       {/* Section Title */}
       <motion.div
@@ -205,14 +213,20 @@ export default function About() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <span className="inline-block px-4 py-1.5 rounded-full bg-[#1e083c] border border-[#A044FF]/40 text-xs sm:text-sm font-semibold text-[#E0B3FF] mb-3 shadow-[0_0_15px_rgba(160,68,255,0.3)]">
-          Frontend Engineer Profile
+        <span className={`inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-3 shadow-sm ${
+          isDarkMode
+            ? "bg-[#10030a] border border-[#FF007A]/40 text-[#FDA4AF] shadow-[0_0_15px_rgba(255,0,122,0.3)]"
+            : "bg-[#ffe4e6] border border-[#be123c]/30 text-[#BE123C]"
+        }`}>
+          Frontend & AI Engineer Profile
         </span>
 
-        <h1 className="text-4xl sm:text-5xl md:text-[68px] font-extrabold font-serif text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E0B3FF] to-[#A044FF] tracking-wide">
+        <h1 className="text-4xl sm:text-5xl md:text-[68px] font-extrabold font-serif text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-[#FF007A] to-[#E01E5A] dark:from-white dark:via-[#FDA4AF] dark:to-[#FF007A] tracking-wide">
           About Me
         </h1>
-        <p className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base mt-3">
+        <p className={`max-w-2xl mx-auto text-sm sm:text-base mt-3 ${
+          isDarkMode ? "text-gray-300" : "text-[#881337]"
+        }`}>
           Crafting beautiful, performant user experiences with modern frontend technologies.
         </p>
       </motion.div>
@@ -232,42 +246,60 @@ export default function About() {
             style={{ perspective: 1000, rotateX, rotateY }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="w-full bg-gradient-to-br from-[#180630]/95 via-[#0e021e]/95 to-[#180630]/95 border-2 border-[#A044FF]/60 rounded-3xl p-7 shadow-[0_0_45px_rgba(160,68,255,0.35)] amethyst-card-floating relative overflow-hidden flex-1 flex flex-col justify-between"
+            className={`w-full rounded-3xl p-7 relative overflow-hidden flex-1 flex flex-col justify-between transition-all duration-500 ${
+              isDarkMode
+                ? "bg-gradient-to-br from-[#180510]/95 via-[#0b0207]/95 to-[#180510]/95 border-2 border-[#FF007A]/60 shadow-[0_0_45px_rgba(255,0,122,0.35)] amethyst-card-floating"
+                : "bg-gradient-to-br from-[#ffffff] via-[#fff1f2] to-[#ffe4e6] border-2 border-[#be123c]/40 shadow-[0_10px_35px_rgba(225,29,72,0.15)]"
+            }`}
           >
             <div>
               {/* Top Status Header */}
-              <div className="flex items-center justify-between border-b border-[#A044FF]/30 pb-4 mb-6">
+              <div className={`flex items-center justify-between border-b pb-4 mb-6 ${
+                isDarkMode ? "border-[#FF007A]/30" : "border-[#be123c]/25"
+              }`}>
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-3 w-3">
-                    <span className="animate-purple-radar absolute inline-flex h-full w-full rounded-full bg-[#E0B3FF] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[#A044FF]"></span>
+                    <span className="animate-purple-radar absolute inline-flex h-full w-full rounded-full bg-[#FDA4AF] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[#FF007A]"></span>
                   </span>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#E0B3FF]">
+                  <span className={`text-xs font-bold uppercase tracking-wider ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
                     Frontend Engineer
                   </span>
                 </div>
-                <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-md bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/40">
+                <span className={`text-[11px] font-mono font-bold px-2.5 py-1 rounded-md border ${
+                  isDarkMode
+                    ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/40"
+                    : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                }`}>
                   React Specialist
                 </span>
               </div>
 
               {/* Profile Avatar & Title */}
               <div className="flex flex-col items-center text-center mb-6">
-                <div className="relative w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-[#A044FF] via-[#E0B3FF] to-[#6A3093] shadow-[0_0_25px_rgba(160,68,255,0.5)] mb-4">
+                <div className="relative w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-[#FF007A] via-[#FDA4AF] to-[#E01E5A] shadow-[0_0_25px_rgba(255,0,122,0.5)] mb-4">
                   <img
                     src={avatar}
                     alt="Shahd Mohamed"
-                    className="w-full h-full object-cover rounded-full bg-[#0e021e]"
+                    className="w-full h-full object-cover rounded-full bg-[#0b0207]"
                   />
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                <h3 className={`text-2xl sm:text-3xl font-extrabold ${
+                  isDarkMode ? "text-white" : "text-[#4c0519]"
+                }`}>
                   Shahd Mohamed
                 </h3>
-                <p className="text-sm text-[#E0B3FF] font-semibold mt-1">
+                <p className={`text-sm font-semibold mt-1 ${
+                  isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                }`}>
                   Frontend Engineer
                 </p>
-                <p className="text-xs text-gray-400 mt-1">
+                <p className={`text-xs mt-1 ${
+                  isDarkMode ? "text-gray-400" : "text-[#881337]"
+                }`}>
                   Cairo, Egypt
                 </p>
               </div>
@@ -276,40 +308,64 @@ export default function About() {
               <div className="space-y-3 mb-6">
                 <div
                   onClick={() => copyToClipboard("Shahd137003@gmail.com", "Email")}
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#130326] border border-[#A044FF]/35 hover:border-[#E0B3FF] cursor-pointer transition-all group"
+                  className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition-all group ${
+                    isDarkMode
+                      ? "bg-[#10030a] border-[#FF007A]/35 hover:border-[#FDA4AF]"
+                      : "bg-[#fff1f2] border-[#be123c]/30 hover:border-[#e11d48]"
+                  }`}
                 >
                   <div className="flex items-center gap-3">
-                    <MdEmail className="text-xl text-[#E0B3FF]" />
+                    <MdEmail className={`text-xl ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />
                     <div>
-                      <div className="text-[11px] text-gray-400 uppercase font-semibold">
+                      <div className={`text-[11px] uppercase font-semibold ${
+                        isDarkMode ? "text-gray-400" : "text-[#881337]"
+                      }`}>
                         Email Address
                       </div>
-                      <div className="text-xs sm:text-sm font-bold text-white group-hover:text-[#E0B3FF] transition-colors truncate">
+                      <div className={`text-xs sm:text-sm font-bold truncate group-hover:text-[#FF007A] transition-colors ${
+                        isDarkMode ? "text-white" : "text-[#4c0519]"
+                      }`}>
                         Shahd137003@gmail.com
                       </div>
                     </div>
                   </div>
-                  <span className="text-xs px-2.5 py-1 rounded-lg bg-[#1e083c] text-[#E0B3FF] font-semibold">
+                  <span className={`text-xs px-2.5 py-1 rounded-lg font-semibold ${
+                    isDarkMode
+                      ? "bg-[#10030a] text-[#FDA4AF]"
+                      : "bg-[#fecdd3] text-[#BE123C]"
+                  }`}>
                     {copiedLabel === "Email" ? "Copied!" : "Copy"}
                   </span>
                 </div>
 
                 <div
                   onClick={() => copyToClipboard("+20 1092968238", "Phone Number")}
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#130326] border border-[#A044FF]/35 hover:border-[#E0B3FF] cursor-pointer transition-all group"
+                  className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition-all group ${
+                    isDarkMode
+                      ? "bg-[#10030a] border-[#FF007A]/35 hover:border-[#FDA4AF]"
+                      : "bg-[#fff1f2] border-[#be123c]/30 hover:border-[#e11d48]"
+                  }`}
                 >
                   <div className="flex items-center gap-3">
-                    <MdPhone className="text-xl text-[#A044FF]" />
+                    <MdPhone className={`text-xl ${isDarkMode ? "text-[#FF007A]" : "text-[#BE123C]"}`} />
                     <div>
-                      <div className="text-[11px] text-gray-400 uppercase font-semibold">
+                      <div className={`text-[11px] uppercase font-semibold ${
+                        isDarkMode ? "text-gray-400" : "text-[#881337]"
+                      }`}>
                         Phone Number
                       </div>
-                      <div className="text-xs sm:text-sm font-bold text-white group-hover:text-[#E0B3FF] transition-colors">
+                      <div className={`text-xs sm:text-sm font-bold group-hover:text-[#FF007A] transition-colors ${
+                        isDarkMode ? "text-white" : "text-[#4c0519]"
+                      }`}>
                         +20 1092968238
                       </div>
                     </div>
                   </div>
-                  <span className="text-xs px-2.5 py-1 rounded-lg bg-[#1e083c] text-[#E0B3FF] font-semibold">
+                  <span className={`text-xs px-2.5 py-1 rounded-lg font-semibold ${
+                    isDarkMode
+                      ? "bg-[#10030a] text-[#FDA4AF]"
+                      : "bg-[#fecdd3] text-[#BE123C]"
+                  }`}>
                     {copiedLabel === "Phone Number" ? "Copied!" : "Copy"}
                   </span>
                 </div>
@@ -317,38 +373,60 @@ export default function About() {
             </div>
 
             {/* Academic Standing Footer inside card */}
-            <div className="p-4 rounded-2xl bg-[#130326] border border-[#A044FF]/40 text-center">
-              <div className="flex items-center justify-center gap-2 text-xs font-bold text-[#E0B3FF]">
+            <div className={`p-4 rounded-2xl border text-center ${
+              isDarkMode
+                ? "bg-[#10030a] border-[#FF007A]/40"
+                : "bg-[#ffe4e6] border-[#be123c]/30"
+            }`}>
+              <div className={`flex items-center justify-center gap-2 text-xs font-bold ${
+                isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+              }`}>
                 <FaGraduationCap className="text-base" /> Frontend Engineering
               </div>
-              <p className="text-[11px] text-gray-300 mt-1">
+              <p className={`text-[11px] mt-1 ${
+                isDarkMode ? "text-gray-300" : "text-[#881337]"
+              }`}>
                 React • UI/UX • Performance • Accessibility
               </p>
             </div>
           </motion.div>
 
           {/* Left-Side Fast Facts */}
-          <div className="bg-gradient-to-br from-[#180630]/95 to-[#0e021e]/95 border border-[#A044FF]/45 rounded-3xl p-6 shadow-xl space-y-4">
-            <h4 className="text-sm font-bold text-[#E0B3FF] uppercase tracking-wider flex items-center gap-2">
+          <div className={`rounded-3xl p-6 shadow-xl space-y-4 border ${
+            isDarkMode
+              ? "bg-gradient-to-br from-[#180510]/95 to-[#0b0207]/95 border-[#FF007A]/45"
+              : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 shadow-[0_4px_20px_rgba(225,29,72,0.08)]"
+          }`}>
+            <h4 className={`text-sm font-bold uppercase tracking-wider flex items-center gap-2 ${
+              isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+            }`}>
               <FaCompass /> Frontend Specialization
             </h4>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">Core Framework</span>
-                <span className="font-bold text-white">React 18</span>
+              <div className={`p-3 rounded-xl border ${
+                isDarkMode ? "bg-[#10030a] border-[#FF007A]/30" : "bg-[#fff1f2] border-[#be123c]/25"
+              }`}>
+                <span className={`block mb-0.5 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>Core Framework</span>
+                <span className={`font-bold ${isDarkMode ? "text-white" : "text-[#4c0519]"}`}>React 18</span>
               </div>
-              <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">Styling</span>
-                <span className="font-bold text-[#E0B3FF]">Tailwind CSS</span>
+              <div className={`p-3 rounded-xl border ${
+                isDarkMode ? "bg-[#10030a] border-[#FF007A]/30" : "bg-[#fff1f2] border-[#be123c]/25"
+              }`}>
+                <span className={`block mb-0.5 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>Styling</span>
+                <span className={`font-bold ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`}>Tailwind CSS</span>
               </div>
-              <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">Animations</span>
-                <span className="font-bold text-white">Framer Motion</span>
+              <div className={`p-3 rounded-xl border ${
+                isDarkMode ? "bg-[#10030a] border-[#FF007A]/30" : "bg-[#fff1f2] border-[#be123c]/25"
+              }`}>
+                <span className={`block mb-0.5 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>Animations</span>
+                <span className={`font-bold ${isDarkMode ? "text-white" : "text-[#4c0519]"}`}>Framer Motion</span>
               </div>
-              <div className="p-3 rounded-xl bg-[#130326] border border-[#A044FF]/30">
-                <span className="text-gray-400 block mb-0.5">State Management</span>
-                <span className="font-bold text-[#E0B3FF]">Redux Toolkit</span>
+              <div className={`p-3 rounded-xl border ${
+                isDarkMode ? "bg-[#10030a] border-[#FF007A]/30" : "bg-[#fff1f2] border-[#be123c]/25"
+              }`}>
+                <span className={`block mb-0.5 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>State Management</span>
+                <span className={`font-bold ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`}>Redux Toolkit</span>
               </div>
             </div>
           </div>
@@ -362,23 +440,37 @@ export default function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-br from-[#180630]/95 to-[#0e021e]/95 border border-[#A044FF]/45 rounded-3xl p-6 sm:p-8 shadow-2xl h-full flex flex-col justify-between">
+          <div className={`rounded-3xl p-6 sm:p-8 shadow-2xl h-full flex flex-col justify-between border ${
+            isDarkMode
+              ? "bg-gradient-to-br from-[#180510]/95 to-[#0b0207]/95 border-[#FF007A]/45"
+              : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/35 shadow-[0_10px_30px_rgba(225,29,72,0.1)]"
+          }`}>
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#E0B3FF]">
+                  <span className={`text-xs font-bold uppercase tracking-wider ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
                     Frontend Specializations
                   </span>
-                  <h3 className="text-xl sm:text-3xl font-extrabold text-white mt-1">
+                  <h3 className={`text-xl sm:text-3xl font-extrabold mt-1 ${
+                    isDarkMode ? "text-white" : "text-[#4c0519]"
+                  }`}>
                     Technical Expertise
                   </h3>
                 </div>
-                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30">
+                <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${
+                  isDarkMode
+                    ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/30"
+                    : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                }`}>
                   Click to Highlight
                 </span>
               </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-6">
+              <p className={`text-sm leading-relaxed mb-6 ${
+                isDarkMode ? "text-gray-300" : "text-[#881337]"
+              }`}>
                 My frontend engineering approach combines modern React development with responsive design, performance optimization, and creating exceptional user experiences.
               </p>
             </div>
@@ -392,30 +484,46 @@ export default function About() {
                     onClick={() => setActivePillar(pillar.id)}
                     className={`p-6 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
                       isSelected
-                        ? "bg-gradient-to-br from-[#270b4c] to-[#140326] border-[#A044FF] shadow-[0_0_28px_rgba(160,68,255,0.5)] scale-[1.02]"
-                        : "bg-[#130326] border-[#A044FF]/25 hover:border-[#A044FF]/60"
+                        ? isDarkMode
+                          ? "bg-gradient-to-br from-[#280816] to-[#10030a] border-[#FF007A] shadow-[0_0_28px_rgba(255,0,122,0.5)] scale-[1.02]"
+                          : "bg-gradient-to-br from-[#ffe4e6] to-[#fecdd3] border-[#be123c] shadow-[0_8px_25px_rgba(225,29,72,0.2)] scale-[1.02]"
+                        : isDarkMode
+                        ? "bg-[#10030a] border-[#FF007A]/25 hover:border-[#FF007A]/60"
+                        : "bg-[#fff1f2] border-[#be123c]/25 hover:border-[#be123c]"
                     }`}
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="p-3.5 rounded-xl bg-[#1e083c] border border-[#A044FF]/40">
+                        <div className={`p-3.5 rounded-xl border ${
+                          isDarkMode ? "bg-[#10030a] border-[#FF007A]/40" : "bg-[#fecdd3] border-[#be123c]/35"
+                        }`}>
                           {pillar.icon}
                         </div>
-                        <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30">
+                        <span className={`text-xs font-bold px-3 py-1 rounded-full border ${
+                          isDarkMode ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/30" : "bg-[#fecdd3] text-[#BE123C] border-[#be123c]/30"
+                        }`}>
                           {pillar.badge}
                         </span>
                       </div>
 
-                      <h4 className="font-extrabold text-white text-lg mb-2">
+                      <h4 className={`font-extrabold text-lg mb-2 ${
+                        isDarkMode ? "text-white" : "text-[#4c0519]"
+                      }`}>
                         {pillar.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                      <p className={`text-xs sm:text-sm leading-relaxed mb-4 ${
+                        isDarkMode ? "text-gray-300" : "text-[#881337]"
+                      }`}>
                         {pillar.desc}
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-[#A044FF]/25 flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold text-[#E0B3FF]">
+                    <div className={`pt-3 border-t flex items-center justify-between ${
+                      isDarkMode ? "border-[#FF007A]/25" : "border-[#be123c]/20"
+                    }`}>
+                      <span className={`text-xs font-mono font-bold ${
+                        isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                      }`}>
                         {pillar.metrics}
                       </span>
                     </div>
@@ -439,25 +547,31 @@ export default function About() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 rounded-xl bg-gradient-to-r from-[#6A3093] to-[#A044FF] shadow-[0_0_20px_rgba(160,68,255,0.4)]">
+              <div className="p-2 rounded-xl bg-gradient-to-r from-[#E01E5A] to-[#FF007A] shadow-[0_0_20px_rgba(255,0,122,0.4)]">
                 <FaCertificate className="text-white text-xl" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#E0B3FF]">
+              <span className={`text-xs font-bold uppercase tracking-wider ${
+                isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+              }`}>
                 Professional Credentials
               </span>
             </div>
-            <h3 className="text-3xl sm:text-4xl font-extrabold text-white">
+            <h3 className={`text-3xl sm:text-4xl font-extrabold ${
+              isDarkMode ? "text-white" : "text-[#4c0519]"
+            }`}>
               Certifications &<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E0B3FF] to-[#A044FF]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF007A] to-[#E01E5A] dark:from-[#FDA4AF] dark:to-[#FF007A]">
                 Verified Skills
               </span>
             </h3>
-            <p className="text-gray-400 text-sm mt-2 max-w-xl">
+            <p className={`text-sm mt-2 max-w-xl ${
+              isDarkMode ? "text-gray-400" : "text-[#881337]"
+            }`}>
               {certificates.length} professional certifications across frontend development, design, and engineering.
             </p>
           </div>
 
-          {/* Category Filters - Modern Pill Style */}
+          {/* Category Filters */}
           <div className="flex flex-wrap gap-2">
             {certCategories.map((cat) => (
               <button
@@ -465,8 +579,10 @@ export default function About() {
                 onClick={() => setActiveCertCategory(cat)}
                 className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 ${
                   activeCertCategory === cat
-                    ? "bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-white shadow-[0_0_25px_rgba(160,68,255,0.5)] scale-105"
-                    : "bg-[#130326] text-purple-300 border border-[#A044FF]/30 hover:border-[#A044FF] hover:bg-[#1e083c]"
+                    ? "bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white shadow-[0_0_25px_rgba(255,0,122,0.5)] scale-105"
+                    : isDarkMode
+                    ? "bg-[#10030a] text-[#FDA4AF] border border-[#FF007A]/30 hover:border-[#FF007A] hover:bg-[#180510]"
+                    : "bg-[#ffe4e6] text-[#BE123C] border border-[#be123c]/30 hover:border-[#be123c] hover:bg-[#fecdd3]"
                 }`}
               >
                 {cat}
@@ -480,7 +596,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Certificate Grid - Modern Masonry Style */}
+        {/* Certificate Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredCerts.map((cert, index) => (
@@ -495,241 +611,84 @@ export default function About() {
                 onMouseLeave={() => setHoveredCert(null)}
                 className="group relative"
               >
-                <div className="relative h-full bg-gradient-to-br from-[#140328] to-[#0a0117] rounded-2xl border border-[#A044FF]/30 overflow-hidden transition-all duration-500 hover:border-[#E0B3FF] hover:shadow-[0_0_40px_rgba(160,68,255,0.3)] hover:-translate-y-2">
+                <div className={`relative h-full rounded-2xl border overflow-hidden transition-all duration-500 hover:-translate-y-2 ${
+                  isDarkMode
+                    ? "bg-gradient-to-br from-[#180510] to-[#0b0207] border-[#FF007A]/30 hover:border-[#FDA4AF] hover:shadow-[0_0_40px_rgba(255,0,122,0.3)]"
+                    : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 hover:border-[#e11d48] hover:shadow-[0_10px_35px_rgba(225,29,72,0.18)]"
+                }`}>
                   
-                  {/* Animated Gradient Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#A044FF]/5 via-transparent to-[#6A3093]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Top Glow Line */}
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#E0B3FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <div className="relative p-6 flex flex-col h-full">
-                    {/* Header with Icon and Level Badge */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="p-3 rounded-xl bg-[#1e083c] border border-[#A044FF]/30 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(160,68,255,0.1)]">
-                        {cert.icon}
-                      </div>
-                      <div className="flex flex-col items-end gap-1.5">
-                        <span className={`text-[10px] font-bold px-3 py-1 rounded-full border
-                          ${cert.level === "Advanced" ? "bg-[#6A3093]/30 text-[#E0B3FF] border-[#6A3093]" :
-                            cert.level === "Intermediate" ? "bg-[#A044FF]/20 text-[#A044FF] border-[#A044FF]/50" :
-                            "bg-[#1e083c] text-purple-300 border-[#A044FF]/30"}`}
-                        >
-                          {cert.level}
-                        </span>
-                        <span className="text-[10px] text-gray-500 font-mono">
+                  {/* Card Content */}
+                  <div className="p-6 flex flex-col justify-between h-full">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`p-3 rounded-xl border ${
+                          isDarkMode ? "bg-[#10030a] border-[#FF007A]/40" : "bg-[#ffe4e6] border-[#be123c]/30"
+                        }`}>
+                          {cert.icon}
+                        </div>
+                        <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${
+                          isDarkMode ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/30" : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                        }`}>
                           {cert.date}
                         </span>
                       </div>
-                    </div>
 
-                    {/* Content */}
-                    <div className="flex-1">
-                      <span className="text-[11px] font-bold text-purple-300 uppercase tracking-wider">
+                      <span className={`text-[11px] font-bold uppercase tracking-wider ${
+                        isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                      }`}>
                         {cert.issuer}
                       </span>
-                      <h4 
-                        onClick={() => setSelectedCertModal(cert)}
-                        className="text-lg font-extrabold text-white mt-1 group-hover:text-[#E0B3FF] transition-colors cursor-pointer"
-                      >
+                      <h4 className={`text-lg font-extrabold mt-1 group-hover:text-[#FF007A] transition-colors ${
+                        isDarkMode ? "text-white" : "text-[#4c0519]"
+                      }`}>
                         {cert.title}
                       </h4>
-                      
-                      <p className="text-xs text-gray-400 mt-2.5 leading-relaxed line-clamp-2">
+                      <p className={`text-xs mt-2 leading-relaxed ${
+                        isDarkMode ? "text-gray-300" : "text-[#881337]"
+                      }`}>
                         {cert.description}
                       </p>
 
-                      {/* Skills Pills */}
                       <div className="flex flex-wrap gap-1.5 mt-4">
-                        {cert.skillsEarned.slice(0, 3).map((skill, i) => (
+                        {cert.skillsEarned.map((skill, i) => (
                           <span
                             key={i}
-                            className="px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/20"
+                            className={`px-2.5 py-1 rounded-md text-[11px] font-semibold border ${
+                              isDarkMode
+                                ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/30"
+                                : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                            }`}
                           >
                             {skill}
                           </span>
                         ))}
-                        {cert.skillsEarned.length > 3 && (
-                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1e083c] text-gray-400 border border-[#A044FF]/20">
-                            +{cert.skillsEarned.length - 3}
-                          </span>
-                        )}
                       </div>
                     </div>
 
-                    {/* Footer Actions - Modern Minimal */}
-                    <div className="mt-6 pt-4 border-t border-[#A044FF]/20 flex items-center justify-between gap-3">
-                      <button
-                        onClick={() => setSelectedCertModal(cert)}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1e083c] hover:bg-[#A044FF] text-[#E0B3FF] hover:text-white border border-[#A044FF]/30 text-xs font-semibold transition-all duration-300 group/btn"
-                      >
-                        <FaEye className="text-xs" />
-                        <span>Details</span>
-                      </button>
-                      
+                    <div className={`mt-6 pt-4 border-t flex justify-between items-center ${
+                      isDarkMode ? "border-[#FF007A]/25" : "border-[#be123c]/20"
+                    }`}>
+                      <span className={`text-xs font-mono font-bold ${
+                        isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                      }`}>
+                        ID: {cert.credentialID}
+                      </span>
                       <a
                         href={cert.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-white text-xs font-semibold hover:shadow-[0_0_20px_rgba(160,68,255,0.5)] transition-all duration-300"
+                        className="flex items-center gap-1 text-xs font-bold text-white bg-gradient-to-r from-[#E01E5A] to-[#FF007A] px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md transition-all"
                       >
-                        <span>Verify</span>
-                        <FaArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform" />
+                        Verify <FaExternalLinkAlt className="text-[9px]" />
                       </a>
                     </div>
-
-                    {/* Decorative Corner Accent */}
-                    <div className="absolute -bottom-6 -right-6 w-16 h-16 rounded-full bg-[#A044FF]/5 blur-2xl group-hover:bg-[#A044FF]/20 transition-all duration-500" />
                   </div>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
-
-        {/* Empty State */}
-        {filteredCerts.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12"
-          >
-            <p className="text-gray-400">No certifications found in this category.</p>
-          </motion.div>
-        )}
       </motion.div>
-
-      {/* MODERN CREDENTIAL INSPECTION MODAL */}
-      <AnimatePresence>
-        {selectedCertModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center z-50 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedCertModal(null)}
-          >
-            <motion.div
-              className="relative max-w-2xl w-full rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(160,68,255,0.4)] border border-[#A044FF]/40 bg-gradient-to-br from-[#16032e] to-[#0d011c]"
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, type: "spring", damping: 25 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Premium Decorative Top Border */}
-              <div className="h-1 w-full bg-gradient-to-r from-[#6A3093] via-[#E0B3FF] to-[#A044FF]" />
-              
-              {/* Shimmer Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#A044FF]/5 via-transparent to-[#6A3093]/5 pointer-events-none" />
-
-              {/* Modal Header */}
-              <div className="relative p-6 border-b border-[#A044FF]/20 flex items-start justify-between gap-4">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-2xl bg-[#1e083c] border border-[#A044FF]/30 shadow-[0_0_20px_rgba(160,68,255,0.2)]">
-                    {selectedCertModal.icon}
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <FaRegCheckCircle className="text-[#E0B3FF] text-sm" />
-                      <span className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider">
-                        Verified Credential
-                      </span>
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
-                      {selectedCertModal.title}
-                    </h3>
-                    <span className="text-sm text-purple-300 font-semibold">
-                      {selectedCertModal.issuer}
-                    </span>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setSelectedCertModal(null)}
-                  className="p-2 rounded-full bg-[#1e083c] hover:bg-[#A044FF] text-white transition-all duration-300 flex-shrink-0"
-                >
-                  <FaTimes size={18} />
-                </button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="relative p-6 sm:p-8 space-y-6">
-                {/* Credential ID & Date */}
-                <div className="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-[#120324] border border-[#A044FF]/30">
-                  <div>
-                    <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">
-                      Credential ID
-                    </span>
-                    <p className="text-sm font-mono font-bold text-[#E0B3FF] mt-1">
-                      {selectedCertModal.credentialID}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">
-                      Date Earned
-                    </span>
-                    <p className="text-sm font-bold text-white mt-1">
-                      {selectedCertModal.date}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div>
-                  <h4 className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <FaStar className="text-[#E0B3FF] text-xs" />
-                    Description
-                  </h4>
-                  <p className="text-sm text-gray-200 leading-relaxed">
-                    {selectedCertModal.description}
-                  </p>
-                </div>
-
-                {/* Skills */}
-                <div>
-                  <h4 className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <FaMedal className="text-[#E0B3FF] text-xs" />
-                    Skills & Competencies
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedCertModal.skillsEarned.map((skill, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.05 }}
-                        className="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30 shadow-[0_0_10px_rgba(160,68,255,0.1)]"
-                      >
-                        ✓ {skill}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="pt-4 border-t border-[#A044FF]/20 flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={selectedCertModal.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] text-white font-bold text-sm shadow-[0_0_30px_rgba(160,68,255,0.3)] hover:shadow-[0_0_50px_rgba(160,68,255,0.5)] transition-all duration-300"
-                  >
-                    <FaExternalLinkAlt className="text-xs" />
-                    <span>View Verified Document</span>
-                  </a>
-                  <button
-                    onClick={() => setSelectedCertModal(null)}
-                    className="px-6 py-3.5 rounded-xl bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/30 text-sm font-semibold hover:bg-[#A044FF] hover:text-white transition-all duration-300"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

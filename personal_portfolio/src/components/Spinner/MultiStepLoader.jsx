@@ -7,9 +7,14 @@ import {
   FaInfinity, FaCircleNotch, FaBolt, FaFire, FaCheck
 } from 'react-icons/fa';
 import { SiTailwindcss, SiFigma, SiJavascript } from 'react-icons/si';
+import { useTheme } from '../../context/ThemeContext';
 
 // Cosmic Particle System
-function CosmicParticles() {
+function CosmicParticles({ isDarkMode }) {
+  const particleColors = isDarkMode
+    ? ['#E01E5A', '#FF007A', '#FDA4AF', '#FFFFFF', '#F43F5E']
+    : ['#E01E5A', '#FF007A', '#BE123C', '#9F1239', '#881337'];
+
   const particles = Array.from({ length: 50 }, (_, i) => ({
     id: i,
     size: Math.random() * 4 + 1,
@@ -17,7 +22,7 @@ function CosmicParticles() {
     y: Math.random() * 100,
     duration: Math.random() * 10 + 5,
     delay: Math.random() * 5,
-    color: ['#6A3093', '#A044FF', '#E0B3FF', '#FFFFFF', '#9D50BB'][Math.floor(Math.random() * 5)]
+    color: particleColors[Math.floor(Math.random() * particleColors.length)]
   }));
 
   return (
@@ -53,7 +58,11 @@ function CosmicParticles() {
 }
 
 // Aurora Background Effect
-function AuroraBackground() {
+function AuroraBackground({ isDarkMode }) {
+  const auroraColors = isDarkMode
+    ? ['#E01E5A30', '#FF007A25', '#FDA4AF20']
+    : ['#E01E5A20', '#BE123C25', '#FDA4AF30'];
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(3)].map((_, i) => (
@@ -63,7 +72,7 @@ function AuroraBackground() {
           style={{
             width: '60%',
             height: '60%',
-            background: `radial-gradient(circle, ${['#6A309330', '#A044FF25', '#E0B3FF20'][i]}, transparent 70%)`,
+            background: `radial-gradient(circle, ${auroraColors[i]}, transparent 70%)`,
             left: `${[10, 50, 80][i]}%`,
             top: `${[20, 60, 30][i]}%`,
           }}
@@ -84,7 +93,7 @@ function AuroraBackground() {
 }
 
 // Ultra Premium Spinner
-function PremiumSpinner() {
+function PremiumSpinner({ isDarkMode }) {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
@@ -108,7 +117,9 @@ function PremiumSpinner() {
           ease: "easeInOut",
         }}
         style={{
-          background: 'radial-gradient(circle, #A044FF40, transparent 70%)',
+          background: isDarkMode 
+            ? 'radial-gradient(circle, #FF007A40, transparent 70%)'
+            : 'radial-gradient(circle, #BE123C40, transparent 70%)',
           filter: 'blur(12px)',
         }}
       />
@@ -117,7 +128,7 @@ function PremiumSpinner() {
       <motion.div
         className="absolute inset-0 rounded-full"
         style={{
-          background: `conic-gradient(from ${rotation}deg, #6A3093, #A044FF, #E0B3FF, #FFFFFF, #E0B3FF, #A044FF, #6A3093)`,
+          background: `conic-gradient(from ${rotation}deg, #E01E5A, #FF007A, #FDA4AF, ${isDarkMode ? '#FFFFFF' : '#BE123C'}, #FDA4AF, #FF007A, #E01E5A)`,
           padding: '4px',
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           WebkitMaskComposite: 'xor',
@@ -131,7 +142,7 @@ function PremiumSpinner() {
       <motion.div
         className="absolute inset-2 rounded-full border-2 border-transparent"
         style={{
-          background: `conic-gradient(from ${-rotation * 0.7}deg, #E0B3FF40, #A044FF60, #6A309340, #E0B3FF40)`,
+          background: `conic-gradient(from ${-rotation * 0.7}deg, #FDA4AF40, #FF007A60, #E01E5A40, #FDA4AF40)`,
           padding: '2px',
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           WebkitMaskComposite: 'xor',
@@ -143,19 +154,21 @@ function PremiumSpinner() {
 
       {/* Center Core */}
       <motion.div
-        className="absolute inset-3 rounded-full bg-black flex items-center justify-center overflow-hidden"
+        className={`absolute inset-3 rounded-full flex items-center justify-center overflow-hidden transition-colors ${
+          isDarkMode ? "bg-black" : "bg-white shadow-[0_0_30px_rgba(225,29,72,0.2)]"
+        }`}
         animate={{
           boxShadow: [
-            'inset 0 0 30px rgba(160,68,255,0.3)',
-            'inset 0 0 60px rgba(160,68,255,0.6)',
-            'inset 0 0 30px rgba(160,68,255,0.3)',
+            isDarkMode ? 'inset 0 0 30px rgba(255,0,122,0.3)' : 'inset 0 0 30px rgba(225,29,72,0.2)',
+            isDarkMode ? 'inset 0 0 60px rgba(255,0,122,0.6)' : 'inset 0 0 60px rgba(225,29,72,0.4)',
+            isDarkMode ? 'inset 0 0 30px rgba(255,0,122,0.3)' : 'inset 0 0 30px rgba(225,29,72,0.2)',
           ]
         }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
         {/* Inner Core Glow */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#A044FF20] to-[#6A309320]"
+          className="absolute inset-0 bg-gradient-to-br from-[#FF007A20] to-[#E01E5A20]"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.5, 1, 0.5],
@@ -175,7 +188,7 @@ function PremiumSpinner() {
             ease: "easeInOut",
           }}
         >
-          <FaReact className="text-4xl text-[#61DAFB] drop-shadow-[0_0_20px_rgba(97,218,251,0.5)]" />
+          <FaReact className="text-4xl text-[#00D8FF] drop-shadow-[0_0_20px_rgba(0,216,255,0.5)]" />
         </motion.div>
 
         {/* Orbiting Electrons */}
@@ -184,8 +197,8 @@ function PremiumSpinner() {
             key={i}
             className="absolute w-1.5 h-1.5 rounded-full"
             style={{
-              background: ['#61DAFB', '#A044FF', '#E0B3FF'][i],
-              boxShadow: `0 0 10px ${['#61DAFB', '#A044FF', '#E0B3FF'][i]}`,
+              background: ['#00D8FF', '#FF007A', '#FDA4AF'][i],
+              boxShadow: `0 0 10px ${['#00D8FF', '#FF007A', '#FDA4AF'][i]}`,
             }}
             animate={{
               x: [0, 40 * Math.cos(i * 2.094 + rotation * 0.02), 0],
@@ -205,7 +218,7 @@ function PremiumSpinner() {
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={`sparkle-${i}`}
-          className="absolute w-1 h-1 rounded-full bg-white"
+          className={`absolute w-1 h-1 rounded-full ${isDarkMode ? "bg-white" : "bg-[#BE123C]"}`}
           style={{
             left: '50%',
             top: '50%',
@@ -231,7 +244,7 @@ function PremiumSpinner() {
 }
 
 // Animated Loading Text with Typewriter Effect
-function TypewriterText({ text, delay = 0 }) {
+function TypewriterText({ text, delay = 0, isDarkMode }) {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -256,7 +269,9 @@ function TypewriterText({ text, delay = 0 }) {
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.5, repeat: Infinity }}
-          className="inline-block w-0.5 h-6 bg-[#E0B3FF] ml-0.5"
+          className={`inline-block w-0.5 h-6 ml-0.5 ${
+            isDarkMode ? "bg-[#FDA4AF]" : "bg-[#BE123C]"
+          }`}
         />
       )}
     </motion.span>
@@ -264,12 +279,12 @@ function TypewriterText({ text, delay = 0 }) {
 }
 
 // Floating Tech Icons
-function FloatingTechIcons() {
+function FloatingTechIcons({ isDarkMode }) {
   const icons = [
-    { Icon: FaReact, color: '#61DAFB', label: 'React' },
+    { Icon: FaReact, color: '#00D8FF', label: 'React' },
     { Icon: SiJavascript, color: '#F7DF1E', label: 'JavaScript' },
     { Icon: SiTailwindcss, color: '#06B6D4', label: 'Tailwind' },
-    { Icon: SiFigma, color: '#A044FF', label: 'Figma' },
+    { Icon: SiFigma, color: '#FF007A', label: 'Figma' },
     { Icon: FaBolt, color: '#FFD700', label: 'Fast' },
     { Icon: FaFire, color: '#FF4500', label: 'Hot' },
   ];
@@ -299,14 +314,20 @@ function FloatingTechIcons() {
         >
           <div className="relative group">
             <div 
-              className="p-3 rounded-2xl backdrop-blur-sm bg-black/50 border border-white/10"
+              className={`p-3 rounded-2xl backdrop-blur-sm border transition-colors ${
+                isDarkMode 
+                  ? "bg-black/50 border-white/10 shadow-lg" 
+                  : "bg-white/80 border-[#be123c]/20 shadow-md"
+              }`}
               style={{ boxShadow: `0 0 30px ${color}20` }}
             >
               <Icon className="text-2xl sm:text-3xl" style={{ color }} />
             </div>
             {/* Tooltip */}
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-[10px] font-mono text-white/60 bg-black/80 px-2 py-0.5 rounded">
+              <span className={`text-[10px] font-mono px-2 py-0.5 rounded shadow ${
+                isDarkMode ? "bg-black/90 text-white/70" : "bg-white text-[#4c0519] border border-[#be123c]/20"
+              }`}>
                 {label}
               </span>
             </div>
@@ -318,7 +339,7 @@ function FloatingTechIcons() {
 }
 
 // Progress Rings
-function ProgressRings({ step }) {
+function ProgressRings({ step, isDarkMode }) {
   return (
     <div className="flex items-center gap-6">
       {[1, 2, 3].map((i) => (
@@ -333,9 +354,9 @@ function ProgressRings({ step }) {
             <svg className="w-10 h-10 -rotate-90">
               <defs>
                 <linearGradient id={`gradient-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#6A3093" />
-                  <stop offset="50%" stopColor="#A044FF" />
-                  <stop offset="100%" stopColor="#E0B3FF" />
+                  <stop offset="0%" stopColor="#E01E5A" />
+                  <stop offset="50%" stopColor="#FF007A" />
+                  <stop offset="100%" stopColor={isDarkMode ? "#FDA4AF" : "#BE123C"} />
                 </linearGradient>
               </defs>
               <circle
@@ -343,7 +364,7 @@ function ProgressRings({ step }) {
                 cy="20"
                 r="16"
                 fill="none"
-                stroke="#1e083c"
+                stroke={isDarkMode ? "#10030a" : "#fecdd3"}
                 strokeWidth="3"
               />
               <motion.circle
@@ -364,24 +385,26 @@ function ProgressRings({ step }) {
             <motion.div
               className="absolute inset-0 flex items-center justify-center text-xs font-bold"
               animate={{
-                color: i <= step ? '#E0B3FF' : '#4a4a4a',
+                color: i <= step ? (isDarkMode ? '#FDA4AF' : '#BE123C') : (isDarkMode ? '#4a4a4a' : '#fda4af'),
               }}
             >
               {i < step ? (
-                <FaCheck className="text-[#E0B3FF] text-xs" />
+                <FaCheck className={`text-xs ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />
               ) : i === step ? (
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 >
-                  <FaCircleNotch className="text-[#A044FF] text-xs" />
+                  <FaCircleNotch className={`text-xs ${isDarkMode ? "text-[#FF007A]" : "text-[#BE123C]"}`} />
                 </motion.div>
               ) : (
-                <span className="text-white/30 text-xs">{i}</span>
+                <span className={`text-xs ${isDarkMode ? "text-white/30" : "text-[#be123c]/40"}`}>{i}</span>
               )}
             </motion.div>
           </motion.div>
-          <div className="text-[8px] text-white/40 uppercase tracking-wider">
+          <div className={`text-[8px] uppercase tracking-wider ${
+            isDarkMode ? "text-white/40" : "text-[#881337]"
+          }`}>
             Step {i}
           </div>
         </div>
@@ -392,6 +415,7 @@ function ProgressRings({ step }) {
 
 export default function MultiStepLoader({ onFinish }) {
   const [step, setStep] = useState(1);
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     if (step === 1) {
@@ -409,17 +433,23 @@ export default function MultiStepLoader({ onFinish }) {
 
   if (step < 3) {
     return (
-      <div className="relative flex flex-col items-center justify-center min-h-screen bg-black overflow-hidden">
+      <div className={`relative flex flex-col items-center justify-center min-h-screen overflow-hidden transition-colors duration-500 ${
+        isDarkMode
+          ? "bg-[#0b0207] text-white"
+          : "bg-gradient-to-br from-[#FFF1F2] via-[#FFE4E6] to-[#FECDD3] text-[#4c0519]"
+      }`}>
         {/* Background Effects */}
-        <CosmicParticles />
-        <AuroraBackground />
-        <FloatingTechIcons />
+        <CosmicParticles isDarkMode={isDarkMode} />
+        <AuroraBackground isDarkMode={isDarkMode} />
+        <FloatingTechIcons isDarkMode={isDarkMode} />
 
         {/* Central Glow */}
         <motion.div
           className="absolute w-[500px] h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, #A044FF15, transparent 70%)',
+            background: isDarkMode
+              ? 'radial-gradient(circle, #FF007A15, transparent 70%)'
+              : 'radial-gradient(circle, #BE123C25, transparent 70%)',
           }}
           animate={{
             scale: [1, 1.2, 1],
@@ -441,14 +471,22 @@ export default function MultiStepLoader({ onFinish }) {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#6A3093] via-[#A044FF] to-[#E0B3FF] rounded-full blur-xl opacity-50" />
-            <div className="relative flex items-center gap-3 px-6 py-2 rounded-full bg-black/80 border border-[#A044FF]/40 backdrop-blur-sm">
-              <FaGem className="text-[#E0B3FF] text-sm animate-pulse" />
-              <span className="text-xs font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E0B3FF] to-[#A044FF] tracking-wider uppercase">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#E01E5A] via-[#FF007A] to-[#FDA4AF] rounded-full blur-xl opacity-50" />
+            <div className={`relative flex items-center gap-3 px-6 py-2 rounded-full border backdrop-blur-sm shadow-md transition-colors ${
+              isDarkMode 
+                ? "bg-black/80 border-[#FF007A]/40 text-[#FDA4AF]" 
+                : "bg-white/90 border-[#be123c]/40 text-[#BE123C]"
+            }`}>
+              <FaGem className={`text-sm animate-pulse ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />
+              <span className={`text-xs font-bold tracking-wider uppercase ${
+                isDarkMode
+                  ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FDA4AF] to-[#FF007A]"
+                  : "text-transparent bg-clip-text bg-gradient-to-r from-[#BE123C] to-[#E01E5A]"
+              }`}>
                 Premium Portfolio Experience
               </span>
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-[#E0B3FF]"
+                className={`w-1.5 h-1.5 rounded-full ${isDarkMode ? "bg-[#FDA4AF]" : "bg-[#BE123C]"}`}
                 animate={{ scale: [1, 1.5, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
               />
@@ -456,7 +494,7 @@ export default function MultiStepLoader({ onFinish }) {
           </motion.div>
 
           {/* Premium Spinner */}
-          <PremiumSpinner />
+          <PremiumSpinner isDarkMode={isDarkMode} />
 
           {/* Loading Text with Typewriter */}
           <div className="space-y-2">
@@ -467,35 +505,42 @@ export default function MultiStepLoader({ onFinish }) {
               transition={{ duration: 0.6 }}
               className="text-3xl sm:text-4xl font-bold"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E0B3FF] via-[#A044FF] to-[#6A3093]">
+              <span className={`text-transparent bg-clip-text bg-gradient-to-r ${
+                isDarkMode 
+                  ? "from-[#FDA4AF] via-[#FF007A] to-[#E01E5A]" 
+                  : "from-[#be123c] via-[#FF007A] to-[#881337]"
+              }`}>
                 <TypewriterText 
                   text={step === 1 ? "Crafting Your Experience" : "Almost Ready..."} 
                   delay={200}
+                  isDarkMode={isDarkMode}
                 />
               </span>
             </motion.div>
             
             <motion.p
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
+              animate={{ opacity: 0.8 }}
               transition={{ delay: 0.8 }}
-              className="text-sm text-gray-400"
+              className={`text-sm ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}
             >
               {step === 1 ? "Loading cutting-edge portfolio components" : "Finalizing the wow factor"}
             </motion.p>
           </div>
 
           {/* Progress Rings */}
-          <ProgressRings step={step} />
+          <ProgressRings step={step} isDarkMode={isDarkMode} />
 
           {/* Loading Bar */}
           <motion.div
-            className="w-64 h-1 rounded-full bg-[#1e083c] overflow-hidden"
+            className={`w-64 h-1 rounded-full overflow-hidden ${
+              isDarkMode ? "bg-[#10030a]" : "bg-[#fecdd3]"
+            }`}
           >
             <motion.div
               className="h-full rounded-full"
               style={{
-                background: 'linear-gradient(90deg, #6A3093, #A044FF, #E0B3FF)',
+                background: 'linear-gradient(90deg, #E01E5A, #FF007A, #FDA4AF)',
               }}
               animate={{
                 width: step === 1 ? '45%' : '100%',
@@ -509,20 +554,22 @@ export default function MultiStepLoader({ onFinish }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="flex items-center gap-4 text-xs text-gray-500"
+            className={`flex items-center gap-4 text-xs ${
+              isDarkMode ? "text-gray-500" : "text-[#881337]"
+            }`}
           >
             <span className="flex items-center gap-1.5">
-              <FaCrown className="text-[#E0B3FF] text-[10px]" />
+              <FaCrown className={`text-[10px] ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />
               <span>Premium Quality</span>
             </span>
-            <span className="w-px h-3 bg-gray-700" />
+            <span className={`w-px h-3 ${isDarkMode ? "bg-gray-700" : "bg-[#fecdd3]"}`} />
             <span className="flex items-center gap-1.5">
-              <FaStar className="text-[#A044FF] text-[10px]" />
+              <FaStar className={`text-[10px] ${isDarkMode ? "text-[#FF007A]" : "text-[#BE123C]"}`} />
               <span>5/5 Experience</span>
             </span>
-            <span className="w-px h-3 bg-gray-700" />
+            <span className={`w-px h-3 ${isDarkMode ? "bg-gray-700" : "bg-[#fecdd3]"}`} />
             <span className="flex items-center gap-1.5">
-              <FaInfinity className="text-[#E0B3FF] text-[10px]" />
+              <FaInfinity className={`text-[10px] ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />
               <span>Infinite Detail</span>
             </span>
           </motion.div>

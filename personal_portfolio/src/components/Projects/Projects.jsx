@@ -20,6 +20,7 @@ import {
   FaDesktop,
   FaCrown,
 } from "react-icons/fa";
+import { useTheme } from "../../context/ThemeContext";
 
 // Images import
 import CodeAssistant from "../../assets/Code Assistant Chatbot.png";
@@ -48,46 +49,16 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [copiedCode, setCopiedCode] = useState(false);
-  const [flagshipIndex, setFlagshipIndex] = useState(0);
+  const { isDarkMode } = useTheme();
 
   const projects = [
-    {
-      title: "Code Assistant Chatbot with RAG",
-      category: "AI/ML",
-      featured: true,
-      tagline: "AI Retrieval-Augmented Generation & Code Debugging Assistant",
-      description:
-        "An intelligent AI assistant built with LangGraph and FAISS Vector RAG that generates, explains, and debugs complex source code from natural language prompts.",
-      images: [CodeAssistant],
-      languages: ["Python", "LangGraph", "FAISS RAG", "Transformers", "Gradio"],
-      projectLink: "https://github.com/shahed137003/Code-Generation-using-RAG.git",
-      liveDemo: null,
-      architectureFlow: [
-        "Natural Prompt Query",
-        "LangGraph Workflow Router",
-        "FAISS Vector RAG Search",
-        "Code Solution Output",
-      ],
-      metrics: [
-        { label: "AI Engine", value: "LangGraph Multi-Step" },
-        { label: "Vector Search", value: "FAISS Semantic Index" },
-        { label: "Response Mode", value: "Code + Explanation" },
-      ],
-      codeSnippet: `# LangGraph RAG Code Generation Workflow
-def generate_code_solution(user_prompt: str, retriever) -> str:
-    docs = retriever.get_relevant_documents(user_prompt)
-    context = "\\n".join([d.page_content for d in docs])
-    
-    prompt = f"Context:\\n{context}\\n\\nTask:\\n{user_prompt}\\nCode Solution:"
-    return llm_chain.invoke(prompt)`,
-    },
     {
       title: "Distributed Online Marketplace",
       category: "Web",
       featured: true,
-      tagline: "Distributed Full-Stack E-Commerce & Microservice Architecture",
+      tagline: "Distributed Frontend E-Commerce & Microservice Architecture",
       description:
-        "A scalable distributed online marketplace built with React frontend and low-latency .NET Core C# microservices and relational SQL databases.",
+        "A scalable distributed online marketplace built with React frontend, low-latency .NET Core C# microservices, and relational SQL databases.",
       images: [MarketplaceApp, MarketplaceApp2, MarketplaceApp3, MarketplaceApp4],
       languages: ["React", "JavaScript", ".NET Core", "C#", "SQL Server"],
       projectLink:
@@ -117,6 +88,36 @@ public class ProductsController : ControllerBase {
         return Ok(items);
     }
 }`,
+    },
+    {
+      title: "Code Assistant Chatbot with RAG",
+      category: "AI/ML",
+      featured: true,
+      tagline: "AI Retrieval-Augmented Generation & Code Debugging Assistant",
+      description:
+        "An intelligent AI assistant built with LangGraph and FAISS Vector RAG that generates, explains, and debugs complex source code from natural language prompts.",
+      images: [CodeAssistant],
+      languages: ["Python", "LangGraph", "FAISS RAG", "Transformers", "Gradio"],
+      projectLink: "https://github.com/shahed137003/Code-Generation-using-RAG.git",
+      liveDemo: null,
+      architectureFlow: [
+        "Natural Prompt Query",
+        "LangGraph Workflow Router",
+        "FAISS Vector RAG Search",
+        "Code Solution Output",
+      ],
+      metrics: [
+        { label: "AI Engine", value: "LangGraph Multi-Step" },
+        { label: "Vector Search", value: "FAISS Semantic Index" },
+        { label: "Response Mode", value: "Code + Explanation" },
+      ],
+      codeSnippet: `# LangGraph RAG Code Generation Workflow
+def generate_code_solution(user_prompt: str, retriever) -> str:
+    docs = retriever.get_relevant_documents(user_prompt)
+    context = "\\n".join([d.page_content for d in docs])
+    
+    prompt = f"Context:\\n{context}\\n\\nTask:\\n{user_prompt}\\nCode Solution:"
+    return llm_chain.invoke(prompt)`,
     },
     {
       title: "Velora E-Commerce Storefront",
@@ -253,22 +254,19 @@ public:
     },
   ];
 
-  const flagshipProjects = projects.filter((p) => p.featured);
-  const currentFlagship = flagshipProjects[flagshipIndex] || projects[0];
-
   const categories = [
     { id: "All", label: "All Projects", icon: <FaLayerGroup />, count: projects.length },
+    {
+      id: "Web",
+      label: "Frontend & Web",
+      icon: <FaLaptopCode />,
+      count: projects.filter((p) => p.category === "Web").length,
+    },
     {
       id: "AI/ML",
       label: "AI / ML Systems",
       icon: <FaBrain />,
       count: projects.filter((p) => p.category === "AI/ML").length,
-    },
-    {
-      id: "Web",
-      label: "Full-Stack Web",
-      icon: <FaLaptopCode />,
-      count: projects.filter((p) => p.category === "Web").length,
     },
     {
       id: "Desktop",
@@ -298,11 +296,22 @@ public:
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
+  // Reusable background container style featuring clean pink grid pattern & ambient glows
+  const cardBgStyle = isDarkMode
+    ? "bg-gradient-to-br from-[#180510]/95 via-[#10030a]/95 to-[#0b0207]/95 border border-[#FF007A]/45 hover:border-[#FDA4AF] shadow-[0_0_25px_rgba(255,0,122,0.25)] hover:shadow-[0_0_40px_rgba(255,0,122,0.45)] text-white sign-language-grid-bg"
+    : "bg-gradient-to-br from-[#ffffff] via-[#fff1f2] to-[#fecdd3] border-2 border-[#be123c]/80 hover:border-[#881337] shadow-[0_12px_35px_rgba(225,29,72,0.15)] hover:shadow-[0_20px_50px_rgba(225,29,72,0.3)] text-[#4c0519] sign-language-grid-bg";
+
   return (
-    <section className="text-white relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16" id="projectSection">
-      {/* Old Purple Ambient Glows */}
-      <div className="absolute top-1/4 left-10 w-80 h-80 bg-[#6A3093]/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-10 w-96 h-96 bg-[#A044FF]/20 rounded-full blur-3xl pointer-events-none" />
+    <section className={`relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16 transition-colors duration-500 ${
+      isDarkMode ? "text-white" : "text-[#2e0854]"
+    }`} id="projectSection">
+      {/* Rose Carmine Ambient Glows */}
+      <div className={`absolute top-1/4 left-10 w-80 h-80 rounded-full blur-3xl pointer-events-none ${
+        isDarkMode ? "bg-[#FF007A]/25 animate-pulse" : "bg-[#fda4af]/20"
+      }`} />
+      <div className={`absolute bottom-1/3 right-10 w-96 h-96 rounded-full blur-3xl pointer-events-none ${
+        isDarkMode ? "bg-[#E01E5A]/20" : "bg-[#fecdd3]/15"
+      }`} />
 
       {/* Section Title */}
       <motion.div
@@ -312,155 +321,26 @@ public:
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1e083c] border border-[#A044FF]/40 text-xs sm:text-sm font-semibold text-[#E0B3FF] mb-3 shadow-[0_0_15px_rgba(160,68,255,0.3)]">
-          <FaCrown className="text-[#E0B3FF]" />
-          <span>Engineering Systems & AI Portfolio</span>
+        <span className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-semibold mb-3 shadow-sm ${
+          isDarkMode
+            ? "bg-[#10030a] border-[#FF007A]/40 text-[#FDA4AF] shadow-[0_0_15px_rgba(255,0,122,0.3)]"
+            : "bg-[#ffe4e6] border-[#be123c]/30 text-[#BE123C]"
+        }`}>
+          <FaCrown className={isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"} />
+          <span>Frontend Engineering & AI Portfolio</span>
         </span>
 
-        <h1 className="text-4xl sm:text-5xl md:text-[68px] font-extrabold font-serif text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E0B3FF] to-[#A044FF] tracking-wide">
+        <h1 className="text-4xl sm:text-5xl md:text-[68px] font-extrabold font-serif text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-[#FF007A] to-[#E01E5A] dark:from-white dark:via-[#FDA4AF] dark:to-[#FF007A] tracking-wide">
           Featured Projects
         </h1>
-        <p className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base mt-3">
-          Explore production-grade full-stack web applications, AI/RAG assistants, and low-level C++ desktop software.
+        <p className={`max-w-2xl mx-auto text-sm sm:text-base mt-3 ${
+          isDarkMode ? "text-gray-300" : "text-[#881337]"
+        }`}>
+          Explore production-grade frontend web applications, interactive React interfaces, and intelligent AI assistants.
         </p>
       </motion.div>
 
-      {/* 1. SHOWSTOPPING FLAGSHIP PROJECT SPOTLIGHT HERO STAGE (PURE OLD PURPLE) */}
-      <motion.div
-        className="max-w-6xl mx-auto mb-16 bg-gradient-to-br from-[#180630]/95 via-[#120324]/95 to-[#0e021e]/95 border-2 border-[#A044FF]/60 rounded-3xl p-6 sm:p-8 shadow-[0_0_45px_rgba(160,68,255,0.35)] relative overflow-hidden"
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-      >
-        {/* Spotlight Top Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#A044FF]/35 pb-4 mb-6">
-          <div className="flex items-center gap-2.5">
-            <span className="px-3 py-1 rounded-full bg-[#A044FF] text-white text-xs font-bold shadow-md">
-              ★ Flagship Spotlight
-            </span>
-            <span className="text-xs font-semibold text-[#E0B3FF] uppercase">
-              {currentFlagship.category} System
-            </span>
-          </div>
-
-          {/* Switcher tabs among flagship projects */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-purple-300 font-semibold hidden sm:inline">
-              Spotlight Project:
-            </span>
-            {flagshipProjects.map((p, idx) => (
-              <button
-                key={p.title}
-                onClick={() => setFlagshipIndex(idx)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                  flagshipIndex === idx
-                    ? "bg-gradient-to-r from-[#6A3093] to-[#A044FF] text-white shadow-md border border-[#E0B3FF]/40"
-                    : "bg-[#130326] text-purple-300 border border-[#A044FF]/30 hover:border-[#A044FF]"
-                }`}
-              >
-                #{idx + 1}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Spotlight Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Preview Image */}
-          <div
-            className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#A044FF]/40 shadow-2xl cursor-pointer group/spotlight h-64 sm:h-80"
-            onClick={() => openProject(currentFlagship)}
-          >
-            <img
-              src={currentFlagship.images[0]}
-              alt={currentFlagship.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover/spotlight:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0e021e] via-black/30 to-transparent opacity-80 flex flex-col justify-end p-5">
-              <span className="text-xs font-semibold text-[#E0B3FF] mb-1">
-                Click to Open Full Image Gallery ({currentFlagship.images.length} screenshots)
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
-                {currentFlagship.title}
-              </h3>
-            </div>
-          </div>
-
-          {/* Right Spotlight Details */}
-          <div className="lg:col-span-6 space-y-5">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#E0B3FF]">
-                {currentFlagship.tagline}
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-                {currentFlagship.title}
-              </h2>
-              <p className="text-gray-300 text-sm leading-relaxed mt-2.5">
-                {currentFlagship.description}
-              </p>
-            </div>
-
-            {/* Tech Stack Pills */}
-            <div className="flex flex-wrap gap-1.5">
-              {currentFlagship.languages.map((lang, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 rounded-lg text-xs font-bold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/40"
-                >
-                  {lang}
-                </span>
-              ))}
-            </div>
-
-            {/* Architecture Highlights */}
-            <div className="grid grid-cols-3 gap-3 p-3.5 rounded-2xl bg-[#130326] border border-[#A044FF]/35">
-              {currentFlagship.metrics?.map((m, idx) => (
-                <div key={idx} className="text-center">
-                  <span className="text-[10px] text-gray-400 uppercase font-semibold block">
-                    {m.label}
-                  </span>
-                  <span className="text-xs font-bold text-[#E0B3FF] mt-0.5 block">
-                    {m.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3 pt-2">
-              <button
-                onClick={() => setInspectProject(currentFlagship)}
-                className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(160,68,255,0.5)] flex items-center justify-center gap-2"
-              >
-                <FaBolt /> Inspect Architecture & Code
-              </button>
-
-              <a
-                href={currentFlagship.projectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3 rounded-xl bg-[#1e083c] hover:bg-[#A044FF] text-[#E0B3FF] hover:text-white border border-[#A044FF]/40 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2"
-              >
-                <FaGithub /> GitHub Repository
-              </a>
-
-              {currentFlagship.liveDemo && (
-                <a
-                  href={currentFlagship.liveDemo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-3 rounded-xl bg-[#130326] hover:bg-[#A044FF]/30 text-white border border-[#A044FF]/40 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2"
-                >
-                  <FaExternalLinkAlt /> Live Demo
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* 2. INTERACTIVE CATEGORY FILTER & SEARCH BAR */}
+      {/* INTERACTIVE CATEGORY FILTER & SEARCH BAR */}
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 mb-12">
         <div className="flex justify-center gap-2.5 flex-wrap">
           {categories.map((cat) => (
@@ -469,13 +349,17 @@ public:
               onClick={() => setActiveCategory(cat.id)}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all ${
                 activeCategory === cat.id
-                  ? "bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] text-white shadow-[0_0_20px_rgba(160,68,255,0.6)] scale-105 border border-[#E0B3FF]/40"
-                  : "bg-[#140428]/80 text-purple-200 hover:text-white border border-[#A044FF]/30 hover:border-[#A044FF]"
+                  ? "bg-gradient-to-r from-[#E01E5A] via-[#F43F5E] to-[#FF007A] text-white shadow-[0_0_20px_rgba(255,0,122,0.6)] scale-105 border border-[#FDA4AF]/40"
+                  : isDarkMode
+                  ? "bg-[#10030a]/80 text-[#FDA4AF] hover:text-white border border-[#FF007A]/30 hover:border-[#FF007A]"
+                  : "bg-[#ffe4e6] text-[#BE123C] hover:text-[#4c0519] border border-[#be123c]/30 hover:border-[#be123c]"
               }`}
             >
               <span className="text-sm">{cat.icon}</span>
               <span>{cat.label}</span>
-              <span className="px-2 py-0.5 rounded-full bg-[#0e021e] text-[11px] text-[#E0B3FF]">
+              <span className={`px-2 py-0.5 rounded-full text-[11px] ${
+                isDarkMode ? "bg-[#0b0207] text-[#FDA4AF]" : "bg-[#fecdd3] text-[#BE123C]"
+              }`}>
                 {cat.count}
               </span>
             </button>
@@ -483,40 +367,48 @@ public:
         </div>
 
         <div className="relative w-full sm:w-72">
-          <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-400 text-sm" />
+          <FaSearch className={`absolute left-4 top-1/2 -translate-y-1/2 text-sm ${
+            isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+          }`} />
           <input
             type="text"
             placeholder="Search projects or tech stack..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-2.5 rounded-2xl bg-[#140428]/90 border border-[#A044FF]/40 text-sm text-white placeholder-purple-300 focus:outline-none focus:border-[#E0B3FF] focus:shadow-[0_0_15px_rgba(160,68,255,0.4)]"
+            className={`w-full pl-11 pr-4 py-2.5 rounded-2xl border text-sm transition-all focus:outline-none ${
+              isDarkMode
+                ? "bg-[#10030a]/90 border-[#FF007A]/40 text-white placeholder-pink-300 focus:border-[#FDA4AF] focus:shadow-[0_0_15px_rgba(255,0,122,0.4)]"
+                : "bg-[#ffffff] border-[#be123c]/40 text-[#4c0519] placeholder-pink-400 focus:border-[#be123c] focus:shadow-[0_0_15px_rgba(225,29,72,0.3)]"
+            }`}
           />
         </div>
       </div>
 
-      {/* 3. SHOWSTOPPING AMETHYST GLASSMORPHIC PROJECT GRID */}
+      {/* SHOWSTOPPING ROSE CARMINE GLASSMORPHIC PROJECT GRID */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, idx) => (
             <motion.div
               key={project.title}
               layout
-              initial={{ opacity: 0, scale: 0.94 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
-              transition={{ duration: 0.35 }}
-              className="relative flex flex-col justify-between h-full w-full max-w-[420px] rounded-3xl bg-gradient-to-br from-[#180630]/95 via-[#120324]/95 to-[#0e021e]/95 border border-[#A044FF]/45 hover:border-[#E0B3FF] shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(160,68,255,0.45)] overflow-hidden group"
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.45 }}
+              className={`w-full max-w-sm rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 group relative flex flex-col justify-between ${cardBgStyle}`}
             >
+
+
               {project.featured && (
-                <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#A044FF] text-white text-xs font-bold shadow-lg">
-                  <FaStar className="text-xs" /> Featured
+                <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white text-xs font-bold shadow-lg border border-[#FDA4AF]/40">
+                  <FaStar className="text-xs text-yellow-300" /> {idx === 0 ? "★ Main Project" : "Featured"}
                 </div>
               )}
 
-              <div>
+              <div className="relative z-10">
                 {/* Image Gallery Trigger */}
                 <div
-                  className="relative h-56 overflow-hidden cursor-pointer group/img"
+                  className="relative h-56 overflow-hidden cursor-pointer group/img border-b border-[#FF007A]/25"
                   onClick={() => openProject(project)}
                 >
                   <img
@@ -524,8 +416,8 @@ public:
                     src={project.images[0]}
                     alt={project.title}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e021e] via-black/40 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="px-4 py-2 rounded-full bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] text-white text-xs font-bold shadow-lg">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0207] via-black/40 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="px-4 py-2 rounded-full bg-gradient-to-r from-[#E01E5A] via-[#F43F5E] to-[#FF007A] text-white text-xs font-bold shadow-lg">
                       Open Gallery ({project.images.length}) 👀
                     </span>
                   </div>
@@ -533,31 +425,43 @@ public:
 
                 <div className="px-6 pt-5">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-[#E0B3FF] uppercase tracking-wider">
+                    <span className={`text-xs font-bold uppercase tracking-wider ${
+                      isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                    }`}>
                       {project.category}
                     </span>
                   </div>
 
                   <h2
-                    className="text-xl font-extrabold text-white group-hover:text-[#E0B3FF] transition-colors cursor-pointer"
+                    className={`text-xl font-extrabold transition-colors cursor-pointer ${
+                      isDarkMode
+                        ? "text-white group-hover:text-[#FDA4AF]"
+                        : "text-[#4c0519] group-hover:text-[#be123c]"
+                    }`}
                     onClick={() => openProject(project)}
                   >
                     {project.title}
                   </h2>
 
-                  <p className="text-gray-300 text-sm leading-relaxed mt-2 line-clamp-3">
+                  <p className={`text-sm leading-relaxed mt-2 line-clamp-3 ${
+                    isDarkMode ? "text-gray-300" : "text-[#881337]"
+                  }`}>
                     {project.description}
                   </p>
                 </div>
               </div>
 
-              <div className="px-6 pb-6 pt-4">
+              <div className="px-6 pb-6 pt-4 relative z-10">
                 {/* Stack Pills */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {project.languages.map((lang, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-[#1e083c] text-[#E0B3FF] border border-[#A044FF]/35"
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border ${
+                        isDarkMode
+                          ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/35"
+                          : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                      }`}
                     >
                       {lang}
                     </span>
@@ -568,7 +472,11 @@ public:
                 <button
                   type="button"
                   onClick={() => setInspectProject(project)}
-                  className="w-full mb-3 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs bg-[#1e083c] hover:bg-[#A044FF] text-[#E0B3FF] hover:text-white border border-[#A044FF]/50 transition-all shadow-sm"
+                  className={`w-full mb-3 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs transition-all shadow-sm ${
+                    isDarkMode
+                      ? "bg-[#10030a] hover:bg-[#FF007A] text-[#FDA4AF] hover:text-white border border-[#FF007A]/50"
+                      : "bg-[#ffe4e6] hover:bg-[#be123c] text-[#BE123C] hover:text-white border border-[#be123c]/40"
+                  }`}
                 >
                   <FaBolt className="text-xs" /> Inspect Architecture & Code
                 </button>
@@ -578,7 +486,11 @@ public:
                     href={project.projectLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs text-white bg-[#130326] border border-[#A044FF]/40 hover:bg-[#A044FF]/30 transition-all shadow-sm"
+                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs transition-all shadow-sm ${
+                      isDarkMode
+                        ? "text-white bg-[#10030a] border border-[#FF007A]/40 hover:bg-[#FF007A]/30"
+                        : "text-[#4c0519] bg-[#fff1f2] border border-[#be123c]/30 hover:bg-[#be123c]/20"
+                    }`}
                   >
                     <FaGithub size={15} /> Source Code
                   </a>
@@ -588,7 +500,7 @@ public:
                       href={project.liveDemo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] hover:shadow-[0_0_15px_#A044FF] transition-all shadow-sm"
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-[#E01E5A] via-[#F43F5E] to-[#FF007A] hover:shadow-[0_0_15px_#FF007A] transition-all shadow-sm"
                     >
                       <FaExternalLinkAlt size={13} /> Live Demo
                     </a>
@@ -600,7 +512,7 @@ public:
         </AnimatePresence>
       </div>
 
-      {/* INTERACTIVE ARCHITECTURE & CODE DEEP-DIVE MODAL (PURE OLD PURPLE) */}
+      {/* INTERACTIVE ARCHITECTURE & CODE DEEP-DIVE MODAL */}
       <AnimatePresence>
         {inspectProject && (
           <motion.div
@@ -611,7 +523,11 @@ public:
             onClick={() => setInspectProject(null)}
           >
             <motion.div
-              className="relative max-w-4xl w-full rounded-3xl overflow-hidden shadow-[0_0_45px_rgba(160,68,255,0.5)] border border-[#A044FF]/60 bg-[#0e021e] max-h-[90vh] overflow-y-auto"
+              className={`relative max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border max-h-[90vh] overflow-y-auto ${
+                isDarkMode
+                  ? "border-[#FF007A]/60 bg-[#0b0207] text-white shadow-[0_0_45px_rgba(255,0,122,0.5)]"
+                  : "border-[#be123c]/50 bg-[#ffffff] text-[#4c0519] shadow-[0_15px_50px_rgba(225,29,72,0.3)]"
+              }`}
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
@@ -619,16 +535,24 @@ public:
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-[#A044FF]/30 bg-[#16032e]/90">
+              <div className={`flex items-center justify-between p-6 border-b ${
+                isDarkMode ? "border-[#FF007A]/30 bg-[#180510]/90" : "border-[#be123c]/20 bg-[#fff1f2]"
+              }`}>
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-[#1e0a3c] border border-[#A044FF]/50 text-[#E0B3FF]">
+                  <div className={`p-2.5 rounded-xl border ${
+                    isDarkMode ? "bg-[#10030a] border-[#FF007A]/50 text-[#FDA4AF]" : "bg-[#ffe4e6] border-[#be123c]/40 text-[#BE123C]"
+                  }`}>
                     <FaMicrochip className="text-xl" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-purple-300 uppercase">
+                    <span className={`text-xs font-bold uppercase ${
+                      isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                    }`}>
                       Architecture & Source Inspection
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    <h3 className={`text-xl sm:text-2xl font-bold ${
+                      isDarkMode ? "text-white" : "text-[#4c0519]"
+                    }`}>
                       {inspectProject.title}
                     </h3>
                   </div>
@@ -636,7 +560,9 @@ public:
 
                 <button
                   onClick={() => setInspectProject(null)}
-                  className="bg-[#1e0a3c] text-white p-2.5 rounded-full hover:bg-[#A044FF] transition-all"
+                  className={`p-2.5 rounded-full transition-all ${
+                    isDarkMode ? "bg-[#10030a] text-white hover:bg-[#FF007A]" : "bg-[#ffe4e6] text-[#4c0519] hover:bg-[#be123c] hover:text-white"
+                  }`}
                 >
                   <FaTimes size={16} />
                 </button>
@@ -645,19 +571,29 @@ public:
               <div className="p-6 sm:p-8 space-y-7">
                 {/* 1. Architecture Flow Pipeline */}
                 <div>
-                  <h4 className="text-sm font-bold text-[#E0B3FF] uppercase tracking-wider mb-3">
+                  <h4 className={`text-sm font-bold uppercase tracking-wider mb-3 ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
                     System Architecture Pipeline
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                     {inspectProject.architectureFlow?.map((step, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-2xl bg-[#180630] border border-[#A044FF]/40 relative flex flex-col justify-center text-center"
+                        className={`p-3.5 rounded-2xl border relative flex flex-col justify-center text-center ${
+                          isDarkMode
+                            ? "bg-[#10030a] border-[#FF007A]/40"
+                            : "bg-[#ffe4e6] border-[#be123c]/30"
+                        }`}
                       >
-                        <span className="text-[10px] font-mono text-[#E0B3FF] mb-1">
+                        <span className={`text-[10px] font-mono mb-1 ${
+                          isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                        }`}>
                           STEP {idx + 1}
                         </span>
-                        <span className="text-xs sm:text-sm font-bold text-white">
+                        <span className={`text-xs sm:text-sm font-bold ${
+                          isDarkMode ? "text-white" : "text-[#4c0519]"
+                        }`}>
                           {step}
                         </span>
                       </div>
@@ -667,17 +603,27 @@ public:
 
                 {/* 2. Key Engineering Metrics */}
                 <div>
-                  <h4 className="text-sm font-bold text-[#E0B3FF] uppercase tracking-wider mb-3">
+                  <h4 className={`text-sm font-bold uppercase tracking-wider mb-3 ${
+                    isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                  }`}>
                     Key Performance & System Metrics
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {inspectProject.metrics?.map((m, idx) => (
                       <div
                         key={idx}
-                        className="p-4 rounded-2xl bg-[#140428] border border-[#A044FF]/30 flex items-center justify-between"
+                        className={`p-4 rounded-2xl border flex items-center justify-between ${
+                          isDarkMode
+                            ? "bg-[#10030a] border-[#FF007A]/30"
+                            : "bg-[#fff1f2] border-[#be123c]/25"
+                        }`}
                       >
-                        <span className="text-xs text-gray-300">{m.label}</span>
-                        <span className="text-xs sm:text-sm font-bold text-[#E0B3FF]">
+                        <span className={`text-xs ${
+                          isDarkMode ? "text-gray-300" : "text-[#881337]"
+                        }`}>{m.label}</span>
+                        <span className={`text-xs sm:text-sm font-bold ${
+                          isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                        }`}>
                           {m.value}
                         </span>
                       </div>
@@ -688,30 +634,42 @@ public:
                 {/* 3. Core Highlight Source Code */}
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-sm font-bold text-[#E0B3FF] uppercase tracking-wider flex items-center gap-2">
+                    <h4 className={`text-sm font-bold uppercase tracking-wider flex items-center gap-2 ${
+                      isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"
+                    }`}>
                       <FaCode /> Core Algorithmic Snippet
                     </h4>
                     <button
                       onClick={() => copyCodeToClipboard(inspectProject.codeSnippet)}
-                      className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#1e0a3c] hover:bg-[#A044FF] text-xs font-semibold text-[#E0B3FF] hover:text-white transition-all"
+                      className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                        isDarkMode
+                          ? "bg-[#10030a] hover:bg-[#FF007A] text-[#FDA4AF] hover:text-white"
+                          : "bg-[#ffe4e6] hover:bg-[#be123c] text-[#BE123C] hover:text-white"
+                      }`}
                     >
                       {copiedCode ? <FaCheck /> : <FaCopy />}
                       <span>{copiedCode ? "Copied Code" : "Copy Snippet"}</span>
                     </button>
                   </div>
 
-                  <pre className="p-4 sm:p-5 rounded-2xl bg-[#080112] border border-[#A044FF]/50 text-xs font-mono text-purple-200 overflow-x-auto leading-relaxed">
+                  <pre className={`p-4 sm:p-5 rounded-2xl border text-xs font-mono overflow-x-auto leading-relaxed ${
+                    isDarkMode
+                      ? "bg-[#0b0207] border-[#FF007A]/50 text-pink-200"
+                      : "bg-[#4c0519] border-[#be123c]/40 text-[#ffe4e6]"
+                  }`}>
                     {inspectProject.codeSnippet}
                   </pre>
                 </div>
 
                 {/* Action Footer */}
-                <div className="flex justify-end gap-3 pt-3 border-t border-[#A044FF]/30">
+                <div className={`pt-3 border-t flex justify-end gap-3 ${
+                  isDarkMode ? "border-[#FF007A]/30" : "border-[#be123c]/20"
+                }`}>
                   <a
                     href={inspectProject.projectLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#6A3093] via-[#8E2DE2] to-[#A044FF] text-white font-bold text-xs sm:text-sm shadow-md"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#E01E5A] via-[#F43F5E] to-[#FF007A] text-white font-bold text-xs sm:text-sm shadow-md"
                   >
                     Open Full GitHub Repository →
                   </a>
@@ -733,7 +691,11 @@ public:
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(160,68,255,0.4)] border border-[#A044FF]/50 bg-[#120324]"
+              className={`relative max-w-4xl w-full rounded-2xl overflow-hidden border shadow-2xl ${
+                isDarkMode
+                  ? "border-[#FF007A]/50 bg-[#10030a]"
+                  : "border-[#be123c]/40 bg-[#fff1f2]"
+              }`}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -741,7 +703,7 @@ public:
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute top-4 right-4 z-30 bg-black/70 text-white p-2.5 rounded-full hover:bg-[#A044FF] transition-all"
+                className="absolute top-4 right-4 z-30 bg-black/70 text-white p-2.5 rounded-full hover:bg-[#FF007A] transition-all"
                 onClick={() => setSelectedProject(null)}
               >
                 <FaTimes size={18} />
@@ -769,7 +731,7 @@ public:
                           prev === 0 ? selectedProject.images.length - 1 : prev - 1
                         )
                       }
-                      className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full hover:bg-[#A044FF] transition-all"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full hover:bg-[#FF007A] transition-all"
                     >
                       <FaChevronLeft size={20} />
                     </button>
@@ -779,7 +741,7 @@ public:
                           prev === selectedProject.images.length - 1 ? 0 : prev + 1
                         )
                       }
-                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full hover:bg-[#A044FF] transition-all"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-3 rounded-full hover:bg-[#FF007A] transition-all"
                     >
                       <FaChevronRight size={20} />
                     </button>
@@ -789,7 +751,9 @@ public:
 
               <div className="p-6 sm:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className={`text-2xl font-bold ${
+                    isDarkMode ? "text-white" : "text-[#4c0519]"
+                  }`}>
                     {selectedProject.title}
                   </h3>
                   <div className="flex gap-3">
@@ -797,14 +761,20 @@ public:
                       href={selectedProject.projectLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#1e0a3c] border border-[#A044FF]/40 text-white hover:bg-[#A044FF]/30 transition-all flex items-center gap-2"
+                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border transition-all flex items-center gap-2 ${
+                        isDarkMode
+                          ? "bg-[#10030a] border-[#FF007A]/40 text-white hover:bg-[#FF007A]/30"
+                          : "bg-[#ffe4e6] border-[#be123c]/30 text-[#4c0519] hover:bg-[#be123c]/20"
+                      }`}
                     >
                       <FaGithub /> GitHub Code
                     </a>
                   </div>
                 </div>
 
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                <p className={`text-sm sm:text-base leading-relaxed ${
+                  isDarkMode ? "text-gray-300" : "text-[#881337]"
+                }`}>
                   {selectedProject.description}
                 </p>
               </div>
