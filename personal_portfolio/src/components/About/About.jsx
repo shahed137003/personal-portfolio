@@ -92,7 +92,7 @@ export default function About() {
           className={`inline-block px-5 py-1.5 rounded-full text-xs sm:text-sm font-bold mb-3 uppercase tracking-wider ${
             isDarkMode
               ? "bg-[#10030a] border border-[#FF007A]/50 text-[#FDA4AF] shadow-[0_0_20px_rgba(255,0,122,0.35)]"
-              : "bg-[#ffe4e6] border border-[#be123c]/30 text-[#BE123C]"
+              : "bg-[#ffe4e6] border border-[#be123c]/30 text-[#800020]"
           }`}
         >
           ✦ Engineering Showcase & Biography ✦
@@ -288,9 +288,9 @@ export default function About() {
             </p>
           </div>
 
-          {/* Perspective Selector Pills */}
+          {/* Perspective Selector & Active Content */}
           <div className="pt-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-3">
+            <span className={`text-xs font-bold uppercase tracking-wider block mb-3 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>
               Engineering Focus & Specialization
             </span>
             <div className="flex flex-wrap gap-2.5 mb-6">
@@ -302,8 +302,8 @@ export default function About() {
                     activeTab === key
                       ? "bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white shadow-[0_0_20px_rgba(255,0,122,0.5)] scale-105"
                       : isDarkMode
-                      ? "bg-[#10030a]/80 text-[#FDA4AF] border border-[#FF007A]/30 hover:border-[#FF007A]"
-                      : "bg-[#ffe4e6] text-[#BE123C] border border-[#be123c]/30 hover:border-[#be123c]"
+                      ? "bg-[#10030a]/60 text-[#FDA4AF] border border-[#FF007A]/30 hover:border-[#FF007A]"
+                      : "bg-[#ffe4e6]/60 text-[#BE123C] border border-[#be123c]/30 hover:border-[#be123c]"
                   }`}
                 >
                   {perspectives[key].title}
@@ -324,7 +324,7 @@ export default function About() {
                 <div className="flex items-center gap-3">
                   {currentPerspective.icon}
                   <div>
-                    <div className="text-xs font-bold uppercase text-[#FDA4AF]">
+                    <div className={`text-xs font-bold uppercase ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`}>
                       {currentPerspective.subtitle}
                     </div>
                     <div className={`text-lg font-extrabold ${isDarkMode ? "text-white" : "text-[#4c0519]"}`}>
@@ -344,8 +344,8 @@ export default function About() {
                       key={skill}
                       className={`px-3 py-1 rounded-xl text-xs font-semibold border ${
                         isDarkMode
-                          ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/35"
-                          : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                          ? "bg-[#10030a]/70 text-[#FDA4AF] border-[#FF007A]/35"
+                          : "bg-[#ffe4e6]/70 text-[#BE123C] border-[#be123c]/30"
                       }`}
                     >
                       {skill}

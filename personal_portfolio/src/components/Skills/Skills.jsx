@@ -218,10 +218,10 @@ export default function Skills() {
           className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-semibold mb-3 shadow-sm ${
             isDarkMode
               ? "bg-[#10030a] border-[#FF007A]/40 text-[#FDA4AF] shadow-[0_0_15px_rgba(255,0,122,0.3)]"
-              : "bg-[#ffe4e6] border-[#be123c]/30 text-[#BE123C]"
+              : "bg-[#ffe4e6] border-[#be123c]/30 text-[#800020]"
           }`}
         >
-          <FaCrown className={isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"} />
+          <FaCrown className={isDarkMode ? "text-[#FDA4AF]" : "text-[#800020]"} />
           <span>Interactive Technology Matrix</span>
         </span>
 
@@ -248,7 +248,7 @@ export default function Skills() {
                 ? "bg-gradient-to-r from-[#E01E5A] to-[#FF007A] text-white shadow-[0_0_20px_rgba(255,0,122,0.5)] scale-105"
                 : isDarkMode
                 ? "bg-[#10030a]/80 text-[#FDA4AF] border border-[#FF007A]/30 hover:border-[#FF007A]"
-                : "bg-[#ffe4e6] text-[#BE123C] border border-[#be123c]/30 hover:border-[#be123c]"
+                : "bg-[#ffe4e6] text-[#800020] border border-[#be123c]/30 hover:border-[#be123c]"
             }`}
           >
             {cat.label}
@@ -408,8 +408,12 @@ export default function Skills() {
           </motion.div>
         </div>
 
-        {/* RIGHT COLUMN (6 Cols): Cardless Live Technical Inspector */}
-        <div className="lg:col-span-6 space-y-6">
+        {/* RIGHT COLUMN (6 Cols): Transparent Whisper-Thin Glass Technical Inspector */}
+        <div className={`lg:col-span-6 p-6 sm:p-8 rounded-3xl border backdrop-blur-sm transition-all shadow-sm space-y-6 ${
+          isDarkMode
+            ? "bg-[#10030a]/10 border-[#FF007A]/15 shadow-[0_4px_20px_rgba(255,0,122,0.05)]"
+            : "bg-white/12 border-[#be123c]/10 shadow-[0_4px_15px_rgba(225,29,72,0.03)]"
+        }`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedSkill.id}
@@ -452,7 +456,7 @@ export default function Skills() {
 
               {/* Context Description */}
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 block mb-1">
+                <span className={`text-[11px] font-bold uppercase tracking-wider block mb-1 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>
                   Engineering Context & Practical Mastery
                 </span>
                 <p className={`text-xs sm:text-sm leading-relaxed ${isDarkMode ? "text-gray-200" : "text-[#881337]"}`}>
@@ -462,7 +466,7 @@ export default function Skills() {
 
               {/* Applied Projects */}
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 block mb-2">
+                <span className={`text-[11px] font-bold uppercase tracking-wider block mb-2 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>
                   Applied In Shipped Systems
                 </span>
                 <div className="flex flex-wrap gap-2">
@@ -485,7 +489,7 @@ export default function Skills() {
 
           {/* Quick Skill Selector Grid */}
           <div className="pt-4 border-t border-[#FF007A]/20">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 block mb-2.5">
+            <span className={`text-[11px] font-bold uppercase tracking-wider block mb-2.5 ${isDarkMode ? "text-gray-400" : "text-[#881337]"}`}>
               Click any skill to inspect:
             </span>
             <div className="flex flex-wrap gap-2">

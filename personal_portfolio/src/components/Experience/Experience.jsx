@@ -165,10 +165,10 @@ export default function Experience() {
           className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-semibold mb-3 shadow-sm ${
             isDarkMode
               ? "bg-[#10030a] border-[#FF007A]/40 text-[#FDA4AF] shadow-[0_0_15px_rgba(255,0,122,0.3)]"
-              : "bg-[#ffe4e6] border-[#be123c]/30 text-[#BE123C]"
+              : "bg-[#ffe4e6] border-[#be123c]/30 text-[#800020]"
           }`}
         >
-          <FaCrown className={isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"} />
+          <FaCrown className={isDarkMode ? "text-[#FDA4AF]" : "text-[#800020]"} />
           <span>Professional & Academic Trajectory</span>
         </span>
 
@@ -300,7 +300,7 @@ export default function Experience() {
                     >
                       <span>{item.organization}</span>
                       <span>•</span>
-                      <span className="flex items-center gap-1 font-semibold text-gray-300">
+                      <span className={`flex items-center gap-1 font-semibold ${isDarkMode ? "text-gray-300" : "text-[#4c0519]"}`}>
                         <FaMapMarkerAlt className="text-[#FF007A] text-xs" /> {item.location}
                       </span>
                     </p>

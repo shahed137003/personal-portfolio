@@ -6,7 +6,6 @@ import {
   FaCopy,
   FaCheck,
   FaPaperPlane,
-  FaRegCommentDots,
 } from "react-icons/fa";
 import { FiSend, FiUser, FiMail, FiTag, FiEdit } from "react-icons/fi";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
@@ -133,7 +132,7 @@ export default function Contact() {
         <span className={`inline-block px-4 py-1.5 rounded-full border text-xs sm:text-sm font-semibold mb-3 shadow-sm ${
           isDarkMode
             ? "bg-[#10030a] border-[#FF007A]/40 text-[#FDA4AF] shadow-[0_0_15px_rgba(255,0,122,0.3)]"
-            : "bg-[#ffe4e6] border-[#be123c]/30 text-[#BE123C]"
+            : "bg-[#ffe4e6] border-[#be123c]/30 text-[#800020]"
         }`}>
           Get In Touch
         </span>
@@ -158,10 +157,10 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className={`rounded-3xl p-6 sm:p-7 border shadow-xl ${
+          <div className={`rounded-3xl p-6 sm:p-7 border backdrop-blur-sm shadow-sm ${
             isDarkMode
-              ? "bg-gradient-to-br from-[#180510]/95 to-[#0b0207]/95 border-[#FF007A]/40"
-              : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 shadow-[0_8px_25px_rgba(225,29,72,0.1)]"
+              ? "bg-[#10030a]/10 border-[#FF007A]/15 shadow-[0_4px_20px_rgba(255,0,122,0.05)]"
+              : "bg-white/12 border-[#be123c]/10 shadow-[0_4px_15px_rgba(225,29,72,0.03)]"
           }`}>
             <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E01E5A] to-[#FF007A] dark:from-white dark:to-[#FDA4AF] mb-5">
               Contact Information
@@ -174,13 +173,13 @@ export default function Contact() {
                   onClick={card.onClick}
                   className={`p-4 rounded-2xl border transition-all flex items-center justify-between ${
                     isDarkMode
-                      ? "bg-[#10030a] border-[#FF007A]/30 hover:border-[#FF007A]"
-                      : "bg-[#fff1f2] border-[#be123c]/25 hover:border-[#e11d48]"
+                      ? "bg-[#10030a]/20 border-[#FF007A]/20 hover:border-[#FF007A]"
+                      : "bg-[#fff1f2]/30 border-[#be123c]/20 hover:border-[#e11d48]"
                   } ${card.onClick ? "cursor-pointer group" : ""}`}
                 >
                   <div className="flex items-center gap-3.5">
                     <div className={`p-3 rounded-xl border ${
-                      isDarkMode ? "bg-[#10030a] border-[#FF007A]/40" : "bg-[#ffe4e6] border-[#be123c]/30"
+                      isDarkMode ? "bg-[#10030a]/60 border-[#FF007A]/30" : "bg-[#ffe4e6]/60 border-[#be123c]/20"
                     }`}>
                       {card.icon}
                     </div>
@@ -199,7 +198,7 @@ export default function Contact() {
                   </div>
 
                   <span className={`text-xs font-semibold px-3 py-1 rounded-full border shrink-0 ${
-                    isDarkMode ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/30" : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/30"
+                    isDarkMode ? "bg-[#10030a]/60 text-[#FDA4AF] border-[#FF007A]/30" : "bg-[#ffe4e6]/60 text-[#800020] border-[#be123c]/30"
                   }`}>
                     {card.actionText}
                   </span>
@@ -209,10 +208,10 @@ export default function Contact() {
           </div>
 
           {/* Social Profiles Card */}
-          <div className={`rounded-3xl p-6 border shadow-xl ${
+          <div className={`rounded-3xl p-6 border backdrop-blur-sm shadow-sm ${
             isDarkMode
-              ? "bg-gradient-to-br from-[#180510]/95 to-[#0b0207]/95 border-[#FF007A]/40"
-              : "bg-gradient-to-br from-[#ffffff] to-[#fff1f2] border-[#be123c]/30 shadow-[0_8px_25px_rgba(225,29,72,0.1)]"
+              ? "bg-[#10030a]/10 border-[#FF007A]/15 shadow-[0_4px_20px_rgba(255,0,122,0.05)]"
+              : "bg-white/12 border-[#be123c]/10 shadow-[0_4px_15px_rgba(225,29,72,0.03)]"
           }`}>
             <h3 className={`text-lg font-bold mb-4 ${
               isDarkMode ? "text-white" : "text-[#4c0519]"
@@ -227,8 +226,8 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className={`flex items-center justify-center gap-2.5 p-3.5 rounded-2xl border font-semibold text-xs sm:text-sm transition-all ${
                   isDarkMode
-                    ? "bg-[#10030a] border-[#FF007A]/35 hover:border-[#FF007A] text-white hover:text-[#FDA4AF]"
-                    : "bg-[#fff1f2] border-[#be123c]/30 hover:border-[#e11d48] text-[#4c0519] hover:text-[#BE123C]"
+                    ? "bg-[#10030a]/30 border-[#FF007A]/25 hover:border-[#FF007A] text-white hover:text-[#FDA4AF]"
+                    : "bg-[#fff1f2]/40 border-[#be123c]/20 hover:border-[#e11d48] text-[#4c0519] hover:text-[#BE123C]"
                 }`}
               >
                 <FaGithub className={`text-lg ${isDarkMode ? "text-[#FDA4AF]" : "text-[#BE123C]"}`} />
@@ -241,8 +240,8 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className={`flex items-center justify-center gap-2.5 p-3.5 rounded-2xl border font-semibold text-xs sm:text-sm transition-all ${
                   isDarkMode
-                    ? "bg-[#10030a] border-[#FF007A]/35 hover:border-[#FF007A] text-white hover:text-[#FDA4AF]"
-                    : "bg-[#fff1f2] border-[#be123c]/30 hover:border-[#e11d48] text-[#4c0519] hover:text-[#BE123C]"
+                    ? "bg-[#10030a]/30 border-[#FF007A]/25 hover:border-[#FF007A] text-white hover:text-[#FDA4AF]"
+                    : "bg-[#fff1f2]/40 border-[#be123c]/20 hover:border-[#e11d48] text-[#4c0519] hover:text-[#BE123C]"
                 }`}
               >
                 <FaLinkedin className={`text-lg ${isDarkMode ? "text-[#FF007A]" : "text-[#BE123C]"}`} />
@@ -260,10 +259,10 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className={`rounded-3xl p-6 sm:p-8 border shadow-2xl ${
+          <div className={`rounded-3xl p-6 sm:p-8 border backdrop-blur-sm shadow-sm ${
             isDarkMode
-              ? "bg-gradient-to-br from-[#180510]/95 via-[#10030a]/95 to-[#0b0207]/95 border-[#FF007A]/45"
-              : "bg-gradient-to-br from-[#ffffff] via-[#fff1f2] to-[#ffe4e6] border-[#be123c]/35 shadow-[0_10px_35px_rgba(225,29,72,0.12)]"
+              ? "bg-[#10030a]/10 border-[#FF007A]/15 shadow-[0_4px_20px_rgba(255,0,122,0.05)]"
+              : "bg-white/12 border-[#be123c]/10 shadow-[0_4px_15px_rgba(225,29,72,0.03)]"
           }`}>
             <div className="flex items-center justify-between mb-6">
               <div>

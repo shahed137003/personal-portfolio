@@ -12,14 +12,14 @@ export default function HeroSection() {
   const capabilities = [
     {
       id: 0,
-      label: "🧠 AI Web Applications",
+      label: "AI Web Applications",
       title: "Intelligent AI Integration",
       desc: "Real-time Sign Language Translation, Code Assistant AI Chatbots & ML Model Web Apps.",
       tag: "Sign Language & AI Chatbots",
     },
     {
       id: 1,
-      label: "⚡ React 18 Architecture",
+      label: "React 18 Architecture",
       title: "High-Performance SPA",
       desc: "Sub-50ms interaction speed, modular state management, and 100/100 Web Vitals.",
       tag: "100/100 Web Vitals Score",
@@ -159,7 +159,7 @@ export default function HeroSection() {
                     ? "bg-gradient-to-r from-[#E01E5A] via-[#F43F5E] to-[#FF007A] text-[#180510] border-white shadow-[0_0_20px_rgba(255,0,122,0.6)] scale-105"
                     : isDarkMode
                     ? "bg-[#10030a]/80 text-[#FDA4AF] border-[#FF007A]/30 hover:border-[#FF007A]"
-                    : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/50 hover:border-[#BE123C]"
+                    : "bg-[#ffe4e6] text-[#800020] border-[#be123c]/50 hover:border-[#BE123C]"
                 }`}
               >
                 {item.label}
@@ -195,7 +195,7 @@ export default function HeroSection() {
               <span className={`px-3 py-1 rounded-full text-[11px] font-extrabold shrink-0 border ${
                 isDarkMode
                   ? "bg-[#180510] text-[#FF007A] border-[#FF007A]/40"
-                  : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/50"
+                  : "bg-[#ffe4e6] text-[#800020] border-[#be123c]/50"
               }`}>
                 {capabilities[selectedCapability].tag}
               </span>
