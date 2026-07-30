@@ -280,7 +280,7 @@ export default function Skills() {
             <span className={`text-sm sm:text-base font-black mt-0.5 ${isDarkMode ? "text-white" : "text-[#4c0519]"}`}>
               Shahd Mohamed
             </span>
-            <span className="text-[10px] font-mono text-pink-400 mt-1">Ain Shams Senior</span>
+            {/* <span className="text-[10px] font-mono text-pink-400 mt-1">Ain Shams Senior</span> */}
           </div>
 
           {/* INNER ORBIT RING (360° Clockwise Rotation) */}
@@ -408,11 +408,11 @@ export default function Skills() {
           </motion.div>
         </div>
 
-        {/* RIGHT COLUMN (6 Cols): Transparent Whisper-Thin Glass Technical Inspector */}
+        {/* RIGHT COLUMN (6 Cols): Balanced 8%-10% Glass Technical Inspector */}
         <div className={`lg:col-span-6 p-6 sm:p-8 rounded-3xl border backdrop-blur-sm transition-all shadow-sm space-y-6 ${
           isDarkMode
-            ? "bg-[#10030a]/10 border-[#FF007A]/15 shadow-[0_4px_20px_rgba(255,0,122,0.05)]"
-            : "bg-white/12 border-[#be123c]/10 shadow-[0_4px_15px_rgba(225,29,72,0.03)]"
+            ? "bg-[#10030a]/08 border-[#FF007A]/20 hover:border-[#FF007A]/50 shadow-[0_4px_20px_rgba(255,0,122,0.06)] text-white"
+            : "bg-white/10 border-[#be123c]/15 hover:border-[#be123c]/45 shadow-[0_4px_15px_rgba(225,29,72,0.03)] text-[#4c0519]"
         }`}>
           <AnimatePresence mode="wait">
             <motion.div
@@ -577,31 +577,49 @@ export default function Skills() {
           ].map((item, idx) => (
             <motion.div
               key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
               whileHover={{ x: 6 }}
-              className="relative pl-5 border-l-2 border-[#FF007A]/40 space-y-2 group transition-all"
+              whileTap={{ scale: 0.98 }}
+              className="relative pl-6 border-l-2 border-[#FF007A]/40 hover:border-[#FF007A] space-y-2.5 group transition-colors duration-300 cursor-pointer"
             >
-              {/* Glowing Pulsing Node Dot */}
-              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#FF007A] border-2 border-white dark:border-[#10030a] shadow-[0_0_12px_#FF007A] group-hover:scale-125 transition-transform" />
+              {/* Glowing Pulsing Radar Node Dot with Ping Ring */}
+              <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#FF007A] border-2 border-white dark:border-[#10030a] shadow-[0_0_15px_#FF007A] group-hover:scale-135 group-hover:bg-[#FDA4AF] group-hover:shadow-[0_0_25px_#FF007A] transition-all duration-300">
+                <span className="animate-ping absolute inset-0 rounded-full bg-[#FF007A] opacity-60" />
+              </div>
 
-              <div className="flex items-center gap-2.5 pt-0.5">
-                {item.icon}
-                <h3 className={`text-lg font-bold ${isDarkMode ? "text-white" : "text-[#4c0519]"}`}>
+              {/* Title & Mobile Continuous Floating Bouncing Icon */}
+              <div className="flex items-center gap-3 pt-0.5">
+                <motion.div
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut", delay: idx * 0.3 }}
+                  className="transform group-hover:scale-125 transition-transform duration-300"
+                >
+                  {item.icon}
+                </motion.div>
+                <h3 className={`text-lg font-extrabold transition-colors duration-300 ${
+                  isDarkMode ? "text-white group-hover:text-[#FDA4AF]" : "text-[#4c0519] group-hover:text-[#be123c]"
+                }`}>
                   {item.title}
                 </h3>
               </div>
 
+              {/* Context Description */}
               <p className={`text-xs sm:text-sm leading-relaxed ${isDarkMode ? "text-gray-300" : "text-[#881337]"}`}>
                 {item.context}
               </p>
 
+              {/* Interactive Highlight Badges */}
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {item.highlights.map((h, i) => (
                   <span
                     key={i}
-                    className={`px-2.5 py-0.5 rounded-lg text-[10px] font-mono font-semibold border ${
+                    className={`px-2.5 py-0.5 rounded-lg text-[10px] font-mono font-semibold border transition-all duration-300 group-hover:scale-105 ${
                       isDarkMode
-                        ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/30"
-                        : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/25"
+                        ? "bg-[#10030a] text-[#FDA4AF] border-[#FF007A]/30 group-hover:border-[#FF007A]/70 group-hover:shadow-[0_0_10px_rgba(255,0,122,0.3)]"
+                        : "bg-[#ffe4e6] text-[#BE123C] border-[#be123c]/25 group-hover:border-[#be123c]/60"
                     }`}
                   >
                     • {h}

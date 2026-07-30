@@ -246,11 +246,15 @@ export default function Experience() {
                   <div className="w-2.5 h-2.5 rounded-full bg-[#FF007A] animate-ping" />
                 </div>
 
-                {/* Seamless Cardless Content Stream Item */}
+                {/* Balanced 8%-10% Glass Card Container Item */}
                 <motion.div
-                  whileHover={{ x: 6 }}
+                  whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="space-y-3 pb-8 border-b border-[#FF007A]/20 last:border-b-0"
+                  className={`p-6 sm:p-8 rounded-3xl border backdrop-blur-sm transition-all shadow-sm space-y-4 mb-6 ${
+                    isDarkMode
+                      ? "bg-[#10030a]/08 border-[#FF007A]/20 hover:border-[#FF007A]/50 shadow-[0_4px_20px_rgba(255,0,122,0.06)] text-white"
+                      : "bg-white/10 border-[#be123c]/15 hover:border-[#be123c]/45 shadow-[0_4px_15px_rgba(225,29,72,0.03)] text-[#4c0519]"
+                  }`}
                 >
                   {/* Top Metadata Row */}
                   <div className="flex flex-wrap items-center justify-between gap-2">

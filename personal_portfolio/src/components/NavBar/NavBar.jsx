@@ -10,7 +10,7 @@ export default function NavBar() {
   const { isDarkMode, toggleTheme } = useTheme();
 
   const resumeLink =
-    "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/Eflb-VaMeDFJvvtI9lXVATQB8ADzuvxMWqnA-kNeNJb4Gw?e=b0mpJW";
+    "https://engasuedu-my.sharepoint.com/:b:/g/personal/2100898_eng_asu_edu_eg/IQAuwMKQBTQwQblGuSfJvs-kAaTl_H2FgpLp7FAaCgV4JAA?e=Q25vO3";
 
   const navLinks = [
     { name: "Home", href: "#homeSection" },

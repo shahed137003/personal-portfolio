@@ -425,8 +425,8 @@ public:
   };
 
   const cardBgStyle = isDarkMode
-    ? "bg-[#10030a]/50 backdrop-blur-xl border border-[#FF007A]/30 hover:border-[#FF007A] shadow-[0_8px_30px_rgba(255,0,122,0.2)] hover:shadow-[0_15px_45px_rgba(255,0,122,0.4)] text-white sign-language-grid-bg"
-    : "bg-white/50 backdrop-blur-xl border border-[#be123c]/25 hover:border-[#be123c] shadow-[0_8px_25px_rgba(225,29,72,0.08)] hover:shadow-[0_15px_35px_rgba(225,29,72,0.2)] text-[#4c0519] sign-language-grid-bg";
+    ? "bg-[#10030a]/08 backdrop-blur-sm border border-[#FF007A]/20 hover:border-[#FF007A]/50 shadow-[0_4px_20px_rgba(255,0,122,0.06)] hover:shadow-[0_12px_35px_rgba(255,0,122,0.2)] text-white"
+    : "bg-white/10 backdrop-blur-sm border border-[#be123c]/15 hover:border-[#be123c]/45 shadow-[0_4px_15px_rgba(225,29,72,0.03)] hover:shadow-[0_12px_30px_rgba(225,29,72,0.1)] text-[#4c0519]";
 
   return (
     <section className={`relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16 transition-colors duration-500 ${
