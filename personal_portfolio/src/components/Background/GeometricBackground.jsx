@@ -105,8 +105,18 @@ export default function GeometricBackground() {
 
     const handleResize = () => {
       if (!canvas) return;
+      const oldWidth = canvas.width;
+      const oldHeight = canvas.height;
+      
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+
+      if (oldWidth > 0 && oldHeight > 0) {
+        particlesRef.current.forEach((particle) => {
+          particle.x = (particle.x / oldWidth) * canvas.width;
+          particle.y = (particle.y / oldHeight) * canvas.height;
+        });
+      }
     };
 
     window.addEventListener("resize", handleResize);

@@ -21,7 +21,7 @@ function MainContent() {
       {!loadingFinished ? (
         <MultiStepLoader onFinish={() => setLoadingFinished(true)} />
       ) : (
-        <div className={`relative min-h-screen overflow-hidden transition-colors duration-500 ${
+        <div className={`relative min-h-screen overflow-x-hidden transition-colors duration-500 ${
           isDarkMode ? "bg-[#05010a] text-white" : "bg-[#fbf7ff] text-[#2e0854]"
         }`}>
           {/* Exact Geometric Grid & Animated Gradient Orbs from Sign Language Project Home */}
